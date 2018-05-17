@@ -10,7 +10,14 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
+//= require jquery-3.3.1.min.js
+//= require jquery-migrate.min.js
+//= require popper.min.js
+//= require bootstrap.min.js
+//= require ./plugins/owl.carousel.min.js
+//= require ./plugins/waypoints.min.js
+//= require ./plugins/counterup.min.js
+//= require ./plugins/parallax-1.1.3.js
+//= require ./plugins/jquery.slicknav.min.js
 //= require turbolinks
-//= require_tree .
 //= require_tree ./admins
