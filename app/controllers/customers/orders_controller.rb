@@ -1,5 +1,6 @@
 class Customers::OrdersController < ApplicationController
   before_action :authenticate_customer!
+  layout 'customers'
 
   def new; end
 

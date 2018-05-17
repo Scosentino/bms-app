@@ -25,21 +25,10 @@
           <div class="col-8">
             <div class="tab-content" id="nav-tabContent">
               <div class="tab-pane fade show active" id="list-order" role="tabpanel" aria-labelledby="list-order-list">
-                Order Submitted:
-                <br>
-                Order Reviewed:
-                <br>
-                View Documents:
-                <br>
-                View Offer:
+                <%= render partial: 'orders_table' %>
               </div>
               <div class="tab-pane fade" id="list-offer" role="tabpanel" aria-labelledby="list-offer-list">
-                Offer:
-                <br>
-                <div class="row">
-                  <button type="button" name="button">Accept</button>
-                  <button type="button" name="button">Reject</button>
-                </div>
+                <%= render partial: 'offers_table' %>
               </div>
               <div class="tab-pane fade" id="list-activity" role="tabpanel" aria-labelledby="list-activity-list">Forum style message board between admin and customer</div>
               <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">Edit profile, view contracts, etc</div>

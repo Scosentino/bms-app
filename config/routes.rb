@@ -11,7 +11,8 @@ Rails.application.routes.draw do
   resources :customers, only: [:index]
 
   namespace :customers do
-    resources :orders, only: [:create, :new, :index, :destroy, :show]
+    resources :orders, only: [:create, :new, :destroy, :show]
+    resources :offers, only: [:show]
   end
 
   namespace :admins do
