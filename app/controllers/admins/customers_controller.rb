@@ -1,5 +1,6 @@
 class Admins::CustomersController < ApplicationController
   before_action :authenticate_admin!
+  layout 'admins'
 
   def show
     @customer = User.find_by(id: params[:id])

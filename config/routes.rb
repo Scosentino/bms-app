@@ -17,5 +17,6 @@ Rails.application.routes.draw do
   namespace :admins do
     resource :customers, only: [:show]
     resources :orders, only: [:show]
+    resources :offers, only: [:new, :show, :create]
   end
 end

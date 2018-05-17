@@ -1,0 +1,30 @@
+<section id="content-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12">
+        <div class="bms_creation_form">
+          <h3 class="text-center text-uppercase text-white">Create Order</h3>
+          <%= form_for(Offer.new, url: admins_offers_path, method: :post) do |f| %>
+            <%= f.hidden_field :customer_id, value: @order.customer.id %>
+            <%= f.hidden_field :order_id, value: @order.id %>
+
+            <div class="create_form_input">
+              <%= f.label :title %>
+              <%= f.text_field :title %>
+            </div>
+            <div class="create_form_input">
+              <%= f.label :description %>
+              <%= f.text_area :description %>
+            </div>
+            <div class="create_form_input">
+              <%= f.label :bid, 'Offer rate' %>
+              <%= f.text_field :bid, type: 'number' %>
+            </div>
+
+            <%= f.submit 'Create' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,5 +1,6 @@
 class Admins::OrdersController < ApplicationController
   before_action :authenticate_admin!
+  layout 'admins'
 
   def show
     @order = Order.find_by(id: params[:id])
