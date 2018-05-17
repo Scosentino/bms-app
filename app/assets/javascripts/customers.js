@@ -10,5 +10,11 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require_tree .
+//= require jquery-3.3.1.min.js
+//= require jquery_ujs
+//= require jquery-ui
+//= require jquery-migrate.min.js
+//= require popper.min.js
+//= require bootstrap.min.js
+//= require_tree ./plugins
 //= require_tree ./customers
