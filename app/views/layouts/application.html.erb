@@ -12,8 +12,8 @@
 
   <%= csrf_meta_tags %>
 
-  <%= stylesheet_link_tag    'admins', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'admins', 'data-turbolinks-track': 'reload' %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
 
   <!--[if lt IE 9]>
   <script src="assets///oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -41,14 +41,19 @@
   <div class="preheader-area home__2">
     <div class="container">
       <div class="row">
-        <div class="col-lg-3 col-sm-6">
+        <div class="col-lg-4 col-sm-6">
           <div class="preheader-item log-reg">
-            <a href="register.html">Get Started!</a>
-            <a href="login.html">Login</a>
+            <% if current_user.present? %>
+              <a href="/"><%= current_user.full_name %></a>
+              <%= link_to 'Logout', destroy_user_session_path, method: 'delete' %>
+            <% else %>
+              <a href="<%= new_user_registration_path %>">Get Started!</a>
+              <a href="<%= new_user_session_path %>">Login</a>
+            <% end %>
           </div>
         </div>
 
-        <div class="col-lg-6 text-center d-none d-lg-block">
+        <div class="col-lg-5 text-center d-none d-lg-block">
 
         </div>
 
@@ -77,7 +82,7 @@
       <div class="row">
         <!-- Logo Area Start -->
         <div class="col-lg-2">
-          <a href="index.html" class="logo-area">
+          <a href="/" class="logo-area">
             <img src="https://i.imgur.com/GPKmsua.png" alt="Logo">
           </a>
         </div>
@@ -128,7 +133,15 @@
 
         <div class="col-lg-3 d-none d-lg-block">
           <div class="header-btn pull-right">
-            <a href="register.html" class="seo-btn hvr-curl-bottom-right">Get Started Now</a>
+            <% if current_user %>
+              <% if current_user.admin? %>
+                <a href="<%= admins_path %>" class="seo-btn hvr-curl-bottom-right">Dashboard</a>
+              <% elsif current_user.customer? %>
+                <a href="<%= customers_path %>" class="seo-btn hvr-curl-bottom-right">Dashboard</a>
+              <% end %>
+            <% else %>
+              <a href="<%= new_user_registration_path %>" class="seo-btn hvr-curl-bottom-right">Get Started Now</a>
+            <% end %>
           </div>
         </div>
       </div>
@@ -140,184 +153,6 @@
 
 <%= yield %>
 <!--== About Area End ==-->
-
-<!--== FunFact Area Start (Home2) ==-->
-<section id="funfact-area" class="home__2 overlay">
-  <div class="container">
-    <div class="row">
-      <!-- Single FunFact Start -->
-      <div class="col-lg-3 col-sm-6 text-center">
-        <div class="single-funfact">
-          <i class="fa fa-handshake-o fun-icon"></i>
-          <h5><span class="countup">698</span>+</h5>
-          <p>Project Done</p>
-        </div>
-      </div>
-      <!-- Single FunFact End -->
-
-      <!-- Single FunFact Start -->
-      <div class="col-lg-3 col-sm-6 text-center">
-        <div class="single-funfact">
-          <i class="fa fa-smile-o fun-icon"></i>
-          <h5><span class="countup">199</span>+</h5>
-          <p>Happy Clients</p>
-        </div>
-      </div>
-      <!-- Single FunFact End -->
-
-      <!-- Single FunFact Start -->
-      <div class="col-lg-3 col-sm-6 text-center">
-        <div class="single-funfact">
-          <i class="fa fa-trophy fun-icon"></i>
-          <h5><span class="countup">99</span>+</h5>
-          <p>Award Wins</p>
-        </div>
-      </div>
-      <!-- Single FunFact End -->
-
-      <!-- Single FunFact Start -->
-      <div class="col-lg-3 col-sm-6 text-center">
-        <div class="single-funfact">
-          <i class="fa fa-coffee fun-icon"></i>
-          <h5><span class="countup">1499</span>+</h5>
-          <p>Cup Of Coffee</p>
-        </div>
-      </div>
-      <!-- Single FunFact End -->
-    </div>
-  </div>
-</section>
-<!--== FunFact Area End ==-->
-
-<!--== Service Area Start (Home2) ==-->
-<section id="service-area" class="home__2 section-padding">
-  <div class="container">
-    <div class="row">
-      <!-- Section Title Start -->
-      <div class="col-lg-6 m-auto text-center">
-        <div class="section-title">
-          <h2><span>Our</span> Services</h2>
-          <p>Lorem ipsum dolor sited amet, consectetur adipisicing elit, sede do eiusmod tempored incididunt uted is a vaey nice theme labore.</p>
-        </div>
-      </div>
-      <!-- Section Title End -->
-    </div>
-
-    <div class="row">
-      <!-- Single Service Start -->
-      <div class="col-lg-4 col-sm-6">
-        <div class="single-service">
-          <div class="service-icon">
-            <i class="fa fa-globe"></i>
-          </div>
-          <h4>Own Business</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-          <a href="single-service.html" class="load-more">Read more <i class="fa fa-angle-right"></i></a>
-        </div>
-      </div>
-      <!-- Single Service End -->
-
-      <!-- Single Service Start -->
-      <div class="col-lg-4 col-sm-6">
-        <div class="single-service">
-          <div class="service-icon">
-            <i class="fa fa-cubes"></i>
-          </div>
-          <h4>Marketing Plan</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-          <a href="single-service.html" class="load-more">Read more <i class="fa fa-angle-right"></i></a>
-        </div>
-      </div>
-      <!-- Single Service End -->
-
-      <!-- Single Service Start -->
-      <div class="col-lg-4 col-sm-6">
-        <div class="single-service">
-          <div class="service-icon">
-            <i class="fa fa-area-chart"></i>
-          </div>
-          <h4>Business Growth</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-          <a href="single-service.html" class="load-more">Read more <i class="fa fa-angle-right"></i></a>
-        </div>
-      </div>
-      <!-- Single Service End -->
-
-      <!-- Single Service Start -->
-      <div class="col-lg-4 col-sm-6">
-        <div class="single-service">
-          <div class="service-icon">
-            <i class="fa fa-bar-chart-o"></i>
-          </div>
-          <h4>Digital Marketing</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-          <a href="single-service.html" class="load-more">Read more <i class="fa fa-angle-right"></i></a>
-        </div>
-      </div>
-      <!-- Single Service End -->
-
-      <!-- Single Service Start -->
-      <div class="col-lg-4 col-sm-6">
-        <div class="single-service">
-          <div class="service-icon">
-            <i class="fa fa-link"></i>
-          </div>
-          <h4>Link Building</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-          <a href="single-service.html" class="load-more">Read more <i class="fa fa-angle-right"></i></a>
-        </div>
-      </div>
-      <!-- Single Service End -->
-
-      <!-- Single Service Start -->
-      <div class="col-lg-4 col-sm-6">
-        <div class="single-service">
-          <div class="service-icon">
-            <i class="fa fa-pie-chart"></i>
-          </div>
-          <h4>Web Analysis</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-          <a href="single-service.html" class="load-more">Read more <i class="fa fa-angle-right"></i></a>
-        </div>
-      </div>
-      <!-- Single Service End -->
-    </div>
-  </div>
-</section>
-<!--== Service Area End ==-->
-
-
-
-<!--== Newsletter Area Start (Home2) ==-->
-<section class="newsletter-area home__2 overlay section-padding">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="newsletter-content">
-          <h3>Join Our Mailing List</h3>
-          <h2>For Get Free SEO Tips</h2>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="newsletter-form">
-          <form>
-            <input type="text" placeholder="Enter Your Email Address">
-            <button class="seo-btn">Search</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<!--== Newsletter Area End ==-->
-
-
-
-
-
-
-
-
 
 <!--== Footer Area Start (Home2) ==-->
 <footer id="footer-area" class="home__2 overlay">

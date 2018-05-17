@@ -1,29 +1,82 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="page-title section-padding overlay">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="page-title-wrap">
+          <h2>Register</h2>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index_2.html">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Register</li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+<!--== Page Title End ==-->
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+<!--== Login Page Content Start ==-->
+<section id="lgoin-page-wrap" class="section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 col-md-8 m-auto">
+        <div class="login-page-content">
+          <div class="login-form">
+            <h3>Register</h3>
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+              <%= devise_error_messages! %>
+
+              <div class="input-item">
+                <%= f.label :first_name %><br />
+                <%= f.text_field :first_name %>
+              </div>
+
+              <div class="input-item">
+                <%= f.label :last_name %><br />
+                <%= f.text_field :last_name %>
+              </div>
+
+              <div class="field">
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              </div>
+
+              <div class="field">
+                <%= f.label :password %>
+                <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br />
+                <%= f.password_field :password, autocomplete: "off" %>
+              </div>
+
+              <div class="field">
+                <%= f.label :password_confirmation %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "off" %>
+              </div>
+
+              <div class="log-btn">
+                <button type="submit"><i class="fa fa-sign-in"></i> Register</button>
+              </div>
+            <% end %>
+          </div>
+
+          <div class="login-other">
+            <span class="or">or</span>
+            <a href="#" class="login-with-btn facebook"><i class="fa fa-facebook"></i> Register With Facebook</a>
+            <a href="#" class="login-with-btn google"><i class="fa fa-google"></i> Register With Google</a>
+          </div>
+          <div class="create-ac">
+            <p>Already you have an account? <a href="<%= new_user_session_path %>">Sign In</a></p>
+          </div>
+          <div class="login-menu">
+            <a href="about.html">About</a>
+            <span>|</span>
+            <a href="contact.html">Contact</a>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</section>

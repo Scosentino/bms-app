@@ -7,4 +7,8 @@ class User < ApplicationRecord
   enum user_type: %w[customer admin]
 
   validates_presence_of :first_name, :last_name, :email
+
+  def full_name
+    "#{first_name.humanize} #{last_name.humanize}"
+  end
 end

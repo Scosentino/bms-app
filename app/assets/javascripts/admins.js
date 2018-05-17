@@ -11,9 +11,10 @@
 // about supported directives.
 //
 //= require jquery-3.3.1.min.js
+//= require jquery_ujs
+//= require jquery-ui
 //= require jquery-migrate.min.js
 //= require popper.min.js
 //= require bootstrap.min.js
 //= require_tree ./plugins
-//= require turbolinks
 //= require_tree ./admins
