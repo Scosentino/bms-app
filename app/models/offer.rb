@@ -6,4 +6,14 @@ class Offer < ApplicationRecord
   enum status: %w[pending accepted rejected]
 
   validates_presence_of :title, :description, :bid
+
+  def status_html
+    if pending?
+      '<label class="offer_label_status_pending">pending</label>'
+    elsif accepted?
+      '<label class="offer_label_status_pending">accepted</label>'
+    elsif rejected?
+      '<label class="offer_label_status_pending">rejected</label>'
+    end
+  end
 end

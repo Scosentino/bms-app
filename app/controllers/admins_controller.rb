@@ -6,5 +6,6 @@ class AdminsController < ApplicationController
   def index
     @customers = User.where(user_type: 0)
     @orders = Order.where(completed: false)
+    @offers = current_user.admin_offers
   end
 end

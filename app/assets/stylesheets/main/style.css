@@ -2418,3 +2418,30 @@ body.preloader-active {
     border: 1px solid #fff;
     box-shadow: 0px 0px 6px -2px #34495E;
 }
+
+.offer_label_status_pending {
+    background: #0436b6;
+    padding: 1px 10px 1px 10px;
+    margin: 1px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.offer_label_status_accepted {
+    background: #27b636;
+    padding: 1px 10px 1px 10px;
+    margin: 1px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.offer_label_status_rejected {
+    background: #b61b18;
+    padding: 1px 10px 1px 10px;
+    margin: 1px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    text-align: center;
+}
