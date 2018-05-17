@@ -10,7 +10,30 @@ class Customers::OffersController < ApplicationController
     end
   end
 
+  def accept
+    change_status('accepted')
+  end
+
+  def reject
+    change_status('rejected')
+  end
+
   private
+
+  def change_status status
+    if @offer.present?
+      if @offer.update(status: status)
+        @status = 200
+        flash[:notice] = "Offer #{status.humanize}"
+      else
+        @status = 500
+        flash[:alert] = "Offer does not #{status}"
+      end
+    else
+      @status = 404
+      flash[:alert] = 'Offer was not found'
+    end
+  end
 
   def set_offer
     @offer = Offer.find_by(id: params[:id])

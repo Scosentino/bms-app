@@ -12,7 +12,10 @@ Rails.application.routes.draw do
 
   namespace :customers do
     resources :orders, only: [:create, :new, :destroy, :show]
+    # Offers
     resources :offers, only: [:show]
+    post 'offers/accept/:id', to: 'offers#accept', as: :accept_offer
+    post 'offers/reject/:id', to: 'offers#reject', as: :reject_offer
   end
 
   namespace :admins do

@@ -28,7 +28,7 @@
               <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
                 Status:
               </div>
-              <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+              <div class="col-md-8 col-lg-8 col-sm-7 show_box_data" id="order_status">
                 <%= @offer.status_html.html_safe %>
               </div>
             </div>
@@ -98,6 +98,29 @@
               <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
                 <%= @offer.created_at.strftime('%b %e %Y, %l:%M %p') %>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+            <div class="row order_actions_buttons">
+              <% if @offer.pending? %>
+                <div class="col-md-6 col-lg-6 col-sm-6 text-center">
+                  <%= link_to 'Accept', customers_accept_offer_path(id: @offer.id), class: 'bms_submit_button', remote: true, method: 'post', id: 'bms_accept_offer_button' %>
+                </div>
+                <div class="col-md-6 col-lg-6 col-sm-6 text-center">
+                  <%= link_to 'Reject', customers_reject_offer_path(id: @offer.id), class: 'bms_reject_button', remote: true, method: 'post', id: 'bms_reject_offer_button' %>
+                </div>
+              <% elsif @offer.accepted? %>
+                <div class="col-md-12 col-lg-12 col-sm-12 text-center">
+                  <%= link_to 'Reject', customers_reject_offer_path(id: @offer.id), class: 'bms_reject_button', remote: true, method: 'post', id: 'bms_reject_offer_button' %>
+                </div>
+              <% elsif @offer.rejected? %>
+                <div class="col-md-12 col-lg-12 col-sm-12 text-center">
+                  <%= link_to 'Accept', customers_accept_offer_path(id: @offer.id), class: 'bms_submit_button', remote: true, method: 'post', id: 'bms_accept_offer_button' %>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>

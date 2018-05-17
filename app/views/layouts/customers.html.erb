@@ -116,7 +116,9 @@
   <!-- Header Bottom Area End -->
 </header>
 <!--== Header Area End ==-->
-<%= render 'layouts/messages' %>
+<div id="flash_errors_container">
+  <%= render 'layouts/messages' %>
+</div>
 <%= yield %>
 <!--== About Area End ==-->
 

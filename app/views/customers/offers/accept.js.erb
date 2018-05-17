@@ -1,0 +1,19 @@
+<% flash.each do |name, msg| %>
+<% if msg.is_a?(String) %>
+$('#flash_errors_container').html('<div class="alert alert-dismissible alert-<%= name.to_s == "notice" ? "success" : "danger" %>">' +
+    '        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+    '      <%= content_tag :div, msg, :id => "flash_#{name}" %>' +
+    '    </div>');
+<% end %>
+<% end %>
+
+$('html,body').animate({
+    scrollTop: 0
+}, 200);
+
+<% if @status == 200 %>
+$('#order_status').html('<label class="offer_label_status_accepted">accepted</label>');
+$('.order_actions_buttons').html('<div class="col-md-12 col-lg-12 col-sm-12 text-center">' +
+    '                  <a class="bms_reject_button" id="bms_reject_offer_button" data-remote="true" rel="nofollow" data-method="post" href="/customers/offers/reject/<%= @offer.id %>">Reject</a>' +
+    '                </div>');
+<% end %>
