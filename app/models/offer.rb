@@ -11,9 +11,9 @@ class Offer < ApplicationRecord
     if pending?
       '<label class="offer_label_status_pending">pending</label>'
     elsif accepted?
-      '<label class="offer_label_status_pending">accepted</label>'
+      '<label class="offer_label_status_accepted">accepted</label>'
     elsif rejected?
-      '<label class="offer_label_status_pending">rejected</label>'
+      '<label class="offer_label_status_rejected">rejected</label>'
     end
   end
 end

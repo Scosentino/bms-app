@@ -16,7 +16,11 @@ Rails.application.routes.draw do
 
   namespace :admins do
     resource :customers, only: [:show]
+    # Orders
     resources :orders, only: [:show]
+    post 'orders/submit/:id', to: 'orders#submit', as: :submit_order
+    post 'orders/reject/:id', to: 'orders#reject', as: :reject_order
+
     resources :offers, only: [:new, :show, :create]
   end
 end
