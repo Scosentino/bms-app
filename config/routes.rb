@@ -27,4 +27,6 @@ Rails.application.routes.draw do
 
     resources :offers, only: [:new, :show, :create]
   end
+
+  get 'email', to: 'email#index'
 end
