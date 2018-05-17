@@ -7,6 +7,8 @@ class Admins::OrdersController < ApplicationController
     if @order.blank?
       flash[:alert] = 'Order does not present'
       redirect_to admins_path
+    else
+      @order.update(reviewed: true) unless @order.reviewed
     end
   end
 
