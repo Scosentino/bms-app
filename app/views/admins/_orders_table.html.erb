@@ -1,0 +1,20 @@
+<div class="col-md-12 col-lg-12 col-sm-12">
+  <table class="table-ezr admin_dashboard_table">
+    <thead>
+    <tr>
+      <th>Title</th>
+      <th class="th-ezr">Customer Name</th>
+      <th class="th-ezr">Created at</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @orders.each do |o| %>
+      <tr>
+        <td><%= o.title %></td>
+        <td class="td-ezr"><%= o.customer.full_name %></td>
+        <td class="td-ezr"><%= link_to 'Show', admins_order_path(id: o.id) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

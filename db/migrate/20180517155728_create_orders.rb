@@ -6,7 +6,7 @@ class CreateOrders < ActiveRecord::Migration[5.1]
       t.text :description
       t.json :documents
       t.boolean :accept_and_terms, default: false
-
+      t.boolean :completed, default: false
       t.index :customer_id
 
       t.timestamps null: false
