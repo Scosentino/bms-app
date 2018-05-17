@@ -1,0 +1,107 @@
+<!--== Page Title Start ==-->
+<div class="page-title section-padding overlay">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="page-title-wrap">
+          <h2><%= @offer.title %></h2>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="<%= admins_path %>">Dashboard</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><%= @offer.title %></li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--== Page Title End ==-->
+
+<section id="content-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 show_box">
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+            <div class="row">
+              <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+                Title:
+              </div>
+              <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+                <%= @offer.title %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+            <div class="row">
+              <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+                Description:
+              </div>
+              <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+                <%= @offer.description %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+            <div class="row">
+              <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+                Customer Name:
+              </div>
+              <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+                <%= @offer.customer.full_name %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+            <div class="row">
+              <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+                Customer Email:
+              </div>
+              <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+                <%= @offer.customer.email %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+            <div class="row">
+              <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+                Order Documents:
+              </div>
+              <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+                <% @offer.order.documents.each do |d| %>
+                  <%= link_to d.file.filename, d.file.url, target:'_blank' %> <br/>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+            <div class="row">
+              <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+                Offer created at:
+              </div>
+              <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+                <%= @offer.created_at.strftime('%b %e %Y, %l:%M %p') %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -28,7 +28,12 @@ class Admins::OffersController < ApplicationController
   end
 
   def show
+    @offer = Offer.find_by(id: params[:id])
 
+    if @offer.blank?
+      flash[:alert] = 'Offer does not present'
+      redirect_to admins_path
+    end
   end
 
   private
