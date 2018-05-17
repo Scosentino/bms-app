@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   enum user_type: %w[customer admin]
 
+  has_many :orders, foreign_key: 'customer_id'
+
   validates_presence_of :first_name, :last_name, :email
 
   def full_name
