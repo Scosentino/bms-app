@@ -101,13 +101,7 @@
 
         <div class="col-lg-3 d-none d-lg-block">
           <div class="header-btn pull-right">
-            <% if current_user %>
-              <% if current_user.customer? %>
-                <a href="<%= new_customers_order_path %>" class="seo-btn hvr-curl-bottom-right">Create Order</a>
-              <% end %>
-            <% else %>
-              <a href="<%= new_user_registration_path %>" class="seo-btn hvr-curl-bottom-right">Get Started Now</a>
-            <% end %>
+            <%= render partial: 'layouts/customers/header_button' %>
           </div>
         </div>
       </div>

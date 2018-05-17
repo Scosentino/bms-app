@@ -1,0 +1,9 @@
+<% if current_user %>
+  <% if controller_name == 'offers' && action_name == 'show' %>
+    <a href="<%= customers_path %>" class="seo-btn hvr-curl-bottom-right">Dashboard</a>
+  <% elsif current_user.customer? %>
+    <a href="<%= new_customers_order_path %>" class="seo-btn hvr-curl-bottom-right">Create Order</a>
+  <% end %>
+<% else %>
+  <a href="<%= new_user_registration_path %>" class="seo-btn hvr-curl-bottom-right">Get Started Now</a>
+<% end %>

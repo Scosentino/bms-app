@@ -13,7 +13,11 @@ $('html,body').animate({
 
 <% if @status == 200 %>
 $('#order_status').html('<label class="offer_label_status_accepted">accepted</label>');
+$('#order_status_<%= @offer.id %>').html('<label class="offer_label_status_accepted">accepted</label>');
 $('.order_actions_buttons').html('<div class="col-md-12 col-lg-12 col-sm-12 text-center">' +
     '                  <a class="bms_reject_button" id="bms_reject_offer_button" data-remote="true" rel="nofollow" data-method="post" href="/customers/offers/reject/<%= @offer.id %>">Reject</a>' +
+    '                </div>');
+$('#order_actions_buttons_<%= @offer.id %>').html('<div class="col-md-12 col-lg-12 col-sm-12 text-center">' +
+    '                  <a class="btn_red" id="bms_reject_offer_button" data-remote="true" rel="nofollow" data-method="post" href="/customers/offers/reject/<%= @offer.id %>">R</a>' +
     '                </div>');
 <% end %>

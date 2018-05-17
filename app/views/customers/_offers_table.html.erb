@@ -5,13 +5,23 @@
       <th>Title</th>
       <th class="th-ezr">Status</th>
       <th class="th-ezr">Actions</th>
+      <th class="th-ezr">Show</th>
     </tr>
     </thead>
     <tbody>
     <% @offers.each do |o| %>
       <tr>
         <td><%= o.title %></td>
-        <td class="td-ezr"><%= o.status_html.html_safe %></td>
+        <td class="td-ezr" id="order_status_<%= o.id %>"><%= o.status_html.html_safe %></td>
+        <td class="td-ezr" id="order_actions_buttons_<%= o.id %>">
+          <% if o.pending? %>
+          <%= link_to 'A', customers_accept_offer_path(id: o.id), method: 'post', remote: true, class: 'btn_green' %><%= link_to 'R', customers_reject_offer_path(id: o.id), method: 'post', remote: true, class: 'btn_red' %>
+        <% elsif o.accepted? %>
+          <%= link_to 'R', customers_reject_offer_path(id: o.id), method: 'post', remote: true, class: 'btn_red' %>
+        <% elsif o.rejected? %>
+          <%= link_to 'A', customers_accept_offer_path(id: o.id), method: 'post', remote: true, class: 'btn_green' %>
+        <% end %>
+        </td>
         <td class="td-ezr"><%= link_to 'Show', customers_offer_path(id: o.id) %></td>
       </tr>
     <% end %>
