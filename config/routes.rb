@@ -11,6 +11,10 @@ Rails.application.routes.draw do
   resources :customers, only: [:index]
 
   namespace :customers do
-    resources :orders
+    resources :orders, only: [:create, :new, :index, :destroy]
+  end
+
+  namespace :admins do
+    resource :customers, only: [:show]
   end
 end

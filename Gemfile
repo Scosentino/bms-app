@@ -24,6 +24,9 @@ gem 'uglifier', '>= 1.3.0'
 # Authentication
 gem 'devise'
 
+# Tables
+gem 'ez-rsponsive-table'
+
 # Image Uploader
 gem 'carrierwave'
 gem 'mini_magick'

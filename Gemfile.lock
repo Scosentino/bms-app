@@ -84,6 +84,7 @@ GEM
     erubi (1.7.1)
     excon (0.62.0)
     execjs (2.7.0)
+    ez-rsponsive-table (0.1.0)
     ffi (1.9.23)
     figaro (1.1.1)
       thor (~> 0.14)
@@ -235,6 +236,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.2)
   devise
+  ez-rsponsive-table
   figaro
   fog-aws
   jbuilder (~> 2.5)

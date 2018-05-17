@@ -4,6 +4,6 @@ class AdminsController < ApplicationController
   layout 'admins'
 
   def index
-
+    @customers = User.where(user_type: 0)
   end
 end
