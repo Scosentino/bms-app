@@ -8,6 +8,8 @@ class CreateOrders < ActiveRecord::Migration[5.1]
       t.boolean :accept_and_terms, default: false
 
       t.index :customer_id
+
+      t.timestamps null: false
     end
   end
 end

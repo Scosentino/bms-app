@@ -20,7 +20,11 @@ class Customers::OrdersController < ApplicationController
   end
 
   def show
-
+    @order = Order.find_by(id: params[:id])
+    if @order.blank?
+      flash[:alert] = 'Order does not exist!'
+      redirect_to customers_path
+    end
   end
 
   def destroy

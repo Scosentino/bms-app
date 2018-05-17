@@ -5,7 +5,7 @@ if Rails.env.production? || Rails.env.staging? || Rails.env.development?
         provider: 'AWS',
         aws_access_key_id: ENV['aws_access_id'],
         aws_secret_access_key: ENV['aws_access_key'],
-        region: 'us-east-2'
+        region: 'us-east-1'
     }
     # config.asset_host = "https://djbk5owoson7k.cloudfront.net"
     config.fog_directory  = ENV['aws_bucket']

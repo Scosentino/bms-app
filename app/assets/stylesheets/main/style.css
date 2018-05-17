@@ -1423,6 +1423,7 @@ footer#footer-area {
     height: 100%;
     padding-top: 30px;
     padding-bottom: 50px;
+    background: #eeeeee;
 }
 
 .testimonial-thumbs button {
@@ -2369,3 +2370,12 @@ body.preloader-active {
 }
 
 /*== Preloader CSS End ==*/
+
+.show_box {
+    padding: 20px;
+}
+
+.show_box_item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
