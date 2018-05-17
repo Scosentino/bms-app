@@ -9,4 +9,8 @@ Rails.application.routes.draw do
 
   resources :admins, only: [:index]
   resources :customers, only: [:index]
+
+  namespace :customers do
+    resources :orders
+  end
 end

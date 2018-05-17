@@ -19,7 +19,8 @@ ActiveRecord::Schema.define(version: 20180517155728) do
     t.bigint "customer_id"
     t.string "title"
     t.text "description"
-    t.json "document"
+    t.json "documents"
+    t.boolean "accept_and_terms", default: false
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end
 

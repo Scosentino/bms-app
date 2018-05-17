@@ -86,33 +86,7 @@
         <!-- Menu Area Start -->
         <div class="col-lg-7">
           <nav class="mainmenu pull-right">
-            <!-- <ul>
-                <li class="active"><a href="index_2.html">Home</a>
-                    <ul class="sub">
-                        <li><a href="index.html">Home 1</a></li>
-                        <li><a href="index_2.html">Home 2</a></li>
-                    </ul>
-                </li>
-                <li><a href="about.html">about</a></li>
-                <li><a href="service.html">service</a>
-                    <ul class="sub">
-                        <li><a href="service.html">Service</a></li>
-                        <li><a href="single-service.html">Single Service</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Case study</a>
-                    <ul class="sub">
-                        <li><a href="case-study.html">Case study</a></li>
-                        <li><a href="single-case.html">Single Case study</a></li>
-                    </ul>
-                </li>
-                <li><a href="#">Blog</a>
-                    <ul class="sub">
-                        <li><a href="blog-with-sidebar.html">Blog With Sidebar</a></li>
-                        <li><a href="blog-gird.html">Blog Column</a></li>
-                        <li><a href="single-blog.html">Single Blog</a></li>
-                    </ul>
-                </li>
+            <ul>
                 <li><a href="#">pages</a>
                     <ul class="sub">
                         <li><a href="login.html">Login</a></li>
@@ -120,8 +94,7 @@
                         <li><a href="404.html">404 Error</a></li>
                     </ul>
                 </li>
-                <li><a href="contact.html">contact</a></li>
-            </ul> -->
+            </ul>
           </nav>
         </div>
         <!-- Menu Area End -->
@@ -129,10 +102,8 @@
         <div class="col-lg-3 d-none d-lg-block">
           <div class="header-btn pull-right">
             <% if current_user %>
-              <% if current_user.admin? %>
-                <a href="<%= admins_path %>" class="seo-btn hvr-curl-bottom-right">Dashboard</a>
-              <% elsif current_user.customer? %>
-                <a href="<%= customers_path %>" class="seo-btn hvr-curl-bottom-right">Dashboard</a>
+              <% if current_user.customer? %>
+                <a href="<%= new_customers_order_path %>" class="seo-btn hvr-curl-bottom-right">Create Order</a>
               <% end %>
             <% else %>
               <a href="<%= new_user_registration_path %>" class="seo-btn hvr-curl-bottom-right">Get Started Now</a>
@@ -145,7 +116,7 @@
   <!-- Header Bottom Area End -->
 </header>
 <!--== Header Area End ==-->
-
+<%= render 'layouts/messages' %>
 <%= yield %>
 <!--== About Area End ==-->
 
