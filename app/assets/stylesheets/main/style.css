@@ -1408,6 +1408,15 @@ footer#footer-area {
     margin-top: 50px;
 }
 
+#content-area {
+    display: block;
+    z-index: 1;
+    position: relative;
+    height: 100%;
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
 .testimonial-thumbs button {
     background-color: transparent;
     border: medium none;

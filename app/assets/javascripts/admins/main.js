@@ -81,7 +81,7 @@
             sticky = header.offsetTop;
 
         function headerfix() {
-            if (window.pageYOffset >= sticky) {
+            if (window.pageYOffset > sticky) {
                 header.classList.add("fixed");
             } else {
                 header.classList.remove("fixed");
