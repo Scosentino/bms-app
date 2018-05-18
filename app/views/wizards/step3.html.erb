@@ -10,9 +10,11 @@
   <%= @user_wizard.errors.full_messages.first if @user_wizard.errors.any? %>
 
   <%= hidden_field_tag :current_step, 'step3' %>
-  <%= f.fields_for :orders do |o| %>
-    <%= o.text_field :service_id %>
-  <% end %>
+  <%= f.text_field :first_name %>
+  <%= f.text_field :last_name %>
+  <%= f.text_field :job_title %>
+  <%= f.text_field :phone_number %>
+  <%= f.text_field :ssn %>
 
   <%= f.submit 'Continue' %>
 <% end %>

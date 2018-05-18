@@ -13,6 +13,8 @@ class WizardsController < ApplicationController
         step_validation_1(current_step)
       when 'step2'
         step_validation_2(current_step)
+      when 'step3'
+        step_validation_3(current_step)
     end
   end
 
@@ -41,6 +43,17 @@ class WizardsController < ApplicationController
     session[:business_attributes] = @business_wizard.business.attributes
 
     check_user_validation(@business_wizard, current_step)
+  end
+
+  def step_validation_3 current_step
+    if @user_wizard.valid?
+      next_step = wizard_user_next_step(current_step)
+      create and return unless next_step
+
+      redirect_to action: next_step
+    else
+      render current_step
+    end
   end
 
   def check_user_validation model, current_step
@@ -87,7 +100,7 @@ class WizardsController < ApplicationController
   def user_wizard_params
     params.require(:user_wizard).permit(
         :email, :first_name, :last_name, :password, :password_confirmation,
-        :phone_number, :ssn, :provided_account_pin, order: [{documents: []}])
+        :phone_number, :ssn, :job_title)
   end
 
   def order_wizard_params

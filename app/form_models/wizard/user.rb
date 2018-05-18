@@ -19,12 +19,10 @@ module Wizard
       }
     end
 
-    class Step2 < Step1
-
-    end
+    class Step2 < Step1; end
 
     class Step3 < Step2
-      validates_presence_of :service_id
+      validates_presence_of :first_name, :last_name, :phone_number, :ssn, :job_title
     end
 
     class Step4 < Step3
