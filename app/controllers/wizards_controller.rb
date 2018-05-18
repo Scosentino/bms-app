@@ -8,16 +8,27 @@ class WizardsController < ApplicationController
     @user_wizard.user.attributes = user_wizard_params
     session[:user_attributes] = @user_wizard.user.attributes
 
-    p '-------------'
-    p @user_wizard
-    p '=============='
-    p @user_wizard.user
-    p '-------------'
-    if @user_wizard.valid?
-      next_step = wizard_user_next_step(current_step)
-      create and return unless next_step
+    if current_step == 'step1'
+      @order_wizard = wizard_order
+      @order_wizard.order.attributes = order_wizard_params
+      session[:order_attributes] = @order_wizard.order.attributes
+    end
 
-      redirect_to action: next_step
+    if current_step == 'step2'
+      @order_wizard = wizard_order
+      @order_wizard.order.attributes = order_wizard_params
+      session[:order_attributes] = @order_wizard.order.attributes
+    end
+
+    if @order_wizard.valid?
+      if @user_wizard.valid?
+        next_step = wizard_user_next_step(current_step)
+        create and return unless next_step
+
+        redirect_to action: next_step
+      else
+        render current_step
+      end
     else
       render current_step
     end
@@ -48,10 +59,20 @@ class WizardsController < ApplicationController
     "Wizard::User::#{step.camelize}".constantize.new(session[:user_attributes])
   end
 
+  def wizard_order
+    raise InvalidStep unless 'step1'.in?(Wizard::User::STEPS)
+
+    Wizard::Order::Validate.new(session[:order_attributes])
+  end
+
   def user_wizard_params
     params.require(:user_wizard).permit(
         :email, :first_name, :last_name, :password, :password_confirmation,
-        :phone_number, :ssn, :provided_account_pin)
+        :phone_number, :ssn, :provided_account_pin, order: [{documents: []}])
+  end
+
+  def order_wizard_params
+    params[:user_wizard][:order].present? ? params[:user_wizard][:order].permit({documents: []}) : {}
   end
 
   class InvalidStep < StandardError; end

@@ -24,6 +24,10 @@ class User < ApplicationRecord
             format: { with: PASSWORD_FORMAT },
             confirmation: true
 
+  accepts_nested_attributes_for :orders
+
+  attr_accessor :order
+
   enum user_type: %w[customer admin]
 
   def full_name

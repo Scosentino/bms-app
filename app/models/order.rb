@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   belongs_to :customer, class_name: 'User', foreign_key: 'customer_id', dependent: :destroy
   belongs_to :business
 
-  validates_presence_of :title, :description, :documents, :accept_and_terms
+  validates_presence_of :documents
 
   enum status: %w[pending submitted rejected]
 

@@ -17,7 +17,9 @@
   <br/>
   <%= f.password_field :password_confirmation %>
   <br/>
-  <%= f.file_field :documents %>
+  <%= f.fields_for :order do |o| %>
+    <%= o.file_field :documents, multiple: true %>
+  <% end %>
 
   <%= f.submit 'Continue' %>
 <% end %>
