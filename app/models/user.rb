@@ -12,6 +12,8 @@ class User < ApplicationRecord
 
   validates_presence_of :first_name, :last_name, :email
 
+  accepts_nested_attributes_for :orders
+
   def full_name
     "#{first_name.humanize} #{last_name.humanize}"
   end

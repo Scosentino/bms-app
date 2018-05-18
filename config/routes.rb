@@ -10,6 +10,16 @@ Rails.application.routes.draw do
   resources :admins, only: [:index]
   resources :customers, only: [:index]
 
+  resource :wizard do
+    get :step1
+    get :step2
+    get :step3
+    get :step4
+    get :step5
+
+    post :validate_step
+  end
+
   namespace :customers do
     resources :orders, only: [:create, :new, :destroy, :show]
     # Offers
