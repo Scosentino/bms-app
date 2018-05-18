@@ -7,7 +7,6 @@
 </ol>
 
 <%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
-  <%= @user_wizard.errors.full_messages.first if @user_wizard.present? && @user_wizard.errors.any? %>
   <%= @business_wizard.errors.full_messages.first if @business_wizard.present? && @business_wizard.errors.any? %>
 
   <%= hidden_field_tag :current_step, 'step2' %>

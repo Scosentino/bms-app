@@ -7,7 +7,8 @@
 </ol>
 
 <%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
-  <%= @user_wizard.errors.full_messages.first if @user_wizard.errors.any? %>
+  <%= @user_wizard.errors.full_messages.first if @user_wizard.present? && @user_wizard.errors.any? %>
+  <%= @order_wizard.errors.full_messages.first if @order_wizard.present? && @order_wizard.errors.any? %>
 
   <%= hidden_field_tag :current_step, 'step1' %>
 
@@ -17,7 +18,7 @@
   <br/>
   <%= f.password_field :password_confirmation %>
   <br/>
-  <%= f.fields_for :order do |o| %>
+  <%= f.fields_for :orders do |o| %>
     <%= o.file_field :documents, multiple: true %>
   <% end %>
 

@@ -17,6 +17,8 @@ class WizardsController < ApplicationController
         step_validation_3(current_step)
       when 'step4'
         step_validation_4(current_step)
+      when 'step5'
+        step_validation_5(current_step)
     end
   end
 
@@ -81,6 +83,14 @@ class WizardsController < ApplicationController
     end
   end
 
+  def step_validation_5 current_step
+    @order_wizard = wizard_order
+    @order_wizard.order.attributes = order_wizard_params
+    session[:order_attributes] = @order_wizard.order.attributes
+
+    check_user_validation(@order_wizard, current_step)
+  end
+
   def load_user_wizard
     @user_wizard = wizard_user_for_step(action_name)
   end
@@ -110,11 +120,14 @@ class WizardsController < ApplicationController
   def user_wizard_params
     params.require(:user_wizard).permit(
         :email, :first_name, :last_name, :password, :password_confirmation,
-        :phone_number, :ssn, :job_title)
+        :phone_number, :ssn, :job_title, orders_attributes: [:check_box, {documents: []}],
+        business: [:legal_name, :address_line_1, :city, :state, :zipcode, :federal_tax_id, :name_of_credit_card_processor,
+                              :years_processor, :merchant_id_number],
+        payment_method: [:card_number, :security_code, :zipcode, :bank_account_number, :bank_account_routing_number, :payment_type])
   end
 
   def order_wizard_params
-    params[:user_wizard][:order].present? ? params[:user_wizard][:order].permit({documents: []}) : {}
+    params[:user_wizard][:orders].present? ? params[:user_wizard][:orders].permit(:check_box, {documents: []}) : {}
   end
 
   def business_wizard_params

@@ -7,11 +7,11 @@
 </ol>
 
 <%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
-  <%= @user_wizard.errors.full_messages.first if @user_wizard.errors.any? %>
+  <%= @order_wizard.errors.full_messages.first if @order_wizard.present? && @order_wizard.errors.any? %>
 
-  <%= hidden_field_tag :current_step, 'step4' %>
+  <%= hidden_field_tag :current_step, 'step5' %>
   <%= f.fields_for :orders do |o| %>
-    <%= o.text_field :accept_and_terms %>
+    <%= o.check_box :accept_and_terms %>
   <% end %>
 
   <%= f.submit 'Finish' %>

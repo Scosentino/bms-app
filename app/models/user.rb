@@ -24,9 +24,9 @@ class User < ApplicationRecord
             format: { with: PASSWORD_FORMAT },
             confirmation: true
 
-  accepts_nested_attributes_for :orders
-
-  attr_accessor :order
+  accepts_nested_attributes_for :orders, :reject_if => :all_blank
+  accepts_nested_attributes_for :business, :reject_if => :all_blank
+  accepts_nested_attributes_for :payment_method, :reject_if => :all_blank
 
   enum user_type: %w[customer admin]
 
