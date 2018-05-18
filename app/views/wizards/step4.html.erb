@@ -7,10 +7,20 @@
 </ol>
 
 <%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
-  <%= @user_wizard.errors.full_messages.first if @user_wizard.errors.any? %>
+  <%= @user_wizard.errors.full_messages.first if @user_wizard.present? && @user_wizard.errors.any? %>
+  <%= @payment_method_wizard.errors.full_messages.first if @payment_method_wizard.present? && @payment_method_wizard.errors.any? %>
 
   <%= hidden_field_tag :current_step, 'step4' %>
-  
+  <%= f.fields_for :payment_method do |p| %>
+    <%= p.radio_button :payment_type, 'debit_card' %>
+    <%= p.radio_button :payment_type, 'credit_card' %>
+    <%= p.radio_button :payment_type, 'bank_account' %>
+    <%= p.text_field :card_number %>
+    <%= p.text_field :security_code %>
+    <%= p.text_field :zipcode %>
+    <%= p.text_field :bank_account_number %>
+    <%= p.text_field :bank_account_routing_number %>
+  <% end %>
 
   <%= f.submit 'Finish' %>
 <% end %>

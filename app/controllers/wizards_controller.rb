@@ -15,6 +15,8 @@ class WizardsController < ApplicationController
         step_validation_2(current_step)
       when 'step3'
         step_validation_3(current_step)
+      when 'step4'
+        step_validation_4(current_step)
     end
   end
 
@@ -56,6 +58,14 @@ class WizardsController < ApplicationController
     end
   end
 
+  def step_validation_4 current_step
+    @payment_method_wizard = wizard_payment_method
+    @payment_method_wizard.payment_method.attributes = payment_method_wizard_params
+    session[:payment_method_attributes] = @payment_method_wizard.payment_method.attributes
+
+    check_user_validation(@payment_method_wizard, current_step)
+  end
+
   def check_user_validation model, current_step
     if model.valid?
       if @user_wizard.valid?
@@ -86,15 +96,15 @@ class WizardsController < ApplicationController
   end
 
   def wizard_order
-    raise InvalidStep unless 'step1'.in?(Wizard::User::STEPS)
-
     Wizard::Order::Validate.new(session[:order_attributes])
   end
 
   def wizard_business
-    raise InvalidStep unless 'step2'.in?(Wizard::User::STEPS)
-
     Wizard::Business::Validate.new(session[:business_attributes])
+  end
+
+  def wizard_payment_method
+    Wizard::PaymentMethod::Validate.new(session[:payment_method_attributes])
   end
 
   def user_wizard_params
@@ -112,6 +122,16 @@ class WizardsController < ApplicationController
       params[:user_wizard][:business].permit(
           :legal_name, :address_line_1, :city, :state, :zipcode, :federal_tax_id, :name_of_credit_card_processor,
           :years_processor, :merchant_id_number
+      )
+    else
+      {}
+    end
+  end
+
+  def payment_method_wizard_params
+    if params[:user_wizard][:payment_method].present?
+      params[:user_wizard][:payment_method].permit(
+          :card_number, :security_code, :zipcode, :bank_account_number, :bank_account_routing_number, :payment_type
       )
     else
       {}

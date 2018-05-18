@@ -25,17 +25,8 @@ module Wizard
       validates_presence_of :first_name, :last_name, :phone_number, :ssn, :job_title
     end
 
-    class Step4 < Step3
-      # validates :first_name, presence: true
-      # validates :last_name, presence: true
-      # validates :phone_number, presence: true
-      # validates :ssn, presence: true
-      # validates :provided_account_pin, presence: true
-      # validates :instructions, presence: true
-    end
+    class Step4 < Step3; end
 
-    class Step5 < Step4
-      # validates :accept_and_terms, inclusion: { in: [ true ] }
-    end
+    class Step5 < Step4; end
   end
 end
