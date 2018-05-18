@@ -2,7 +2,7 @@ class CreatePaymentMethods < ActiveRecord::Migration[5.1]
   def change
     create_table :payment_methods do |t|
       t.bigint :customer_id, foreign_key: true
-      t.integer :payment_type
+      t.integer :payment_type, default: 0
       t.string :card_number
       t.integer :security_code
       t.integer :zipcode

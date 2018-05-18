@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :admin_offers, class_name: 'Offer', foreign_key: 'admin_id'
   has_many :customer_offers, class_name: 'Offer', foreign_key: 'customer_id'
   has_one :business, foreign_key: 'customer_id', dependent: :destroy
+  has_one :payment_method, foreign_key: 'customer_id', dependent: :destroy
 
   PASSWORD_FORMAT = /\A
         (?=.{8,})          # Must contain 8 or more characters
@@ -22,8 +23,6 @@ class User < ApplicationRecord
             length: { in: Devise.password_length },
             format: { with: PASSWORD_FORMAT },
             confirmation: true
-
-  accepts_nested_attributes_for :orders
 
   enum user_type: %w[customer admin]
 

@@ -51,7 +51,7 @@ class WizardsController < ApplicationController
   def user_wizard_params
     params.require(:user_wizard).permit(
         :email, :first_name, :last_name, :password, :password_confirmation,
-        :phone_number, :ssn, :provided_account_pin, :date_of_birth, orders_attributes: [:service_id, :instructions, {documents: []}])
+        :phone_number, :ssn, :provided_account_pin)
   end
 
   class InvalidStep < StandardError; end

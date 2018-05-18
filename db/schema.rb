@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 20180518195946) do
 
   create_table "payment_methods", force: :cascade do |t|
     t.bigint "customer_id"
-    t.integer "payment_type"
+    t.integer "payment_type", default: 0
     t.string "card_number"
     t.integer "security_code"
     t.integer "zipcode"

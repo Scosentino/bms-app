@@ -4,7 +4,7 @@ module Wizard
 
     class Base
       include ActiveModel::Model
-      attr_accessor :user
+      attr_accessor :user, :order
 
       delegate *::User.attribute_names.map { |attr| [attr, "#{attr}="] }.flatten, to: :user
       delegate *::Order.attribute_names.map { |attr| [attr, "#{attr}="] }.flatten, to: :user
@@ -20,10 +20,12 @@ module Wizard
       validates :email, presence: true, format: {
           with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
       }
+
+      validates_presence_of :order
     end
 
     class Step2 < Step1
-      validates_presence_of :orders
+
     end
 
     class Step3 < Step2
@@ -31,17 +33,16 @@ module Wizard
     end
 
     class Step4 < Step3
-      validates :first_name, presence: true
-      validates :last_name, presence: true
-      validates :phone_number, presence: true
-      validates :ssn, presence: true
-      validates :provided_account_pin, presence: true
-      validates :instructions, presence: true
-      validates :date_of_birth, presence: true
+      # validates :first_name, presence: true
+      # validates :last_name, presence: true
+      # validates :phone_number, presence: true
+      # validates :ssn, presence: true
+      # validates :provided_account_pin, presence: true
+      # validates :instructions, presence: true
     end
 
     class Step5 < Step4
-      validates :accept_and_terms, inclusion: { in: [ true ] }
+      # validates :accept_and_terms, inclusion: { in: [ true ] }
     end
   end
 end
