@@ -8,6 +8,11 @@ class WizardsController < ApplicationController
     @user_wizard.user.attributes = user_wizard_params
     session[:user_attributes] = @user_wizard.user.attributes
 
+    p '-------------'
+    p @user_wizard
+    p '=============='
+    p @user_wizard.user
+    p '-------------'
     if @user_wizard.valid?
       next_step = wizard_user_next_step(current_step)
       create and return unless next_step

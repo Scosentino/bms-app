@@ -10,12 +10,13 @@
   <%= @user_wizard.errors.full_messages.first if @user_wizard.errors.any? %>
 
   <%= hidden_field_tag :current_step, 'step1' %>
+
   <%= f.email_field :email %>
-
+  <br/>
   <%= f.password_field :password %>
-
+  <br/>
   <%= f.password_field :password_confirmation %>
-
+  <br/>
   <%= f.fields_for :orders do |o| %>
     <%= o.file_field :documents %>
   <% end %>

@@ -10,21 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180518155547) do
+ActiveRecord::Schema.define(version: 20180518195946) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "businesses", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.string "legal_name"
+    t.string "dba"
+    t.text "address_line_1"
+    t.text "address_line_2"
+    t.string "city"
+    t.string "state"
+    t.integer "zipcode"
+    t.string "federal_tax_id"
+    t.text "name_of_credit_card_processor"
+    t.integer "years_processor"
+    t.string "merchant_id_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_businesses_on_customer_id"
+  end
 
   create_table "offers", force: :cascade do |t|
     t.bigint "customer_id"
     t.bigint "admin_id"
     t.bigint "order_id"
-    t.string "title"
-    t.text "description"
     t.integer "status", default: 0
-    t.float "bid"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "estimated_annual_savings"
     t.index ["admin_id"], name: "index_offers_on_admin_id"
     t.index ["customer_id"], name: "index_offers_on_customer_id"
     t.index ["order_id"], name: "index_offers_on_order_id"
@@ -43,6 +59,19 @@ ActiveRecord::Schema.define(version: 20180518155547) do
     t.bigint "service_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["service_id"], name: "index_orders_on_service_id"
+  end
+
+  create_table "payment_methods", force: :cascade do |t|
+    t.bigint "customer_id"
+    t.integer "payment_type"
+    t.string "card_number"
+    t.integer "security_code"
+    t.integer "zipcode"
+    t.string "bank_account_number"
+    t.string "bank_account_routing_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_payment_methods_on_customer_id"
   end
 
   create_table "services", force: :cascade do |t|
@@ -72,7 +101,7 @@ ActiveRecord::Schema.define(version: 20180518155547) do
     t.string "phone_number"
     t.date "date_of_birth"
     t.integer "ssn"
-    t.string "provide_account_pin"
+    t.string "job_title"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
