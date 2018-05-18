@@ -10,7 +10,14 @@
   <%= @user_wizard.errors.full_messages.first if @user_wizard.errors.any? %>
 
   <%= hidden_field_tag :current_step, 'step4' %>
-  <%= f.input :phone_number %>
+  <%= f.text_field :first_name %>
+  <%= f.text_field :last_name %>
+  <%= f.text_field :ssn %>
+  <%= f.text_field :provide_account_pin %>
+  <%= f.text_field :phone_number %>
+  <%= f.fields_for :orders do |o| %>
+    <%= o.text_field :instructions %>
+  <% end %>
 
   <%= f.submit 'Finish' %>
 <% end %>

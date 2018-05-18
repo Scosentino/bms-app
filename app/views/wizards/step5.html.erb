@@ -10,7 +10,9 @@
   <%= @user_wizard.errors.full_messages.first if @user_wizard.errors.any? %>
 
   <%= hidden_field_tag :current_step, 'step4' %>
-  <%= f.input :phone_number %>
+  <%= f.fields_for :orders do |o| %>
+    <%= o.text_field :accept_and_terms %>
+  <% end %>
 
   <%= f.submit 'Finish' %>
 <% end %>

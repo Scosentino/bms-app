@@ -16,5 +16,9 @@
 
   <%= f.password_field :password_confirmation %>
 
+  <%= f.fields_for :orders do |o| %>
+    <%= o.file_field :documents %>
+  <% end %>
+
   <%= f.submit 'Continue' %>
 <% end %>

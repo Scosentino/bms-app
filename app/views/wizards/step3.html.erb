@@ -10,11 +10,9 @@
   <%= @user_wizard.errors.full_messages.first if @user_wizard.errors.any? %>
 
   <%= hidden_field_tag :current_step, 'step3' %>
-  <%= f.input :address_1 %>
-  <%= f.input :address_2 %>
-  <%= f.input :zip_code %>
-  <%= f.input :city %>
-  <%= f.input :country %>
+  <%= f.fields_for :orders do |o| %>
+    <%= o.text_field :service_id %>
+  <% end %>
 
   <%= f.submit 'Continue' %>
 <% end %>
