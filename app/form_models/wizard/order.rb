@@ -13,7 +13,6 @@ module Wizard
 
     class Validate < Base
       validates_presence_of :documents
-
     end
   end
 end

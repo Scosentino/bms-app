@@ -7,11 +7,23 @@
 </ol>
 
 <%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
-  <%= @user_wizard.errors.full_messages.first if @user_wizard.errors.any? %>
+  <%= @user_wizard.errors.full_messages.first if @user_wizard.present? && @user_wizard.errors.any? %>
+  <%= @business_wizard.errors.full_messages.first if @business_wizard.present? && @business_wizard.errors.any? %>
 
   <%= hidden_field_tag :current_step, 'step2' %>
-
-
+  <%= f.fields_for :business do |b| %>
+    <%= b.text_field :legal_name %>
+    <%= b.text_field :dba %>
+    <%= b.text_field :address_line_1 %>
+    <%= b.text_field :address_line_2 %>
+    <%= b.text_field :city %>
+    <%= b.text_field :state %>
+    <%= b.text_field :zipcode %>
+    <%= b.text_field :federal_tax_id %>
+    <%= b.text_field :name_of_credit_card_processor %>
+    <%= b.text_field :years_processor %>
+    <%= b.text_field :merchant_id_number %>
+  <% end %>
 
   <%= f.submit 'Continue' %>
 <% end %>
