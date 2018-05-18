@@ -7,6 +7,9 @@ module Wizard
       attr_accessor :user
 
       delegate *::User.attribute_names.map { |attr| [attr, "#{attr}="] }.flatten, to: :user
+      delegate *::Order.attribute_names.map { |attr| [attr, "#{attr}="] }.flatten, to: :user
+      delegate *::Business.attribute_names.map { |attr| [attr, "#{attr}="] }.flatten, to: :user
+      delegate *::PaymentMethod.attribute_names.map { |attr| [attr, "#{attr}="] }.flatten, to: :user
 
       def initialize(user_attributes)
         @user = ::User.new(user_attributes)

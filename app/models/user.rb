@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :orders, foreign_key: 'customer_id'
   has_many :admin_offers, class_name: 'Offer', foreign_key: 'admin_id'
   has_many :customer_offers, class_name: 'Offer', foreign_key: 'customer_id'
+  has_one :business, foreign_key: 'customer_id', dependent: :destroy
 
   PASSWORD_FORMAT = /\A
         (?=.{8,})          # Must contain 8 or more characters
@@ -12,7 +13,7 @@ class User < ApplicationRecord
         (?=.*[a-z])        # Must contain a lower case character
       /x
 
-  validates_presence_of :first_name, :last_name
+  validates_presence_of :first_name, :last_name, :job_title
   validates :email, presence: true, format: {
       with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   }

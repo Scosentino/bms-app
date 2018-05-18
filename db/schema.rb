@@ -57,6 +57,8 @@ ActiveRecord::Schema.define(version: 20180518195946) do
     t.boolean "reviewed", default: false
     t.integer "status", default: 0
     t.bigint "service_id"
+    t.bigint "business_id"
+    t.index ["business_id"], name: "index_orders_on_business_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
     t.index ["service_id"], name: "index_orders_on_service_id"
   end
@@ -99,7 +101,6 @@ ActiveRecord::Schema.define(version: 20180518195946) do
     t.string "first_name"
     t.string "last_name"
     t.string "phone_number"
-    t.date "date_of_birth"
     t.integer "ssn"
     t.string "job_title"
     t.index ["email"], name: "index_users_on_email", unique: true
