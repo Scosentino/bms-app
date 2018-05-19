@@ -12,8 +12,8 @@ module Wizard
     end
 
     class Validate < Base
-      validates_presence_of :card_number, :security_code, :zipcode, :bank_account_number, if: :if_choosed_card
-      validates_presence_of :bank_account_number, :bank_account_routing_number, if: :if_choosed_bank
+      validates_presence_of :card_number, :security_code, :zipcode, :bank_account_number, :year_ended, :month_ended, if: :if_choosed_card
+      validates_presence_of :bank_account_number, :bank_account_routing_number, :bank_name, if: :if_choosed_bank
 
       def if_choosed_card
         @payment_method.credit_card? || @payment_method.debit_card?
