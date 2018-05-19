@@ -23,11 +23,40 @@ class WizardsController < ApplicationController
   end
 
   def create
-    if @user_wizard.user.save
-      session[:user_attributes] = nil
-      redirect_to root_path, notice: 'User successfully created!'
-    else
-      redirect_to({ action: Wizard::User::STEPS.first }, alert: 'There were a problem when creating the user.')
+    begin
+      ActiveRecord::Base.transaction do
+        p '================'
+        p @user_wizard
+        p @user_wizard.user
+        p '================'
+        if @user_wizard.user.save
+          @business_wizard.business.customer_id = @user_wizard.user.id
+          if @business_wizard.business.save
+            order = @user_wizard.user.orders.first
+            order.business_id = @business_wizard.business.id
+            if order.update(order_wizard_params)
+              @payment_method_wizard.payment_method.customer_id = @user_wizard.user.id
+              if @payment_method_wizard.payment_method.save
+                sign_in(@user_wizard.user)
+                session[:user_attributes] = nil
+                redirect_to root_path, notice: 'User successfully created!'
+              else
+                raise('There were a problem when creating the payment method.')
+              end
+            else
+              raise('There were a problem when creating the order.')
+            end
+            raise('There were a problem when creating the business.')
+          end
+        else
+          raise('There were a problem when creating the user.')
+        end
+      end
+    rescue Exception => e
+      p '--------------------'
+      p @user_wizard.user.errors
+      flash[:alert] = e
+      redirect_to action: Wizard::User::STEPS.first
     end
   end
 
@@ -50,12 +79,13 @@ class WizardsController < ApplicationController
   end
 
   def step_validation_3 current_step
-    if @user_wizard.valid?
+    if @user_wizard.user.save
       next_step = wizard_user_next_step(current_step)
       create and return unless next_step
 
       redirect_to action: next_step
     else
+      p @user_wizard.user.errors
       render current_step
     end
   end
@@ -70,13 +100,13 @@ class WizardsController < ApplicationController
 
   def check_user_validation model, current_step
     if model.valid?
-      if @user_wizard.valid?
-        next_step = wizard_user_next_step(current_step)
+      next_step = wizard_user_next_step(current_step)
+      if current_step == 'step1'
+        save_user_and_order(current_step, model, next_step)
+      else
         create and return unless next_step
 
         redirect_to action: next_step
-      else
-        render current_step
       end
     else
       render current_step
@@ -84,15 +114,37 @@ class WizardsController < ApplicationController
   end
 
   def step_validation_5 current_step
-    @order_wizard = wizard_order
+    @order_wizard = wizard_order_acceptance
     @order_wizard.order.attributes = order_wizard_params
     session[:order_attributes] = @order_wizard.order.attributes
 
     check_user_validation(@order_wizard, current_step)
   end
 
+  def save_user_and_order current_step, model, next_step
+    begin
+      ActiveRecord::Base.transaction do
+        if @user_wizard.user.save(validate: false)
+          model.order.customer_id = @user_wizard.user.id
+          if model.order.save
+            redirect_to action: next_step
+          else
+            render current_step
+          end
+        else
+          render current_step
+        end
+      end
+    rescue Exception => e
+      render current_step
+    end
+  end
+
   def load_user_wizard
     @user_wizard = wizard_user_for_step(action_name)
+    p '================'
+    p @user_wizard
+    p '================'
   end
 
   def wizard_user_next_step(step)
@@ -109,6 +161,10 @@ class WizardsController < ApplicationController
     Wizard::Order::Validate.new(session[:order_attributes])
   end
 
+  def wizard_order_acceptance
+    Wizard::Order::Acceptance.new(session[:order_attributes])
+  end
+
   def wizard_business
     Wizard::Business::Validate.new(session[:business_attributes])
   end
@@ -120,14 +176,11 @@ class WizardsController < ApplicationController
   def user_wizard_params
     params.require(:user_wizard).permit(
         :email, :first_name, :last_name, :password, :password_confirmation,
-        :phone_number, :ssn, :job_title, orders_attributes: [:check_box, {documents: []}],
-        business: [:legal_name, :address_line_1, :city, :state, :zipcode, :federal_tax_id, :name_of_credit_card_processor,
-                              :years_processor, :merchant_id_number],
-        payment_method: [:card_number, :security_code, :zipcode, :bank_account_number, :bank_account_routing_number, :payment_type])
+        :phone_number, :ssn, :job_title)
   end
 
   def order_wizard_params
-    params[:user_wizard][:orders].present? ? params[:user_wizard][:orders].permit(:check_box, {documents: []}) : {}
+    params[:user_wizard][:orders].present? ? params[:user_wizard][:orders].permit(:accepted_policy, {documents: []}) : {}
   end
 
   def business_wizard_params

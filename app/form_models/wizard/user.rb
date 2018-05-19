@@ -9,7 +9,8 @@ module Wizard
       delegate *::User.attribute_names.map { |attr| [attr, "#{attr}="] }.flatten, to: :user
 
       def initialize(user_attributes)
-        @user = ::User.new(user_attributes)
+        @user = ::User.find_by(email: user_attributes['email']) if user_attributes.present?
+        @user = ::User.new(user_attributes) if @user.blank?
       end
     end
 

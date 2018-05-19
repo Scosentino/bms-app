@@ -10,8 +10,9 @@
   <%= @order_wizard.errors.full_messages.first if @order_wizard.present? && @order_wizard.errors.any? %>
 
   <%= hidden_field_tag :current_step, 'step5' %>
+  <%= f.hidden_field :email, value: @user_wizard.user.email %>
   <%= f.fields_for :orders do |o| %>
-    <%= o.check_box :accept_and_terms %>
+    <%= o.check_box :accepted_policy %>
   <% end %>
 
   <%= f.submit 'Finish' %>

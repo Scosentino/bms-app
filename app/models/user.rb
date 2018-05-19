@@ -8,12 +8,6 @@ class User < ApplicationRecord
   has_one :business, foreign_key: 'customer_id', dependent: :destroy
   has_one :payment_method, foreign_key: 'customer_id', dependent: :destroy
 
-  PASSWORD_FORMAT = /\A
-        (?=.{8,})          # Must contain 8 or more characters
-        (?=.*\d)           # Must contain a digit
-        (?=.*[a-z])        # Must contain a lower case character
-      /x
-
   validates_presence_of :first_name, :last_name, :job_title
   validates :email, presence: true, format: {
       with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -21,7 +15,6 @@ class User < ApplicationRecord
   validates :password,
             presence: true,
             length: { in: Devise.password_length },
-            format: { with: PASSWORD_FORMAT },
             confirmation: true
 
   accepts_nested_attributes_for :orders, :reject_if => :all_blank

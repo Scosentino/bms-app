@@ -10,6 +10,7 @@
   <%= @business_wizard.errors.full_messages.first if @business_wizard.present? && @business_wizard.errors.any? %>
 
   <%= hidden_field_tag :current_step, 'step2' %>
+  <%= f.hidden_field :email, value: @user_wizard.user.email %>
   <%= f.fields_for :business do |b| %>
     <%= b.text_field :legal_name %>
     <%= b.text_field :dba %>

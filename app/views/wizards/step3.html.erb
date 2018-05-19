@@ -10,6 +10,7 @@
   <%= @user_wizard.errors.full_messages.first if @user_wizard.errors.any? %>
 
   <%= hidden_field_tag :current_step, 'step3' %>
+  <%= f.hidden_field :email, value: @user_wizard.user.email %>
   <%= f.text_field :first_name %>
   <%= f.text_field :last_name %>
   <%= f.text_field :job_title %>

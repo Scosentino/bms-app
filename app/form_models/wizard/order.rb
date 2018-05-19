@@ -15,8 +15,8 @@ module Wizard
       validates_presence_of :documents
     end
 
-    class Acceptance < Validate
-      validates :accept_and_terms, inclusion: { in: [ true ] }
+    class Acceptance < Base
+      validates :accepted_policy, inclusion: { in: [ true ] }
     end
   end
 end
