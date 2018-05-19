@@ -38,6 +38,8 @@ gem 'figaro'
 
 # Frontend validation
 gem 'jquery-validation-rails'
+# Inputmask
+gem 'jquery-inputmask-rails', github: 'knapo/jquery-inputmask-rails'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

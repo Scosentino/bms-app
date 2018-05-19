@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'wizards/step2' %>
+
 <section id="wizard" class="overlay">
   <div class="row">
     <div class="col-md-12 col-lg-12 col-sm-12">
@@ -13,32 +15,34 @@
           </ol>
 
           <%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
-            <%= @business_wizard.errors.full_messages.first if @business_wizard.present? && @business_wizard.errors.any? %>
+            <div class="errors">
+              <%= @business_wizard.errors.full_messages.first if @business_wizard.present? && @business_wizard.errors.any? %>
+            </div>
 
             <%= hidden_field_tag :current_step, 'step2' %>
             <%= f.hidden_field :email, value: @user_wizard.user.email %>
             <%= f.fields_for :business do |b| %>
-              <%= b.label :legal_name %>
+              <%= b.label :legal_name, 'data-old_text': 'Legal Name' %>
               <%= b.text_field :legal_name %>
               <%= b.label :dba %>
               <%= b.text_field :dba %>
-              <%= b.label :address_line_1 %>
+              <%= b.label :address_line_1, 'data-old_text': 'Address Line 1' %>
               <%= b.text_field :address_line_1 %>
               <%= b.label :address_line_2 %>
               <%= b.text_field :address_line_2 %>
-              <%= b.label :city %>
+              <%= b.label :city, 'data-old_text': 'City' %>
               <%= b.text_field :city %>
-              <%= b.label :state %>
+              <%= b.label :state, 'data-old_text': 'State' %>
               <%= b.text_field :state %>
-              <%= b.label :zipcode %>
+              <%= b.label :zipcode, 'data-old_text': 'Zipcode' %>
               <%= b.text_field :zipcode %>
-              <%= b.label :federal_tax_id %>
+              <%= b.label :federal_tax_id, 'data-old_text': 'Federal Tax Id' %>
               <%= b.text_field :federal_tax_id %>
-              <%= b.label :name_of_credit_card_processor %>
+              <%= b.label :name_of_credit_card_processor, 'data-old_text': 'Name of Credit Card Process' %>
               <%= b.text_field :name_of_credit_card_processor %>
-              <%= b.label :years_processor %>
+              <%= b.label :years_processor, 'data-old_text': 'Years Processor' %>
               <%= b.text_field :years_processor %>
-              <%= b.label :merchant_id_number %>
+              <%= b.label :merchant_id_number, 'data-old_text': 'Merchant Id Number' %>
               <%= b.text_field :merchant_id_number %>
             <% end %>
 
