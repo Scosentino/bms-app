@@ -12,10 +12,6 @@ class User < ApplicationRecord
   validates :email, presence: true, format: {
       with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   }
-  validates :password,
-            presence: true,
-            length: { in: Devise.password_length },
-            confirmation: true
 
   accepts_nested_attributes_for :orders, :reject_if => :all_blank
   accepts_nested_attributes_for :business, :reject_if => :all_blank

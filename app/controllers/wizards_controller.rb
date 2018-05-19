@@ -25,18 +25,14 @@ class WizardsController < ApplicationController
   def create
     begin
       ActiveRecord::Base.transaction do
-        p '================'
-        p @user_wizard
-        p @user_wizard.user
-        p '================'
         if @user_wizard.user.save
-          @business_wizard.business.customer_id = @user_wizard.user.id
-          if @business_wizard.business.save
+          business = Business.new(session[:business_attributes].compact.merge({customer_id: @user_wizard.user.id}))
+          if business.save
             order = @user_wizard.user.orders.first
-            order.business_id = @business_wizard.business.id
-            if order.update(order_wizard_params)
-              @payment_method_wizard.payment_method.customer_id = @user_wizard.user.id
-              if @payment_method_wizard.payment_method.save
+            order.business_id = business.id
+            if order.update(session[:order_attributes].compact)
+              payment = PaymentMethod.new(session[:payment_method_attributes].compact.merge({customer_id: @user_wizard.user.id}))
+              if payment.save
                 sign_in(@user_wizard.user)
                 session[:user_attributes] = nil
                 redirect_to root_path, notice: 'User successfully created!'
@@ -46,6 +42,7 @@ class WizardsController < ApplicationController
             else
               raise('There were a problem when creating the order.')
             end
+          else
             raise('There were a problem when creating the business.')
           end
         else
@@ -53,8 +50,6 @@ class WizardsController < ApplicationController
         end
       end
     rescue Exception => e
-      p '--------------------'
-      p @user_wizard.user.errors
       flash[:alert] = e
       redirect_to action: Wizard::User::STEPS.first
     end
@@ -142,9 +137,9 @@ class WizardsController < ApplicationController
 
   def load_user_wizard
     @user_wizard = wizard_user_for_step(action_name)
-    p '================'
-    p @user_wizard
-    p '================'
+    @order_wizard = wizard_order
+    @business_wizard = wizard_business
+    @payment_method_wizard = wizard_payment_method
   end
 
   def wizard_user_next_step(step)
