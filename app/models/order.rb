@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   belongs_to :customer, class_name: 'User', foreign_key: 'customer_id', dependent: :destroy
-  belongs_to :business
+  belongs_to :business, required: false
 
   validates_presence_of :documents
 
