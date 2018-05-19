@@ -44,6 +44,10 @@
                       <%= p.text_field :zipcode %>
                       <%= p.label :bank_account_number, 'data-old_text': 'Bank Account Number' %>
                       <%= p.text_field :bank_account_number %>
+                      <%= p.label :year_ended, 'data-old_text': 'Year Ended' %>
+                      <%= p.select :year_ended,  (Time.now.year.to_i..(Time.now + 15.years).year.to_i).to_a.map{|n| [n, n]} %>
+                      <%= p.label :month_ended, 'data-old_text': 'Month Ended' %>
+                      <%= p.select :month_ended, (1..12).to_a.map{|n| [n, n]}, selected: Time.now.month %>
                       <div role="tabpanel" class="tab-pane fade active in" id="debit">
 
                       </div>
@@ -51,12 +55,12 @@
 
                       </div>
                       <div role="tabpanel" class="tab-pane fade in" id="bank">
+                        <%= p.label :bank_name, 'data-old_text': 'Bank Name' %>
+                        <%= p.text_field :bank_name %>
                         <%= p.label :bank_account_routing_number, 'data-old_text': 'Bank account routing number' %>
                         <%= p.text_field :bank_account_routing_number %>
                       </div>
                     </div>
-                    <%#= p.radio_button :payment_type, 'credit_card' %>
-                    <%#= p.radio_button :payment_type, 'bank_account' %>
                   <% end %>
                 </div>
               </div>

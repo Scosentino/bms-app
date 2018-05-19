@@ -43,6 +43,9 @@ $(document).ready(function(){
             'user_wizard[payment_method][bank_account_routing_number]': {
                 required: true,
                 digits: true
+            },
+            'user_wizard[payment_method][bank_name]': {
+                required: true
             }
         },
         messages: {
@@ -59,7 +62,8 @@ $(document).ready(function(){
             'user_wizard[payment_method][bank_account_routing_number]': {
                 required: "Please provide Bank Account routing number",
                 digits: 'Please use only digits for Bank Account routing number'
-            }
+            },
+            'user_wizard[payment_method][bank_name]' : 'Bank Name should present'
         }
     });
 
@@ -79,6 +83,10 @@ $(document).ready(function(){
             $('label[for=user_wizard_payment_method_security_code]').show();
             $('#user_wizard_payment_method_zipcode').show();
             $('label[for=user_wizard_payment_method_zipcode]').show();
+            $('#user_wizard_payment_method_year_ended').show();
+            $('label[for=user_wizard_payment_method_year_ended]').show();
+            $('#user_wizard_payment_method_month_ended').show();
+            $('label[for=user_wizard_payment_method_month_ended]').show();
         }else if(type == 'bank'){
             $('#user_wizard_payment_method_payment_type').val('bank_account');
             $('#user_wizard_payment_method_card_number').hide();
@@ -87,6 +95,10 @@ $(document).ready(function(){
             $('label[for=user_wizard_payment_method_security_code]').hide();
             $('#user_wizard_payment_method_zipcode').hide();
             $('label[for=user_wizard_payment_method_zipcode]').hide();
+            $('#user_wizard_payment_method_year_ended').hide();
+            $('label[for=user_wizard_payment_method_year_ended]').hide();
+            $('#user_wizard_payment_method_month_ended').hide();
+            $('label[for=user_wizard_payment_method_month_ended]').hide();
         }
     });
 
