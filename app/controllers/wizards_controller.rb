@@ -119,14 +119,20 @@ class WizardsController < ApplicationController
   def save_user_and_order current_step, model, next_step
     begin
       ActiveRecord::Base.transaction do
-        if @user_wizard.user.save(validate: false)
-          model.order.customer_id = @user_wizard.user.id
-          if model.order.save
-            redirect_to action: next_step
+        if @user_wizard.user.password.present? && @user_wizard.user.password_confirmation.present? &&
+            @user_wizard.user.password == @user_wizard.user.password_confirmation
+          if @user_wizard.user.save(validate: false)
+            model.order.customer_id = @user_wizard.user.id
+            if model.order.save
+              redirect_to action: next_step
+            else
+              render current_step
+            end
           else
             render current_step
           end
         else
+          flash[:alert] = 'Password should present'
           render current_step
         end
       end
