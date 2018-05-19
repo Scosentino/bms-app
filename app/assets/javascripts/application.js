@@ -18,3 +18,4 @@
 //= require bootstrap.min.js
 //= require_tree ./plugins
 //= require_tree ./admins
+//= require_tree ./applications

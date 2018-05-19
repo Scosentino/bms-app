@@ -56,6 +56,9 @@
     input:focus {
       box-shadow: 0px 0px 8px -3px #002fb5;
     }
+    input:active {
+      box-shadow: 0px 0px 8px -3px #002fb5;
+    }
 
     label {
       color: #002fb5;
@@ -166,3 +169,66 @@ track-progress {
 }
 
 .track-progress[data-steps="5"] li { width: 20%; }
+
+.drop {
+  border: 3px dashed #DADFE3;
+  border-radius: 15px;
+  overflow: hidden;
+  text-align: center;
+  background: white;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+  margin-bottom: 40px;
+  position: relative;
+  /*&:hover
+   * cursor: pointer
+   * background: #f5f5f5 */
+}
+.drop .cont {
+  width: 100%;
+  color: #8E99A5;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+  height: 240px;
+}
+.drop .cont i {
+  font-size: 400%;
+  color: #8E99A5;
+  position: relative;
+}
+.drop .cont .tit {
+  font-size: 400%;
+  text-transform: uppercase;
+}
+.drop .cont .desc {
+  color: #A4AEBB;
+}
+.drop .cont .browse {
+  margin: 10px 25%;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 5px;
+  background: #09f;
+}
+.drop input {
+  width: 100% !important;
+  height: 100% !important;
+  margin-bottom: 0 !important;
+  cursor: pointer !important;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+#list {
+  width: 100%;
+  text-align: left;
+}
+#list .thumb {
+  height: 75px;
+  border: 1px solid #323a44;
+  margin: 10px 5px 0 0;
+}
