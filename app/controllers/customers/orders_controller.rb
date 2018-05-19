@@ -35,6 +35,6 @@ class Customers::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:title, :description, :accept_and_terms, {documents: []})
+    params.require(:order).permit(:accepted_policy, {documents: []})
   end
 end

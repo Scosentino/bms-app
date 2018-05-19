@@ -9,16 +9,8 @@
             <%= f.hidden_field :order_id, value: @order.id %>
 
             <div class="create_form_input">
-              <%= f.label :title %>
-              <%= f.text_field :title %>
-            </div>
-            <div class="create_form_input">
-              <%= f.label :description %>
-              <%= f.text_area :description %>
-            </div>
-            <div class="create_form_input">
-              <%= f.label :bid, 'Offer rate' %>
-              <%= f.text_field :bid, type: 'number' %>
+              <%= f.label :estimated_annual_savings, 'Offer rate' %>
+              <%= f.text_field :estimated_annual_savings, type: 'number' %>
             </div>
 
             <%= f.submit 'Create' %>

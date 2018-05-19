@@ -2,9 +2,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :orders, foreign_key: 'customer_id'
-  has_many :admin_offers, class_name: 'Offer', foreign_key: 'admin_id'
-  has_many :customer_offers, class_name: 'Offer', foreign_key: 'customer_id'
+  has_many :orders, foreign_key: 'customer_id', dependent: :destroy
+  has_many :admin_offers, class_name: 'Offer', foreign_key: 'admin_id', dependent: :nullify
+  has_many :customer_offers, class_name: 'Offer', foreign_key: 'customer_id',  dependent: :nullify
   has_one :business, foreign_key: 'customer_id', dependent: :destroy
   has_one :payment_method, foreign_key: 'customer_id', dependent: :destroy
 

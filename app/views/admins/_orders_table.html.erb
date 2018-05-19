@@ -2,18 +2,16 @@
   <table class="table-ezr admin_dashboard_table">
     <thead>
     <tr>
-      <th>Title</th>
+      <th>Created at</th>
       <th class="th-ezr">Customer Name</th>
-      <th class="th-ezr">Created at</th>
       <th class="th-ezr">Actions</th>
     </tr>
     </thead>
     <tbody>
     <% @orders.each do |o| %>
       <tr>
-        <td><%= o.title %></td>
+        <td><%= o.created_at.strftime('%b %e %Y, %l:%M %p') %></td>
         <td class="td-ezr"><%= o.customer.full_name %></td>
-        <td class="td-ezr"><%= o.created_at.strftime('%b %e %Y, %l:%M %p') %></td>
         <td class="td-ezr"><%= link_to 'Show', admins_order_path(id: o.id) %></td>
       </tr>
     <% end %>

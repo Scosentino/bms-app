@@ -4,11 +4,11 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <div class="page-title-wrap">
-          <h2><%= @offer.title %></h2>
+          <h2><%= @offer.created_at.strftime('%b %e %Y, %l:%M %p') %></h2>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="<%= admins_path %>">Dashboard</a></li>
-              <li class="breadcrumb-item active" aria-current="page"><%= @offer.title %></li>
+              <li class="breadcrumb-item active" aria-current="page">Offer</li>
             </ol>
           </nav>
         </div>
@@ -39,36 +39,10 @@
           <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
             <div class="row">
               <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
-                Title:
-              </div>
-              <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
-                <%= @offer.title %>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
-            <div class="row">
-              <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
-                Description:
-              </div>
-              <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
-                <%= @offer.description %>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
-            <div class="row">
-              <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
                 You can save:
               </div>
               <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
-                <%= @offer.bid %>
+                <%= @offer.estimated_annual_savings %>
               </div>
             </div>
           </div>

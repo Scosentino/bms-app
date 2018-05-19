@@ -39,6 +39,6 @@ class Admins::OffersController < ApplicationController
   private
 
   def offer_params
-    params.require(:offer).permit(:title, :customer_id, :order_id, :description, :bid)
+    params.require(:offer).permit(:customer_id, :order_id, :estimated_annual_savings)
   end
 end

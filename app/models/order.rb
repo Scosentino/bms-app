@@ -3,6 +3,7 @@ class Order < ApplicationRecord
   belongs_to :business, required: false
 
   validates_presence_of :documents
+  validates :accepted_policy, inclusion: { in: [ true ] }
 
   enum status: %w[pending submitted rejected]
 

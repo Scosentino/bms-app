@@ -2,7 +2,7 @@
   <table class="table-ezr admin_dashboard_table">
     <thead>
     <tr>
-      <th>Title</th>
+      <th>Created At</th>
       <th class="th-ezr">Status</th>
       <th class="th-ezr">Actions</th>
       <th class="th-ezr">Show</th>
@@ -11,7 +11,7 @@
     <tbody>
     <% @offers.each do |o| %>
       <tr>
-        <td><%= o.title %></td>
+        <td><%= o.created_at.strftime('%b %e %Y, %l:%M %p') %></td>
         <td class="td-ezr" id="order_status_<%= o.id %>"><%= o.status_html.html_safe %></td>
         <td class="td-ezr" id="order_actions_buttons_<%= o.id %>">
           <% if o.pending? %>
