@@ -13,4 +13,10 @@ class GenerateContractsController < ApplicationController
            :margin => { :bottom => 10 },
            :footer => { :html => { :template => 'generate_contracts/footer.html.erb' } }
   end
+
+  def merchant_agreement
+    render pdf: 'merchant_agreement'#,
+           # :margin => { :bottom => 10 },
+           # :footer => { :html => { :template => 'generate_contracts/footer.html.erb' } }
+  end
 end

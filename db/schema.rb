@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 20180519175154) do
     t.datetime "updated_at", null: false
     t.string "estimated_annual_savings"
     t.datetime "accepted_at"
+    t.string "customer_name"
     t.index ["admin_id"], name: "index_offers_on_admin_id"
     t.index ["customer_id"], name: "index_offers_on_customer_id"
     t.index ["order_id"], name: "index_offers_on_order_id"
@@ -58,6 +59,7 @@ ActiveRecord::Schema.define(version: 20180519175154) do
     t.integer "status", default: 0
     t.bigint "business_id"
     t.datetime "accepted_at"
+    t.string "customer_name"
     t.index ["business_id"], name: "index_orders_on_business_id"
     t.index ["customer_id"], name: "index_orders_on_customer_id"
   end

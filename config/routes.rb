@@ -25,7 +25,8 @@ Rails.application.routes.draw do
   end
 
   # Contract
-  get '/generate_contract', to: 'generate_contracts#policy', as: :generate_contract
+  get '/generate_policy', to: 'generate_contracts#policy', as: :generate_contract
+  get '/generate_merchant', to: 'generate_contracts#merchant_agreement', as: :generate_merchant_agreement
 
   # Check email present
   get 'check_email' => 'application#check_email'
