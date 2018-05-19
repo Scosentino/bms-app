@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'wizards/step3' %>
+
 <section id="wizard" class="overlay">
   <div class="row">
     <div class="col-md-12 col-lg-12 col-sm-12">
@@ -17,15 +19,15 @@
 
             <%= hidden_field_tag :current_step, 'step3' %>
             <%= f.hidden_field :email, value: @user_wizard.user.email %>
-            <%= f.label :first_name %>
+            <%= f.label :first_name, 'data-old_text': 'First Name' %>
             <%= f.text_field :first_name %>
-            <%= f.label :last_name %>
+            <%= f.label :last_name, 'data-old_text': 'Last Name' %>
             <%= f.text_field :last_name %>
-            <%= f.label :job_title %>
+            <%= f.label :job_title, 'data-old_text': 'Job Title' %>
             <%= f.text_field :job_title %>
-            <%= f.label :phone_number %>
+            <%= f.label :phone_number, 'data-old_text': 'Phone Number' %>
             <%= f.text_field :phone_number %>
-            <%= f.label :ssn %>
+            <%= f.label :ssn, 'data-old_text': 'SSN' %><p>* last 4 numbers of SSN</p>
             <%= f.text_field :ssn %>
 
             <%= f.submit 'Continue' %>
