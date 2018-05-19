@@ -1,27 +1,41 @@
-<ol class="breadcrumb">
-  <li><%= link_to "Step 1", step1_wizard_path %></li>
-  <li><%= link_to "Step 2", step2_wizard_path %></li>
-  <li><%= link_to "Step 3", step3_wizard_path %></li>
-  <li class="active">Step 4</li>
-  <li>Step 5</li>
-</ol>
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-sm-12">
+    <div class="registrations_order_box">
+      <ol class="breadcrumb">
+        <li><%= link_to "Step 1", step1_wizard_path %></li>
+        <li><%= link_to "Step 2", step2_wizard_path %></li>
+        <li><%= link_to "Step 3", step3_wizard_path %></li>
+        <li class="active">Step 4</li>
+        <li>Step 5</li>
+      </ol>
 
-<%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
-  <%= @user_wizard.errors.full_messages.first if @user_wizard.present? && @user_wizard.errors.any? %>
-  <%= @payment_method_wizard.errors.full_messages.first if @payment_method_wizard.present? && @payment_method_wizard.errors.any? %>
+      <%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
+        <%= @user_wizard.errors.full_messages.first if @user_wizard.present? && @user_wizard.errors.any? %>
+        <%= @payment_method_wizard.errors.full_messages.first if @payment_method_wizard.present? && @payment_method_wizard.errors.any? %>
 
-  <%= hidden_field_tag :current_step, 'step4' %>
-  <%= f.hidden_field :email, value: @user_wizard.user.email %>
-  <%= f.fields_for :payment_method do |p| %>
-    <%= p.radio_button :payment_type, 'debit_card' %>
-    <%= p.radio_button :payment_type, 'credit_card' %>
-    <%= p.radio_button :payment_type, 'bank_account' %>
-    <%= p.text_field :card_number %>
-    <%= p.text_field :security_code %>
-    <%= p.text_field :zipcode %>
-    <%= p.text_field :bank_account_number %>
-    <%= p.text_field :bank_account_routing_number %>
-  <% end %>
+        <%= hidden_field_tag :current_step, 'step4' %>
+        <%= f.hidden_field :email, value: @user_wizard.user.email %>
+        <%= f.fields_for :payment_method do |p| %>
+          <%= p.label 'Debit card' %>
+          <%= p.radio_button :payment_type, 'debit_card' %>
+          <%= p.label 'Credit card' %>
+          <%= p.radio_button :payment_type, 'credit_card' %>
+          <%= p.label 'Bank Account' %>
+          <%= p.radio_button :payment_type, 'bank_account' %>
+          <%= p.label :card_number %>
+          <%= p.text_field :card_number %>
+          <%= p.label :security_code %>
+          <%= p.text_field :security_code %>
+          <%= p.label :zipcode %>
+          <%= p.text_field :zipcode %>
+          <%= p.label :bank_account_number %>
+          <%= p.text_field :bank_account_number %>
+          <%= p.label :bank_account_routing_number %>
+          <%= p.text_field :bank_account_routing_number %>
+        <% end %>
 
-  <%= f.submit 'Finish' %>
-<% end %>
+        <%= f.submit 'Finish' %>
+      <% end %>
+    </div>
+  </div>
+</div>

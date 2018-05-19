@@ -1,21 +1,32 @@
-<ol class="breadcrumb">
-  <li><%= link_to "Step 1", step1_wizard_path %></li>
-  <li><%= link_to "Step 2", step2_wizard_path %></li>
-  <li class="active">Step 3</li>
-  <li>Step 4</li>
-  <li>Step 5</li>
-</ol>
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-sm-12">
+    <div class="registrations_order_box">
+      <ol class="breadcrumb">
+        <li><%= link_to "Step 1", step1_wizard_path %></li>
+        <li><%= link_to "Step 2", step2_wizard_path %></li>
+        <li class="active">Step 3</li>
+        <li>Step 4</li>
+        <li>Step 5</li>
+      </ol>
 
-<%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
-  <%= @user_wizard.errors.full_messages.first if @user_wizard.errors.any? %>
+      <%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
+        <%= @user_wizard.errors.full_messages.first if @user_wizard.errors.any? %>
 
-  <%= hidden_field_tag :current_step, 'step3' %>
-  <%= f.hidden_field :email, value: @user_wizard.user.email %>
-  <%= f.text_field :first_name %>
-  <%= f.text_field :last_name %>
-  <%= f.text_field :job_title %>
-  <%= f.text_field :phone_number %>
-  <%= f.text_field :ssn %>
+        <%= hidden_field_tag :current_step, 'step3' %>
+        <%= f.hidden_field :email, value: @user_wizard.user.email %>
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>
+        <%= f.label :job_title %>
+        <%= f.text_field :job_title %>
+        <%= f.label :phone_number %>
+        <%= f.text_field :phone_number %>
+        <%= f.label :ssn %>
+        <%= f.text_field :ssn %>
 
-  <%= f.submit 'Continue' %>
-<% end %>
+        <%= f.submit 'Continue' %>
+      <% end %>
+    </div>
+  </div>
+</div>

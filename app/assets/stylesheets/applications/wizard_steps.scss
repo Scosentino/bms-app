@@ -1,0 +1,32 @@
+.registrations_order_box {
+  padding: 20px;
+
+  ol {
+    text-align: center;
+    width: 100%;
+    li {
+      width: 20%;
+    }
+  }
+
+  form {
+    padding: 20px;
+    background: #e9ecef;
+    border-radius: 4px;
+
+    input {
+      width: 100%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 500;
+      padding: 10px;
+    }
+
+    label {
+      color: #002fb5;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+  }
+}

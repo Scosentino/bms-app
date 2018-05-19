@@ -1,29 +1,46 @@
-<ol class="breadcrumb">
-  <li><%= link_to "Step 1", step1_wizard_path %></li>
-  <li class="active">Step 2</li>
-  <li>Step 3</li>
-  <li>Step 4</li>
-  <li>Step 5</li>
-</ol>
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-sm-12">
+    <div class="registrations_order_box">
+      <ol class="breadcrumb">
+        <li><%= link_to "Step 1", step1_wizard_path %></li>
+        <li class="active">Step 2</li>
+        <li>Step 3</li>
+        <li>Step 4</li>
+        <li>Step 5</li>
+      </ol>
 
-<%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
-  <%= @business_wizard.errors.full_messages.first if @business_wizard.present? && @business_wizard.errors.any? %>
+      <%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
+        <%= @business_wizard.errors.full_messages.first if @business_wizard.present? && @business_wizard.errors.any? %>
 
-  <%= hidden_field_tag :current_step, 'step2' %>
-  <%= f.hidden_field :email, value: @user_wizard.user.email %>
-  <%= f.fields_for :business do |b| %>
-    <%= b.text_field :legal_name %>
-    <%= b.text_field :dba %>
-    <%= b.text_field :address_line_1 %>
-    <%= b.text_field :address_line_2 %>
-    <%= b.text_field :city %>
-    <%= b.text_field :state %>
-    <%= b.text_field :zipcode %>
-    <%= b.text_field :federal_tax_id %>
-    <%= b.text_field :name_of_credit_card_processor %>
-    <%= b.text_field :years_processor %>
-    <%= b.text_field :merchant_id_number %>
-  <% end %>
+        <%= hidden_field_tag :current_step, 'step2' %>
+        <%= f.hidden_field :email, value: @user_wizard.user.email %>
+        <%= f.fields_for :business do |b| %>
+          <%= b.label :legal_name %>
+          <%= b.text_field :legal_name %>
+          <%= b.label :dba %>
+          <%= b.text_field :dba %>
+          <%= b.label :address_line_1 %>
+          <%= b.text_field :address_line_1 %>
+          <%= b.label :address_line_2 %>
+          <%= b.text_field :address_line_2 %>
+          <%= b.label :city %>
+          <%= b.text_field :city %>
+          <%= b.label :state %>
+          <%= b.text_field :state %>
+          <%= b.label :zipcode %>
+          <%= b.text_field :zipcode %>
+          <%= b.label :federal_tax_id %>
+          <%= b.text_field :federal_tax_id %>
+          <%= b.label :name_of_credit_card_processor %>
+          <%= b.text_field :name_of_credit_card_processor %>
+          <%= b.label :years_processor %>
+          <%= b.text_field :years_processor %>
+          <%= b.label :merchant_id_number %>
+          <%= b.text_field :merchant_id_number %>
+        <% end %>
 
-  <%= f.submit 'Continue' %>
-<% end %>
+        <%= f.submit 'Continue' %>
+      <% end %>
+    </div>
+  </div>
+</div>

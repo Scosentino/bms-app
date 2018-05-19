@@ -1,26 +1,34 @@
-<ol class="breadcrumb">
-  <li class='active'>Step 1</li>
-  <li>Step 2</li>
-  <li>Step 3</li>
-  <li>Step 4</li>
-  <li>Step 5</li>
-</ol>
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-sm-12">
+    <div class="registrations_order_box">
+      <ol class="breadcrumb">
+        <li class='active'>Step 1</li>
+        <li>Step 2</li>
+        <li>Step 3</li>
+        <li>Step 4</li>
+        <li>Step 5</li>
+      </ol>
 
-<%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
-  <%= @user_wizard.errors.full_messages.first if @user_wizard.present? && @user_wizard.errors.any? %>
-  <%= @order_wizard.errors.full_messages.first if @order_wizard.present? && @order_wizard.errors.any? %>
+      <%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
+        <%= @user_wizard.errors.full_messages.first if @user_wizard.present? && @user_wizard.errors.any? %>
+        <%= @order_wizard.errors.full_messages.first if @order_wizard.present? && @order_wizard.errors.any? %>
 
-  <%= hidden_field_tag :current_step, 'step1' %>
+        <%= hidden_field_tag :current_step, 'step1' %>
 
-  <%= f.email_field :email %>
-  <br/>
-  <%= f.password_field :password %>
-  <br/>
-  <%= f.password_field :password_confirmation %>
-  <br/>
-  <%= f.fields_for :orders do |o| %>
-    <%= o.file_field :documents, multiple: true %>
-  <% end %>
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
 
-  <%= f.submit 'Continue' %>
-<% end %>
+        <%= f.fields_for :orders do |o| %>
+          <%= o.label :documents %>
+          <%= o.file_field :documents, multiple: true %>
+        <% end %>
+
+        <%= f.submit 'Continue' %>
+      <% end %>
+    </div>
+  </div>
+</div>
