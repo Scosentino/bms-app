@@ -1,0 +1,75 @@
+<div class="invoice-box">
+  <table cellpadding="0" cellspacing="0">
+    <tbody><tr class="top">
+      <td colspan="2">
+        <table>
+          <tbody><tr>
+            <td class="title">
+              <img src="https://i.imgur.com/GPKmsua.png" style="width:100%; max-width:300px;">
+            </td>
+
+            <td>
+              Invoice #: [<%= @order.created_at.strftime('%b %e %Y') %>]-[000+1]<br>
+              Created: [<%= @order.created_at.strftime('%b %e %Y, %l:%M %p') %>]<br></td>
+          </tr>
+          </tbody></table>
+      </td>
+    </tr>
+
+    <tr class="information">
+      <td colspan="2">
+        <table>
+          <tbody><tr>
+            <td>Business Merchant Services<br><br>Miami, Fl 33156</td>
+
+            <td><%= @customer.try(:business).try(:get_name) %><br><%= @customer.full_name %><br><%= @customer.job_title %><br><%= @customer.email %></td>
+          </tr>
+
+
+          <tr>
+            <td>
+              Thank you for choosing Business Merchant services. Please access your account at anytime for updates on your account status. One of our highly skilled processsing professionals will be in contact with you within 24 hours of creating your order. Thank you again for your business, we look forward to serving you.
+            </td>
+          </tr>
+          </tbody><center>
+        </center></table>
+      </td>
+    </tr>
+
+    <tr class="heading">
+      <td>
+        Payment Method
+      </td>
+
+      <td></td>
+    </tr>
+
+    <tr class="details">
+      <td>Bank Account Ending ********<%= @customer.try(:payment_method).try(:bank_account_number).try(:last, 4) %></td>
+    </tr>
+    <% if @customer.payment_method.present? && (@customer.payment_method.credit_card? || @customer.payment_method.debit_card?) %>
+      <br>or<br>
+      Credit Card/Debit Card ending ************<%= @customer.payment_method.card_number.last(4) %>
+    <% end %>
+
+    <tr class="heading">
+      <td>Merchant Processor Rate and Fee Negotiation</td>
+
+      <td>
+        Price
+      </td>
+    </tr>
+
+    <tr class="item last">
+      <td>No cost unless we save you at least $1,000 per year</td>
+
+      <td>Free</td>
+    </tr>
+
+    <tr class="total">
+      <td></td>
+
+      <td>Free</td>
+    </tr>
+    </tbody></table>
+</div>

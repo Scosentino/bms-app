@@ -16,4 +16,8 @@ class Offer < ApplicationRecord
       '<label class="offer_label_status_rejected">rejected</label>'
     end
   end
+
+  def estimated_monthly_savings
+    (estimated_annual_savings.to_f * 2).round(2)
+  end
 end
