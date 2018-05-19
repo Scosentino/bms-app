@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   resources :admins, only: [:index]
   resources :customers, only: [:index]
 

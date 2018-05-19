@@ -8,7 +8,7 @@ class CustomerNotifierMailer < ApplicationMailer
       @order = Order.find_by(id: order_id)
 
       if @order.present?
-        mail(to: @customer,
+        mail(to: @customer.email,
              subject: "Order successfully created")
       end
     end
@@ -21,7 +21,7 @@ class CustomerNotifierMailer < ApplicationMailer
       @offer = Offer.find_by(id: offer_id)
 
       if @offer.present?
-        mail(to: @customer,
+        mail(to: @customer.email,
              subject: "You have received new offer")
       end
     end

@@ -39,8 +39,11 @@
       <td>Bank Account Ending ********<%= @customer.try(:payment_method).try(:bank_account_number).try(:last, 4) %></td>
     </tr>
     <% if @customer.payment_method.present? && (@customer.payment_method.credit_card? || @customer.payment_method.debit_card?) %>
-      <br>or<br>
-      Credit Card/Debit Card ending ************<%= @customer.payment_method.card_number.last(4) %>
+      <tr class="details">
+        <td>
+          Credit Card/Debit Card ending ************<%= @customer.payment_method.card_number.last(4) %>
+        </td>
+      </tr>
     <% end %>
 
     </tbody></table>

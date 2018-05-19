@@ -7,6 +7,8 @@ class Offer < ApplicationRecord
 
   validates_presence_of :estimated_annual_savings
 
+  after_commit :send_email, on: :create
+
   def status_html
     if pending?
       '<label class="offer_label_status_pending">pending</label>'
@@ -18,6 +20,10 @@ class Offer < ApplicationRecord
   end
 
   def estimated_monthly_savings
-    (estimated_annual_savings.to_f * 2).round(2)
+    (estimated_annual_savings.to_f / 12).round(2)
+  end
+
+  def send_email
+    CustomerNotifierMailer.new_offer(self.customer_id, self.id).deliver_later
   end
 end

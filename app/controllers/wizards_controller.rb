@@ -126,6 +126,7 @@ class WizardsController < ApplicationController
             if model.order.save
               redirect_to action: next_step
             else
+              flash[:alert] = model.order.errors.full_messages.first
               render current_step
             end
           else
