@@ -30,7 +30,7 @@ class WizardsController < ApplicationController
           if business.save
             order = @user_wizard.user.orders.first
             order.business_id = business.id
-            if order.update(session[:order_attributes].compact)
+            if order.update(session[:order_attributes].compact.merge(accepted_at: Time.now))
               payment = PaymentMethod.new(session[:payment_method_attributes].compact.merge({customer_id: @user_wizard.user.id}))
               if payment.save
                 sign_in(@user_wizard.user)

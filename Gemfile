@@ -39,6 +39,10 @@ gem 'figaro'
 gem 'redis', '~> 3.0'
 gem 'sidekiq', require: 'sidekiq/web'
 
+# Gem pdf generation
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
+
 # Frontend validation
 gem 'jquery-validation-rails'
 # Inputmask

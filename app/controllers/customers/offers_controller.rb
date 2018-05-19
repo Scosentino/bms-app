@@ -23,6 +23,12 @@ class Customers::OffersController < ApplicationController
   def change_status status
     if @offer.present?
       if @offer.update(status: status)
+        if status == 'accepted'
+          @offer.update(accepted_at: Time.now)
+        end
+        if status == 'rejected'
+          @offer.update(accepted_at: nil)
+        end
         @status = 200
         flash[:notice] = "Offer #{status.humanize}"
       else
