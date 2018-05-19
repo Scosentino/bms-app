@@ -1,32 +1,168 @@
+#wizard {
+  background-image: url(../sliderbg.png);
+  z-index: 1;
+  position: relative;
+}
+
+.blue_overlay {
+  background-color: rgba(0, 47,181, 0.1);
+}
+
 .registrations_order_box {
   padding: 20px;
+  max-width: 700px;
+  background-image: url(../sliderbg.png);
+  border-radius: 6px;
+  margin: 50px auto 50px auto;
+  h1 {
+    color: #002fb5;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
 
   ol {
-    text-align: center;
-    width: 100%;
-    li {
-      width: 20%;
-    }
+    padding-top: 10px;
   }
 
   form {
     padding: 20px;
-    background: #e9ecef;
     border-radius: 4px;
 
     input {
       width: 100%;
-      margin-top: 10px;
-      margin-bottom: 10px;
+      margin-top: 0;
+      margin-bottom: 20px;
       font-size: 15px;
       font-weight: 500;
       padding: 10px;
+      border-radius: 4px;
+      border: none;
+      box-shadow: 0px 0px 8px -3px;
+    }
+
+    input[type=submit] {
+      border: 2px solid #fff;
+      box-shadow: 0px 0px 8px -3px;
+      transition: all 300ms;
+    }
+
+    input[type=submit]:hover {
+      color: #002fb5;
+      box-shadow: 0px 0px 8px -3px #002fb5;
+      cursor: pointer;
+      transition: all 300ms;
+    }
+
+    input:focus {
+      box-shadow: 0px 0px 8px -3px #002fb5;
     }
 
     label {
       color: #002fb5;
       text-transform: uppercase;
       font-weight: 500;
+      font-size: 10px;
+      margin-bottom: 0;
     }
   }
 }
+
+.register_order_fields_with_steps_box {
+
+}
+
+track-progress {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.track-progress li {
+  list-style-type: none;
+  display: inline-block;
+
+  position: relative;
+  margin: 0;
+  padding: 0;
+
+  text-align: center;
+  line-height: 30px;
+  height: 30px;
+
+  background-color: #f0f0f0;
+}
+
+.track-progress li > span {
+  display: block;
+
+  color: #999;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.track-progress li.done > span {
+  color: #666;
+  background-color: #ccc;
+}
+
+.track-progress li > span:after,
+.track-progress li > span:before {
+  content: "";
+  display: block;
+  width: 0px;
+  height: 0px;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  border: solid transparent;
+  border-left-color: #f0f0f0;
+  border-width: 15px;
+}
+
+.track-progress li > span:after {
+  top: -5px;
+  z-index: 1;
+  border-left-color: white;
+  border-width: 20px;
+}
+
+.track-progress li > span:before {
+  z-index: 2;
+}
+
+.track-progress li.done + li > span:before {
+  border-left-color: #ccc;
+}
+
+.track-progress li:first-child > span:after,
+.track-progress li:first-child > span:before {
+  display: none;
+}
+
+.track-progress li:first-child i,
+.track-progress li:last-child i {
+  display: block;
+  height: 0;
+  width: 0;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  border: solid transparent;
+  border-left-color: white;
+  border-width: 15px;
+}
+
+.track-progress li:last-child i {
+  left: auto;
+  right: -15px;
+
+  border-left-color: transparent;
+  border-top-color: white;
+  border-bottom-color: white;
+}
+
+.track-progress[data-steps="5"] li { width: 20%; }

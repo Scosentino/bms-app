@@ -1,26 +1,31 @@
-<div class="row">
-  <div class="col-md-12 col-lg-12 col-sm-12">
-    <div class="registrations_order_box">
-      <ol class="breadcrumb">
-        <li><%= link_to "Step 1", step1_wizard_path %></li>
-        <li><%= link_to "Step 2", step2_wizard_path %></li>
-        <li><%= link_to "Step 3", step3_wizard_path %></li>
-        <li><%= link_to "Step 4", step4_wizard_path %></li>
-        <li class="active">Step 5</li>
-      </ol>
+<section id="wizard" class="overlay">
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12">
+      <div class="registrations_order_box">
+        <h1 class="text-center">Ready to lower your bills?</h1>
+        <div class="register_order_fields_with_steps_box">
+          <ol class="track-progress" data-steps="5">
+            <li class="done"><span><%= link_to "Step 1", step1_wizard_path %></span></li><!--
+            --><li class="done"><span><%= link_to "Step 2", step2_wizard_path %></span></li><!--
+            --><li class="done"><span><%= link_to "Step 3", step3_wizard_path %></span></li><!--
+            --><li class="done"><span><%= link_to "Step 4", step4_wizard_path %></span></li><!--
+            --><li class="active"><span>Step 5</span></li>
+          </ol>
 
-      <%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
-        <%= @order_wizard.errors.full_messages.first if @order_wizard.present? && @order_wizard.errors.any? %>
+          <%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
+            <%= @order_wizard.errors.full_messages.first if @order_wizard.present? && @order_wizard.errors.any? %>
 
-        <%= hidden_field_tag :current_step, 'step5' %>
-        <%= f.hidden_field :email, value: @user_wizard.user.email %>
-        <%= f.fields_for :orders do |o| %>
-          <%= o.label :accepted_policy %>
-          <%= o.check_box :accepted_policy %>
-        <% end %>
+            <%= hidden_field_tag :current_step, 'step5' %>
+            <%= f.hidden_field :email, value: @user_wizard.user.email %>
+            <%= f.fields_for :orders do |o| %>
+              <%= o.label :accepted_policy %>
+              <%= o.check_box :accepted_policy %>
+            <% end %>
 
-        <%= f.submit 'Finish' %>
-      <% end %>
+            <%= f.submit 'Finish' %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section><span>

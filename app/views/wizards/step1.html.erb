@@ -1,34 +1,43 @@
-<div class="row">
-  <div class="col-md-12 col-lg-12 col-sm-12">
-    <div class="registrations_order_box">
-      <ol class="breadcrumb">
-        <li class='active'>Step 1</li>
-        <li>Step 2</li>
-        <li>Step 3</li>
-        <li>Step 4</li>
-        <li>Step 5</li>
-      </ol>
+<section id="wizard" class="overlay">
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12">
+      <div class="registrations_order_box">
+        <h1 class="text-center">Ready to lower your bills?</h1>
+        <div class="register_order_fields_with_steps_box">
+          <ol class="track-progress" data-steps="5">
+            <li class='active'><span>Step 1</span></li><!--
+            --><li><span>Step 2</span></li><!--
+            --><li><span>Step 3</span></li><!--
+            --><li><span>Step 4</span></li><!--
+            --><li><span>Step 5</span></li>
+          </ol>
 
-      <%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
-        <%= @user_wizard.errors.full_messages.first if @user_wizard.present? && @user_wizard.errors.any? %>
-        <%= @order_wizard.errors.full_messages.first if @order_wizard.present? && @order_wizard.errors.any? %>
+          <%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
+            <div class="error">
+              <%= @user_wizard.errors.full_messages.first if @user_wizard.present? && @user_wizard.errors.any? %>
+            </div>
+            <div class="errors">
+              <%= @order_wizard.errors.full_messages.first if @order_wizard.present? && @order_wizard.errors.any? %>
+            </div>
 
-        <%= hidden_field_tag :current_step, 'step1' %>
+            <%= hidden_field_tag :current_step, 'step1' %>
 
-        <%= f.label :email %>
-        <%= f.email_field :email %>
-        <%= f.label :password %>
-        <%= f.password_field :password %>
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation %>
+            <%= f.label :email %>
+            <%= f.email_field :email %>
+            <%= f.label :password %>
+            <%= f.password_field :password %>
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation %>
 
-        <%= f.fields_for :orders do |o| %>
-          <%= o.label :documents %>
-          <%= o.file_field :documents, multiple: true %>
-        <% end %>
+            <%= f.fields_for :orders do |o| %>
+              <%= o.label :documents %>
+              <%= o.file_field :documents, multiple: true %>
+            <% end %>
 
-        <%= f.submit 'Continue' %>
-      <% end %>
+            <%= f.submit 'Continue' %>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</section>
