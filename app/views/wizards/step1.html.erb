@@ -29,15 +29,6 @@
             <%= f.label :password_confirmation %>
             <%= f.password_field :password_confirmation %>
 
-            <%#= f.fields_for :orders do |o| %>
-              <%#= o.label :documents %>
-              <!--<div class="file-input-drop-zone">-->
-                <!--<label id="user_wizard_orders_documents_label" for="user_wizard_orders_documents">Choose file</label>-->
-                <!--<%#= o.file_field :documents, multiple: true %>-->
-                <!--<p>or drag and drop them here</p>-->
-              <!--</div>-->
-            <%# end %>
-
             <div class="drop">
               <div class="cont">
                 <i class="fa fa-cloud-upload"></i>
@@ -107,8 +98,7 @@
                 return function(e) {
                     // Render thumbnail.
                     var span = document.createElement('span');
-                    span.innerHTML = ['<img class="thumb" src="', e.target.result,
-                        '" title="', escape(theFile.name), '"/>'].join('');
+                    span.innerHTML = [theFile.name].join('');
                     document.getElementById('list').insertBefore(span, null);
                 };
             })(f);
