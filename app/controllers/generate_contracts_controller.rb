@@ -1,5 +1,6 @@
 class GenerateContractsController < ApplicationController
   before_action :authenticate_user!
+  before_action :authenticate_admin!, only: :merchant_agreement
 
   def policy
     @customer = User.find_by(id: params[:customer_id])
