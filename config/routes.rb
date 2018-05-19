@@ -24,6 +24,9 @@ Rails.application.routes.draw do
     post :validate_step
   end
 
+  # Contract
+  get '/generate_contract', to: 'generate_contracts#policy', as: :generate_contract
+
   # Check email present
   get 'check_email' => 'application#check_email'
 

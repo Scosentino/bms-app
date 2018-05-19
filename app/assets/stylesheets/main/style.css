@@ -2487,3 +2487,10 @@ body.preloader-active {
 .btn_red {
     background: #b61b18 !important;
 }
+
+.show_contract_button {
+    padding: 10px;
+    background: white;
+    border: 2px solid;
+    border-radius: 4px;
+}

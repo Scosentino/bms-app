@@ -63,6 +63,21 @@
           </div>
         </div>
 
+        <% if @order.submitted? %>
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+              <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+                  Policy
+                </div>
+                <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+                  <%= link_to 'Show Policy', generate_contract_path(type: 'order', id: @order.id, customer_id: @order.customer.id), class: 'show_contract_button', target:'_blank'%>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
         <div class="row">
           <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
             <div class="row">
