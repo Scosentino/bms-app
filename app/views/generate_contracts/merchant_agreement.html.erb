@@ -5,7 +5,7 @@
   <%= wicked_pdf_stylesheet_link_tag 'bootstrap-fontawesome-import', 'bootstrap-theme.min' %>
   <style>
     p {
-      font-size: 17px;
+      font-size: 15px;
       text-align: justify;
     }
 
@@ -35,6 +35,31 @@
       bottom: 0;
       right: 70px;
       font-size: 10px;
+    }
+
+    span.field-input {
+      border-bottom: 1px solid black;
+      font-size: 20px;
+      position: relative !important;
+      width: 300px;
+      display: inline-block;
+      text-align: center;
+    }
+
+    span.little {
+      font-size: 12px;
+      position: relative !important;
+      text-align: center;
+    }
+
+    span.field-input-cursive {
+      border-bottom: 1px solid black;
+      font-size: 20px;
+      font-family: cursive;
+      position: relative !important;
+      width: 300px;
+      display: inline-block;
+      text-align: center;
     }
 
     div.page-break { display:block; clear:both; page-break-after:always; }
@@ -70,11 +95,11 @@
   <tr>
     <td style="width: 50%;border-right: 2px solid;position: relative;">
       <span>Legal Name</span>
-      <p>legal name of business</p>
+      <p><%= @model.business.legal_name %></p>
     </td>
     <td style="width: 50%;position: relative;">
       <span>DBA</span>
-      <p>business dba</p>
+      <p><%= @model.business.dba %></p>
     </td>
   </tr>
   </tbody>
@@ -84,19 +109,19 @@
   <tr style="width: 100%">
     <td style="width: 50%;border-right: 2px solid;border-top: 2px solid;position: relative;">
       <span>Mailing Address</span>
-      <p></p>
+      <p><%= @model.business.get_address %></p>
     </td>
     <td style="width: 25%;border-right: 2px solid;border-top: 2px solid;position: relative;">
       <span>City</span>
-      <p></p>
+      <p><%= @model.business.city %></p>
     </td>
     <td style="width: 10%;border-right: 2px solid;border-top: 2px solid;position: relative;">
       <span>State</span>
-      <p></p>
+      <p><%= @model.business.state %></p>
     </td>
     <td style="width: 15%;border-top: 2px solid;position: relative;">
       <span>Zipcode</span>
-      <p></p>
+      <p><%= @model.business.zipcode %></p>
     </td>
   </tr>
   </tbody>
@@ -106,11 +131,11 @@
   <tr style="width: 100%">
     <td style="width: 33%;border-right: 2px solid;border-top: 2px solid;position: relative;">
       <span>Federal Tax ID</span>
-      <p></p>
+      <p><%= @model.business.federal_tax_id %></p>
     </td>
     <td style="width: 33%;border-right: 2px solid;border-top: 2px solid;position: relative;">
       <span>Telephone</span>
-      <p></p>
+      <p><%= @customer.phone_number %></p>
     </td>
     <td style="width: 34%;border-top: 2px solid;position: relative;">
       <span>Fax</span>
@@ -124,11 +149,11 @@
   <tr style="width: 100%">
     <td style="width: 50%;border-right: 2px solid;border-top: 2px solid;position: relative;">
       <span>Primary Contact</span>
-      <p></p>
+      <p><%= @customer.full_name %></p>
     </td>
     <td style="width: 50%;border-top: 2px solid;position: relative;">
       <span>Name Of Processor</span>
-      <p></p>
+      <p><%= @model.business.name_of_credit_card_processor %></p>
     </td>
   </tr>
   </tbody>
@@ -138,11 +163,11 @@
   <tr style="width: 100%">
     <td style="width: 50%;border-right: 2px solid;border-top: 2px solid;position: relative;">
       <span>Years w/ Processor</span>
-      <p></p>
+      <p><%= @model.business.years_processor %></p>
     </td>
     <td style="width: 50%;border-top: 2px solid;position: relative;">
       <span>Merchant ID Number</span>
-      <p></p>
+      <p><%= @model.business.merchant_id_number %></p>
     </td>
   </tr>
   </tbody>
@@ -161,11 +186,11 @@
   <tr style="width: 100%">
     <td style="width: 70%;border-right: 2px solid;position: relative;">
       <span>Name & Title</span>
-      <p></p>
+      <p><%= @customer.full_name %></p>
     </td>
     <td style="width: 30%;position: relative;">
       <span>Last 4 digits of SS #</span>
-      <p></p>
+      <p><%= @customer.ssn %></p>
     </td>
   </tr>
   </tbody>
@@ -175,15 +200,15 @@
   <tr style="width: 100%">
     <td style="width: 35%;border-right: 2px solid;border-top: 2px solid;position: relative;">
       <span>Mobile Phone Number</span>
-      <p></p>
+      <p><%= @customer.phone_number %></p>
     </td>
     <td style="width: 40%;border-right: 2px solid;border-top: 2px solid;position: relative;">
       <span>Email address</span>
-      <p></p>
+      <p><%= @customer.email %></p>
     </td>
     <td style="width: 25%;border-top: 2px solid;position: relative;">
       <span>Equipment (List here POS system, Terminals of Software currently used)</span>
-      <p>fefe</p>
+      <p></p>
     </td>
   </tr>
   </tbody>
@@ -198,71 +223,72 @@
     </tr>
     </tbody>
   </table>
-  <!--=======================================================-->
-  <table style="width: 100%;">
-    <tbody>
-    <tr>
-      <td>
-        <h4 style="background-color: white;color: black;">Card Payment</h4>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  <table style="width: 100%">
-    <tbody>
-    <tr style="width: 100%">
-      <td style="width: 35%;border-right: 2px solid;border-top: 2px solid;position: relative;">
-        <span>Card Number</span>
-        <p></p>
-      </td>
-      <td style="width: 20%;border-right: 2px solid;border-top: 2px solid;position: relative;">
-        <span>Expiration Date</span>
-        <p></p>
-      </td>
-      <td style="width: 45%;border-top: 2px solid;position: relative;">
-        <span>Bank Account Number</span>
-        <p>fefe</p>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  <table style="width: 100%;">
-    <tbody>
-    <tr>
-      <td>
-        <h4 style="background-color: white;color: black;border-top: 2px solid;font-size: 15px;font-weight: 400;">* IF PAYING BY CREDIT CARD, your bank account number is still necessary for us to negotiatewith your processor for account verification purposes, but we do not need the routing number.</h4>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  <!--=======================================================-->
-  <table style="width: 100%;">
-    <tbody>
-    <tr>
-      <td>
-        <h4 style="background-color: white;color: black;">Direct ACH Payment</h4>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  <table style="width: 100%">
-    <tbody>
-    <tr style="width: 100%">
-      <td style="width: 33%;border-right: 2px solid;border-top: 2px solid;position: relative;">
-        <span>Name of Bank</span>
-        <p></p>
-      </td>
-      <td style="width: 34%;border-right: 2px solid;border-top: 2px solid;position: relative;">
-        <span>Account Number</span>
-        <p></p>
-      </td>
-      <td style="width: 33%;border-top: 2px solid;position: relative;">
-        <span>Routing Number</span>
-        <p>fefe</p>
-      </td>
-    </tr>
-    </tbody>
-  </table>
+  <% if @customer.payment_method.if_choosed_card %>
+    <table style="width: 100%;">
+      <tbody>
+      <tr>
+        <td>
+          <h4 style="background-color: white;color: black;">Card Payment</h4>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <table style="width: 100%">
+      <tbody>
+      <tr style="width: 100%">
+        <td style="width: 35%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+          <span>Card Number</span>
+          <p><%= @customer.payment_method.card_number %></p>
+        </td>
+        <td style="width: 20%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+          <span>Expiration Date</span>
+          <p><%= @customer.payment_method.month_ended %>/<%= @customer.payment_method.year_ended %></p>
+        </td>
+        <td style="width: 45%;border-top: 2px solid;position: relative;">
+          <span>Bank Account Number</span>
+          <p><%= @customer.payment_method.bank_account_number %></p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <table style="width: 100%;">
+      <tbody>
+      <tr>
+        <td>
+          <h4 style="background-color: white;color: black;border-top: 2px solid;font-size: 15px;font-weight: 400;">* IF PAYING BY CREDIT CARD, your bank account number is still necessary for us to negotiatewith your processor for account verification purposes, but we do not need the routing number.</h4>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  <% else %>
+    <table style="width: 100%;">
+      <tbody>
+      <tr>
+        <td>
+          <h4 style="background-color: white;color: black;">Direct ACH Payment</h4>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <table style="width: 100%">
+      <tbody>
+      <tr style="width: 100%">
+        <td style="width: 33%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+          <span>Name of Bank</span>
+          <p><%= @customer.payment_method.bank_name %></p>
+        </td>
+        <td style="width: 34%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+          <span>Account Number</span>
+          <p><%= @customer.payment_method.bank_account_number %></p>
+        </td>
+        <td style="width: 33%;border-top: 2px solid;position: relative;">
+          <span>Routing Number</span>
+          <p><%= @customer.payment_method.bank_account_routing_number %></p>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  <% end %>
 </div>
 <table style="width: 100%;">
   <tbody>
@@ -288,13 +314,46 @@
   <tbody>
   <tr style="width: 100%">
     <td style="width: 50%;position: relative;">
-      <span_down>Name of Bank</span_down>
-      <p>X _______________________________</p>
+      <span_down>Print Name</span_down>
+      <p>X <span class="field-input"><%= @model.customer_name %></span></p>
     </td>
     <td style="width: 50%;position: relative;">
-      <span_down>Account Number</span_down>
+      <span_down>Signature</span_down>
       <span_down_rigth>Date</span_down_rigth>
-      <p>X _______________________________</p>
+      <p>X <span class="field-input-cursive"><%= @model.customer_name %><span class="little">&nbsp;&nbsp;&nbsp;&nbsp;<%= @model.accepted_at.strftime('%b %e %Y, %l:%M %p') %></span></span></p>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table style="width: 100%">
+  <tbody>
+  <tr style="width: 100%">
+    <td>
+      <h4 style="width: 100%;background-color: black;">&nbsp;&nbsp;</h4>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table style="width: 100%">
+  <tbody>
+  <tr style="width: 100%">
+    <td>
+      <p style="font-size: 12px;text-align: center;">
+        100 Town Square Place, Suite 202, Jersey City, NJ  07310
+        <br/>
+        Phone 732-727-2073              Fax 732-862-1129
+      </p>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table style="width: 100%">
+  <tbody>
+  <tr style="width: 100%">
+    <td>
+      <p style="font-size: 12px;text-align: center;">
+        For Internal Use Only: <input type="text" style="width: 80%"/>
+      </p>
     </td>
   </tr>
   </tbody>

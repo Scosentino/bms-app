@@ -1,6 +1,5 @@
 class GenerateContractsController < ApplicationController
   before_action :authenticate_user!
-  layout false
 
   def policy
     @customer = User.find_by(id: params[:customer_id])
@@ -15,8 +14,10 @@ class GenerateContractsController < ApplicationController
   end
 
   def merchant_agreement
-    render pdf: 'merchant_agreement'#,
-           # :margin => { :bottom => 10 },
-           # :footer => { :html => { :template => 'generate_contracts/footer.html.erb' } }
+    @customer = User.find_by(id: params[:customer_id])
+    @model = Order.find_by(id: params[:id])
+    render pdf: 'merchant_agreement',
+           :margin => { :bottom => 10 },
+           :footer => { :html => { :template => 'generate_contracts/footer.html.erb' } }
   end
 end

@@ -13,4 +13,8 @@ class Business < ApplicationRecord
       dba
     end
   end
+
+  def get_address
+    address_line_2.present? ? "#{address_line_1}, #{address_line_2}" : address_line_1
+  end
 end
