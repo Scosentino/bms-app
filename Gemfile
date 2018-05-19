@@ -36,6 +36,9 @@ gem 'aws-sdk', '~> 2'
 # Environment
 gem 'figaro'
 
+gem 'redis', '~> 3.0'
+gem 'sidekiq', require: 'sidekiq/web'
+
 # Frontend validation
 gem 'jquery-validation-rails'
 # Inputmask
