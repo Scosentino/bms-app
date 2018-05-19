@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'wizards/step4' %>
+
 <section id="wizard" class="overlay">
   <div class="row">
     <div class="col-md-12 col-lg-12 col-sm-12">
@@ -13,30 +15,51 @@
           </ol>
 
           <%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
-            <%= @user_wizard.errors.full_messages.first if @user_wizard.present? && @user_wizard.errors.any? %>
-            <%= @payment_method_wizard.errors.full_messages.first if @payment_method_wizard.present? && @payment_method_wizard.errors.any? %>
+            <div class="errors">
+              <%= @user_wizard.errors.full_messages.first if @user_wizard.present? && @user_wizard.errors.any? %>
+            </div>
+            <div class="errors">
+              <%= @payment_method_wizard.errors.full_messages.first if @payment_method_wizard.present? && @payment_method_wizard.errors.any? %>
+            </div>
 
             <%= hidden_field_tag :current_step, 'step4' %>
+            <%= hidden_field_tag :card_valid, false %>
+            <%= hidden_field_tag :luhn_valid, false %>
             <%= f.hidden_field :email, value: @user_wizard.user.email %>
-            <%= f.fields_for :payment_method do |p| %>
-              <%= p.label 'Debit card' %>
-              <%= p.radio_button :payment_type, 'debit_card' %>
-              <%= p.label 'Credit card' %>
-              <%= p.radio_button :payment_type, 'credit_card' %>
-              <%= p.label 'Bank Account' %>
-              <%= p.radio_button :payment_type, 'bank_account' %>
-              <%= p.label :card_number %>
-              <%= p.text_field :card_number %>
-              <%= p.label :security_code %>
-              <%= p.text_field :security_code %>
-              <%= p.label :zipcode %>
-              <%= p.text_field :zipcode %>
-              <%= p.label :bank_account_number %>
-              <%= p.text_field :bank_account_number %>
-              <%= p.label :bank_account_routing_number %>
-              <%= p.text_field :bank_account_routing_number %>
-            <% end %>
+              <div class="panel-wrapper in payment_method_tabs">
+                <ul class="nav customtab nav-tabs responsive" role="tablist">
+                  <li role="presentation" class="active" id="debit_li"><a class="payment_method_changer" data-type="debit" href="#debit" aria-controls="notes" role="tab" data-toggle="tab" aria-expanded="false">Debit Card</a></li>
+                  <li role="presentation" id="credit_li"><a class="payment_method_changer" data-type="credit"  href="#credit" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Credit Card</a></li>
+                  <li role="presentation" id="bank_li"><a class="payment_method_changer" data-type="bank"  href="#bank" aria-controls="notes" role="tab" data-toggle="tab" aria-expanded="true">Bank Account</a></li>
+                </ul>
+                <div class="panel-body">
+                  <%= f.fields_for :payment_method do |p| %>
+                    <%= p.hidden_field :payment_type, value: 'debit_card' %>
+                    <div class="tab-content responsive m-t-0">
+                      <%= p.label :card_number, 'data-old_text': 'Card Number' %>
+                      <%= p.text_field :card_number %>
+                      <%= p.label :security_code, 'data-old_text': 'Security Code' %>
+                      <%= p.text_field :security_code %>
+                      <%= p.label :zipcode, 'data-old_text': 'Zipcode' %>
+                      <%= p.text_field :zipcode %>
+                      <%= p.label :bank_account_number, 'data-old_text': 'Bank Account Number' %>
+                      <%= p.text_field :bank_account_number %>
+                      <div role="tabpanel" class="tab-pane fade active in" id="debit">
 
+                      </div>
+                      <div role="tabpanel" class="tab-pane fade in" id="credit">
+
+                      </div>
+                      <div role="tabpanel" class="tab-pane fade in" id="bank">
+                        <%= p.label :bank_account_routing_number, 'data-old_text': 'Bank account routing number' %>
+                        <%= p.text_field :bank_account_routing_number %>
+                      </div>
+                    </div>
+                    <%#= p.radio_button :payment_type, 'credit_card' %>
+                    <%#= p.radio_button :payment_type, 'bank_account' %>
+                  <% end %>
+                </div>
+              </div>
             <%= f.submit 'Continue' %>
           <% end %>
         </div>

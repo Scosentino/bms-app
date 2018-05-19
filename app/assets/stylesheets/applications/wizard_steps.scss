@@ -66,6 +66,11 @@
       box-shadow: 0px 0px 8px -3px #002fb5;
     }
 
+    input[type=radio] {
+      width: 10%;
+      box-shadow: none;
+    }
+
     label {
       color: #002fb5;
       text-transform: uppercase;
@@ -252,4 +257,37 @@ track-progress {
   height: 75px;
   border: 1px solid #323a44;
   margin: 10px 5px 0 0;
+}
+
+.payment_method_tabs {
+  a {
+    color: #002fb5;
+  }
+
+  a:hover {
+    color: #002fb5;
+  }
+
+  li {
+    width: 33%;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 3px solid;
+  }
+
+  li.active {
+    border-bottom: 3px solid #002fb5;
+
+    a {
+      color: #002fb5;
+    }
+
+    a:hover {
+      color: #002fb5;
+    }
+  }
+}
+
+#user_wizard_payment_method_card_number.valid {
+  box-shadow: 0px 0px 8px -2px #3dc23a;
 }
