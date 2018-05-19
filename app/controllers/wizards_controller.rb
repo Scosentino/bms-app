@@ -30,7 +30,7 @@ class WizardsController < ApplicationController
           if business.save
             order = @user_wizard.user.orders.first
             order.business_id = business.id
-            if order.update(session[:order_attributes].compact.merge(accepted_at: Time.now))
+            if order.update(session[:order_attributes].compact.merge(accepted_at: Time.now, customer_name: @user_wizard.user.full_name))
               payment = PaymentMethod.new(session[:payment_method_attributes].compact.merge({customer_id: @user_wizard.user.id}))
               if payment.save
                 sign_in(@user_wizard.user)
@@ -189,7 +189,7 @@ class WizardsController < ApplicationController
     if params[:user_wizard][:business].present?
       params[:user_wizard][:business].permit(
           :legal_name, :address_line_1, :city, :state, :zipcode, :federal_tax_id, :name_of_credit_card_processor,
-          :years_processor, :merchant_id_number
+          :years_processor, :merchant_id_number, :dba, :address_line_2
       )
     else
       {}

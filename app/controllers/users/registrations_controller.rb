@@ -1,6 +1,10 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  def new
+    redirect_to step1_wizard_path
+  end
+
   protected
 
   # my custom fields are :name, :heard_how
