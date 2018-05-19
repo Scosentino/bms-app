@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'wizards/step1' %>
+
 <section id="wizard" class="overlay">
   <div class="row">
     <div class="col-md-12 col-lg-12 col-sm-12">
@@ -13,7 +15,7 @@
           </ol>
 
           <%= form_for @user_wizard, as: :user_wizard, url: validate_step_wizard_path do |f| %>
-            <div class="error">
+            <div class="errors">
               <%= @user_wizard.errors.full_messages.first if @user_wizard.present? && @user_wizard.errors.any? %>
             </div>
             <div class="errors">
@@ -22,11 +24,11 @@
 
             <%= hidden_field_tag :current_step, 'step1' %>
 
-            <%= f.label :email %>
+            <%= f.label :email, 'data-old_text': 'Email' %>
             <%= f.email_field :email %>
-            <%= f.label :password %>
+            <%= f.label :password, 'data-old_text': 'Password' %>
             <%= f.password_field :password %>
-            <%= f.label :password_confirmation %>
+            <%= f.label :password_confirmation, 'data-old_text': 'Password confirmation' %>
             <%= f.password_field :password_confirmation %>
 
             <div class="drop">
@@ -56,57 +58,3 @@
     </div>
   </div>
 </section>
-
-
-<script>
-    var drop = $("#user_wizard_orders_documents");
-    drop.on('dragenter', function (e) {
-        $(".drop").css({
-            "border": "4px dashed #09f",
-            "background": "rgba(0, 153, 255, .05)"
-        });
-        $(".cont").css({
-            "color": "#09f"
-        });
-    }).on('dragleave dragend mouseout drop', function (e) {
-        $(".drop").css({
-            "border": "3px dashed #DADFE3",
-            "background": "transparent"
-        });
-        $(".cont").css({
-            "color": "#8E99A5"
-        });
-    });
-
-
-
-    function handleFileSelect(evt) {
-        var files = evt.target.files; // FileList object
-
-        // Loop through the FileList and render image files as thumbnails.
-        for (var i = 0, f; f = files[i]; i++) {
-            $('#list').empty();
-            // Only process image files.
-            if (!f.type.match('image.*')) {
-                continue;
-            }
-
-            var reader = new FileReader();
-
-            // Closure to capture the file information.
-            reader.onload = (function(theFile) {
-                return function(e) {
-                    // Render thumbnail.
-                    var span = document.createElement('span');
-                    span.innerHTML = [theFile.name].join('');
-                    document.getElementById('list').insertBefore(span, null);
-                };
-            })(f);
-
-            // Read in the image file as a data URL.
-            reader.readAsDataURL(f);
-        }
-    }
-
-    $('#user_wizard_orders_documents').change(handleFileSelect);
-</script>

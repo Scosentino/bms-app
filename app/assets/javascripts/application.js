@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery-migrate.min.js
+//= require jquery.validate
 //= require popper.min.js
 //= require bootstrap.min.js
 //= require_tree ./plugins

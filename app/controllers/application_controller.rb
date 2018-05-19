@@ -1,6 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  def check_email
+    user = User.find_by(email: params[:user_wizard][:email])
+
+    if user.present?
+      render json: 'false'
+    else
+      render json: 'true'
+    end
+  end
+
   private
 
   def authenticate_admin!

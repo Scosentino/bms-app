@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     post :validate_step
   end
 
+  # Check email present
+  get 'check_email' => 'application#check_email'
+
   namespace :customers do
     resources :orders, only: [:create, :new, :destroy, :show]
     # Offers
