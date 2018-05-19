@@ -199,7 +199,8 @@ class WizardsController < ApplicationController
   def payment_method_wizard_params
     if params[:user_wizard][:payment_method].present?
       params[:user_wizard][:payment_method].permit(
-          :card_number, :security_code, :zipcode, :bank_account_number, :bank_account_routing_number, :payment_type
+          :card_number, :security_code, :zipcode, :bank_account_number, :bank_account_routing_number, :payment_type,
+          :bank_name, :year_ended, :month_ended
       )
     else
       {}

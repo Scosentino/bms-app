@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180519171159) do
+ActiveRecord::Schema.define(version: 20180519175154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,6 +72,9 @@ ActiveRecord::Schema.define(version: 20180519171159) do
     t.string "bank_account_routing_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "year_ended"
+    t.string "month_ended"
+    t.string "bank_name"
     t.index ["customer_id"], name: "index_payment_methods_on_customer_id"
   end
 

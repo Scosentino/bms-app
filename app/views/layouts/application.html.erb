@@ -42,7 +42,7 @@
               <a href="/"><%= current_user.full_name %></a>
               <%= link_to 'Logout', destroy_user_session_path, method: 'delete' %>
             <% else %>
-              <a href="<%= new_user_registration_path %>">Get Started!</a>
+              <a href="<%= step1_wizard_path %>">Get Started!</a>
               <a href="<%= new_user_session_path %>">Login</a>
             <% end %>
           </div>
@@ -135,7 +135,7 @@
                 <a href="<%= customers_path %>" class="seo-btn hvr-curl-bottom-right">Dashboard</a>
               <% end %>
             <% else %>
-              <a href="<%= new_user_registration_path %>" class="seo-btn hvr-curl-bottom-right">Get Started Now</a>
+              <a href="<%= step1_wizard_path %>" class="seo-btn hvr-curl-bottom-right">Get Started Now</a>
             <% end %>
           </div>
         </div>

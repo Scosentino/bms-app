@@ -42,7 +42,7 @@
               <a href="/"><%= current_user.full_name %></a>
               <%= link_to 'Logout', destroy_user_session_path, method: 'delete' %>
             <% else %>
-              <a href="<%= new_user_registration_path %>">Get Started!</a>
+              <a href="<%= step1_wizard_path %>">Get Started!</a>
               <a href="<%= new_user_session_path %>">Login</a>
             <% end %>
           </div>

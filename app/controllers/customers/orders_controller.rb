@@ -6,7 +6,7 @@ class Customers::OrdersController < ApplicationController
 
   def create
     if current_user && current_user.customer?
-      order = current_user.orders.new(order_params)
+      order = current_user.orders.new(order_params.merge({business_id: current_user.business.id}))
       if order.save
         flash[:notice] = 'Order saved successfully'
         redirect_to customers_order_path(order)

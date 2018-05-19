@@ -41,7 +41,7 @@
               <%= b.label :name_of_credit_card_processor, 'data-old_text': 'Name of Credit Card Process' %>
               <%= b.text_field :name_of_credit_card_processor %>
               <%= b.label :years_processor, 'data-old_text': 'Years Processor' %>
-              <%= b.text_field :years_processor %>
+              <%= b.select :years_processor, (0..100).to_a.map{|n| [n, n]} %>
               <%= b.label :merchant_id_number, 'data-old_text': 'Merchant Id Number' %>
               <%= b.text_field :merchant_id_number %>
             <% end %>
