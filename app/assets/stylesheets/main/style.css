@@ -1303,7 +1303,7 @@ footer#footer-area {
 /*== Slider Area Start (Home2) ==*/
 
 #slider-area {
-    background-image: url(../sliderbg.png);
+    background-image: url(https://s3.amazonaws.com/bm-services-prod/assets/images/sliderbg.png);
     z-index: 1;
     position: relative;
 }
@@ -1354,7 +1354,7 @@ footer#footer-area {
 /*== FunFact Area Start (Home2) ==*/
 
 #funfact-area.home__2 {
-    background-image: url(../funfactbg.jpg);
+    background-image: url(https://s3.amazonaws.com/bm-services-prod/assets/images/funfactbg.jpg);
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1386,7 +1386,7 @@ footer#footer-area {
 /*== Newsletter Area Start (Home2) ==*/
 
 .newsletter-area.home__2 {
-    background-image: url(../newsletterbg.jpg);
+    background-image: url(https://s3.amazonaws.com/bm-services-prod/assets/images/newsletterbg.jpg);
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1475,7 +1475,7 @@ footer#footer-area {
 /*== Footer Area Start (Home2) ==*/
 
 #footer-area.home__2 {
-    background-image: url(../footerbg.jpg);
+    background-image: url(https://s3.amazonaws.com/bm-services-prod/assets/images/footerbg.jpg);
     background-attachment: fixed;
     background-size: cover;
     background-repeat: no-repeat;
@@ -1520,7 +1520,7 @@ footer#footer-area {
 
 .page-title {
     background-attachment: fixed;
-    background-image: url("../funfactbg.jpg");
+    background-image: url("https://s3.amazonaws.com/bm-services-prod/assets/images/funfactbg.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -2121,7 +2121,7 @@ p.colored {
 ====================================*/
 
 #page-404 {
-    background-image: url("../sliderbg.png");
+    background-image: url("https://s3.amazonaws.com/bm-services-prod/assets/images/sliderbg.png");
     padding: 150px 0;
     position: relative;
     z-index: 1;
