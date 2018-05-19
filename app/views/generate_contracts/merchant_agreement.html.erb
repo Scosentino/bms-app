@@ -8,14 +8,349 @@
       font-size: 17px;
       text-align: justify;
     }
+
+    span {
+      position: absolute;
+      top: 0;
+      font-size: 10px;
+    }
+
+    h4 {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    div.black_border {
+      border: 5px solid;
+    }
+
+    span_down {
+      position: absolute;
+      bottom: 0;
+      font-size: 10px;
+    }
+
+    span_down_rigth {
+      position: absolute;
+      bottom: 0;
+      right: 70px;
+      font-size: 10px;
+    }
+
+    div.page-break { display:block; clear:both; page-break-after:always; }
   </style>
 </head>
 <body>
- <table>
-   <tr>
-     <td style="width: 50%"><%= wicked_pdf_image_tag 'https://i.imgur.com/MaDhcQv.png', width: '200px' %></td>
-     <td style="width: 50%"></td>
-   </tr>
- </table>
+<table style="width: 100%;">
+  <tbody>
+  <tr>
+    <td style="width: 60%;"><%= wicked_pdf_image_tag 'https://i.imgur.com/MaDhcQv.png', width: '200px' %></td>
+    <td style="width: 40%;">
+      Consultant ______________________
+      <br/>
+      (print name)
+      <br/>
+      Date ____________________________
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table style="width: 100%;">
+  <tbody>
+  <tr>
+    <td>
+      <h4>THIS AGREEMENT IS IN EFFECT ONLY IF WE SAVE YOU $1,000 OR MORE PER YEAR.</h4>
+      <h4 style="background-color: black;color: white;text-align: center;">Business Information</h4>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table style="width: 100%">
+  <tbody>
+  <tr>
+    <td style="width: 50%;border-right: 2px solid;position: relative;">
+      <span>Legal Name</span>
+      <p>legal name of business</p>
+    </td>
+    <td style="width: 50%;position: relative;">
+      <span>DBA</span>
+      <p>business dba</p>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table style="width: 100%">
+  <tbody>
+  <tr style="width: 100%">
+    <td style="width: 50%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+      <span>Mailing Address</span>
+      <p></p>
+    </td>
+    <td style="width: 25%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+      <span>City</span>
+      <p></p>
+    </td>
+    <td style="width: 10%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+      <span>State</span>
+      <p></p>
+    </td>
+    <td style="width: 15%;border-top: 2px solid;position: relative;">
+      <span>Zipcode</span>
+      <p></p>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table style="width: 100%">
+  <tbody>
+  <tr style="width: 100%">
+    <td style="width: 33%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+      <span>Federal Tax ID</span>
+      <p></p>
+    </td>
+    <td style="width: 33%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+      <span>Telephone</span>
+      <p></p>
+    </td>
+    <td style="width: 34%;border-top: 2px solid;position: relative;">
+      <span>Fax</span>
+      <p></p>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table style="width: 100%">
+  <tbody>
+  <tr style="width: 100%">
+    <td style="width: 50%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+      <span>Primary Contact</span>
+      <p></p>
+    </td>
+    <td style="width: 50%;border-top: 2px solid;position: relative;">
+      <span>Name Of Processor</span>
+      <p></p>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table style="width: 100%">
+  <tbody>
+  <tr style="width: 100%">
+    <td style="width: 50%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+      <span>Years w/ Processor</span>
+      <p></p>
+    </td>
+    <td style="width: 50%;border-top: 2px solid;position: relative;">
+      <span>Merchant ID Number</span>
+      <p></p>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table style="width: 100%;">
+  <tbody>
+  <tr>
+    <td>
+      <h4 style="background-color: black;color: white;text-align: center;">Owner, Officer or Authorized Employee</h4>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table style="width: 100%">
+  <tbody>
+  <tr style="width: 100%">
+    <td style="width: 70%;border-right: 2px solid;position: relative;">
+      <span>Name & Title</span>
+      <p></p>
+    </td>
+    <td style="width: 30%;position: relative;">
+      <span>Last 4 digits of SS #</span>
+      <p></p>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table style="width: 100%">
+  <tbody>
+  <tr style="width: 100%">
+    <td style="width: 35%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+      <span>Mobile Phone Number</span>
+      <p></p>
+    </td>
+    <td style="width: 40%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+      <span>Email address</span>
+      <p></p>
+    </td>
+    <td style="width: 25%;border-top: 2px solid;position: relative;">
+      <span>Equipment (List here POS system, Terminals of Software currently used)</span>
+      <p>fefe</p>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="black_border">
+  <table style="width: 100%;">
+    <tbody>
+    <tr>
+      <td>
+        <h4 style="background-color: black;color: white;text-align: center;">Payment Method</h4>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <!--=======================================================-->
+  <table style="width: 100%;">
+    <tbody>
+    <tr>
+      <td>
+        <h4 style="background-color: white;color: black;">Card Payment</h4>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <table style="width: 100%">
+    <tbody>
+    <tr style="width: 100%">
+      <td style="width: 35%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+        <span>Card Number</span>
+        <p></p>
+      </td>
+      <td style="width: 20%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+        <span>Expiration Date</span>
+        <p></p>
+      </td>
+      <td style="width: 45%;border-top: 2px solid;position: relative;">
+        <span>Bank Account Number</span>
+        <p>fefe</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <table style="width: 100%;">
+    <tbody>
+    <tr>
+      <td>
+        <h4 style="background-color: white;color: black;border-top: 2px solid;font-size: 15px;font-weight: 400;">* IF PAYING BY CREDIT CARD, your bank account number is still necessary for us to negotiatewith your processor for account verification purposes, but we do not need the routing number.</h4>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <!--=======================================================-->
+  <table style="width: 100%;">
+    <tbody>
+    <tr>
+      <td>
+        <h4 style="background-color: white;color: black;">Direct ACH Payment</h4>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <table style="width: 100%">
+    <tbody>
+    <tr style="width: 100%">
+      <td style="width: 33%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+        <span>Name of Bank</span>
+        <p></p>
+      </td>
+      <td style="width: 34%;border-right: 2px solid;border-top: 2px solid;position: relative;">
+        <span>Account Number</span>
+        <p></p>
+      </td>
+      <td style="width: 33%;border-top: 2px solid;position: relative;">
+        <span>Routing Number</span>
+        <p>fefe</p>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<table style="width: 100%;">
+  <tbody>
+  <tr>
+    <td>
+      <p style="font-size: 11px;text-align: center;">Corporate Resolution/Business Entity Acknowledgement of Acceptance/Individual Signature of Sole Proprietor</p>
+      <p style="font-size: 11px;">
+        The indicated officer(s), owner(s), or employee(s) below have the authorization to execute the Client Agreement on behalf
+        of the here within named corporation or business entityand that they acknowledge receipt of all Terms and Conditions on the
+        reverse side of this agreement.  Merchant understands this agreement is in effect as of the date below.
+      </p>
+      <p style="font-size: 11px;">
+        I hereby authorize MA, its employees and any agent it so designates to communicate with my current credit processor on behalf of the above named
+        merchant in order to obtaincredit card processing statements and other necessary information, to discuss and negotiate my
+        rate structure and to accept a lower rate.  Communication may be written, verbal,electronic or any other form necessary for
+        Merchant Advocate to fulfill its obligations to merchant.
+      </p>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table style="width: 100%">
+  <tbody>
+  <tr style="width: 100%">
+    <td style="width: 50%;position: relative;">
+      <span_down>Name of Bank</span_down>
+      <p>X _______________________________</p>
+    </td>
+    <td style="width: 50%;position: relative;">
+      <span_down>Account Number</span_down>
+      <span_down_rigth>Date</span_down_rigth>
+      <p>X _______________________________</p>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="page-break"></div>
+<table style="width: 100%">
+  <tbody>
+  <tr style="width: 100%">
+    <td style="width: 50%;position: relative;">
+      <p style="font-size: 12px;">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;THIS CONTRACT (the “Contract”) between Merchant Advocate LLC, a limited liability company with offices located at 100 Town Square Place, Jersey City, New Jersey, 07310 (hereinafter referred to as “MA”) and the business or individual(s) indicated on page 1of this Contract (hereinafter referred to as the “Client” or “Merchant”) has been entered into between the parties within the State of New Jersey as follows:
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEREAS, MA is engaged in the business of negotiating and optimizing on behalf of merchants who transact business by accepting payments through the use of credit and/or debit cards; and
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEREAS, Client is currently processing its payments through the credit card processor identified on the face page of this CONTRACT (hereinafter “Processor”); and
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHEREAS,Client desires to retainMA to negotiate with Client’s current credit card Processor on Client’s behalf and acknowledges and authorizesMA to contact Client’s current credit card Processor, to negotiate and accept a rate reduction on Client’s behalf.
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1) By accepting the reduction obtained by MA on Client’s behalf, Client agrees to pay MA a fee equal to fifty (50) percent of the savings experienced by Client for a period of three (3) years (“initial term”) from the date upon which merchant receives their first monthly analysis from MA. MA may monitor and analyze Client’s account to verify that the new negotiated rates, fees and other charges are in effect and are being properly applied by Client’s Processor. MA shall report such findings to Client via electronic mail.  In the event that MA is unable to achieve any savings for client over the first 13 months of this contract, client may cancel after the 13th month with no penalty.
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2)Upon expiration of the initial term, Merchant Advocate will continue to provide consulting services to client on a monthly basis until such time as client notifies MAthat they wish to no longer receive such services. Such notification must be receive date least 30 days before the expiration of any term. During each such renewal term, Client agrees to pay MA a fee equal to fifty (50) percent of the savings continued to be experienced by Client as defined in paragraph 1 of this Contract.
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) Client authorizes MA to utilize the AutomatedClearing House (“ACH”) Network to debit the fee due MA each month from the bank account designated on page 1 of this Contract.  Alternatively, MA will charge the designated credit card listed on page 1 of this Contract if client prefers to remit fees due MA by means of a credit card.  MA agrees not to debit any funds or charge any credit card unless and until MA is able to optimize Client’s merchant account. Client shall be subject to a service charge equal to $25.00 should Client’s ACH attempt be returned or credit card charge be declined for any reason.
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4) Client hereby acknowledges and agrees that the new rates, fees and/or other charges obtained by Client by reason of changing processors are based on the new processor analyzing the then-current statement containing the rates, fees and/or other chargesMA negotiated for Client. Therefore, MA shall be entitled to continue to receive the feea greed to in paragraph 1 of this Contract.  The fee will be based only upon the rates, fees and/or other charges negotiated by MA and MA will not collect any fee derived from the additional savings that Client may receive by changing processors.
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5) If requested, Client agrees to provide to MA copies of any statements received from Client’spast or present processor during the term of this Contract.
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6) Client shall immediately advise MA of any change in processors and/or bank accounts during the term of this contract. Any failure on the part of client to advise MA of a change in processors and/or bank accounts shall be considered a breach of this contract.
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7) In the event of a breach by Client, MA will notify Client via email and U.S. Postal Service, regular mail. Client must remedy the breach within 10 business days.  If Client fails to remedy the breach,the “remaining consulting fee” (defined as the average consulting fee paid to the dat eof the breach multiplied by the remaining months left pursuant to paragraph 1 of this Contract) will be immediately due.In addition, Client agrees to pay MA for all costs of collection, including, but not limited to, all legal fees and court costs.
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8) General Provisions:
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A. Entire  Contract.  This  Contract  constitutes  the  entire agreement  between  the  parties and  all  prior arrangements, written or oral, are superseded.  No changes may be made except in writing signed by both parties.
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B. Governing Law. This Contract shall be governed by the laws of the State of New Jersey.  Client acknowledges that MA is performing all services on behalf of client in the State of New Jersey. Proper venue for any dispute arising from this Contract shall be in any state or federal court of competent jurisdiction in the State of New Jersey.  Client and Guarantor(s) agree to submit to the personal jurisdiction of courts located in the State of New Jersey.
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C. Independent  Contractors.  MA and  Client shall  be  deemed independent contract or and  shall  not  be considered   agents,   or   partners   of   the   other,   or   to   have   entered   in   to   a   joint   venture.
+        <br/>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D. Existing Obligations. Nothing in this Contract shall relieve Client of any financial obligations under any existing contracts and MA shall have no liability with respect to such contracts or termination thereof.</p>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<table style="width: 100%">
+  <tbody>
+  <tr style="width: 100%">
+    <td style="width: 50%;position: relative;text-align: center;">
+      <span_down>Client Initial _____________________</span_down>
+    </td>
+    <td style="width: 50%;position: relative;">
+      <span_down>MA Initial _____________________</span_down>
+    </td>
+  </tr>
+  </tbody>
+</table>
 </body>
 </html>
