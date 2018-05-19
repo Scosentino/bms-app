@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'wizards/step5' %>
+
 <section id="wizard" class="overlay">
   <div class="row">
     <div class="col-md-12 col-lg-12 col-sm-12">
@@ -17,6 +19,9 @@
 
             <%= hidden_field_tag :current_step, 'step5' %>
             <%= f.hidden_field :email, value: @user_wizard.user.email %>
+            <div class="agreement_policy">
+              <%= render partial: 'policy' %>
+            </div>
             <%= f.fields_for :orders do |o| %>
               <%= o.label :accepted_policy %>
               <%= o.check_box :accepted_policy %>
