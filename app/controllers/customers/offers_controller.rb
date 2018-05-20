@@ -11,7 +11,7 @@ class Customers::OffersController < ApplicationController
   end
 
   def accept
-    change_status('accepted')
+    change_status('active')
   end
 
   def reject
@@ -23,7 +23,7 @@ class Customers::OffersController < ApplicationController
   def change_status status
     if @offer.present?
       if @offer.update(status: status)
-        if status == 'accepted'
+        if status == 'active'
           @offer.update(accepted_at: Time.now, customer_name: current_user.full_name)
         end
         if status == 'rejected'
