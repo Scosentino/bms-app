@@ -22,6 +22,7 @@ class Customers::OrdersController < ApplicationController
 
   def show
     @order = Order.find_by(id: params[:id])
+    @offer = @order.offer
     if @order.blank?
       flash[:alert] = 'Order does not exist!'
       redirect_to customers_path

@@ -1,0 +1,92 @@
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+    <div class="row">
+      <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+        Status:
+      </div>
+      <div class="col-md-8 col-lg-8 col-sm-7 show_box_data" id="order_status">
+        <%= @offer.status_html.html_safe %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+    <div class="row">
+      <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+        You can save:
+      </div>
+      <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+        <%= @offer.estimated_annual_savings %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+    <div class="row">
+      <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+        Order Documents:
+      </div>
+      <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+        <% @offer.order.documents.each do |d| %>
+          <%= link_to d.file.filename, d.file.url, target:'_blank' %> <br/>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if @offer.active? %>
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+      <div class="row">
+        <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+          Policy
+        </div>
+        <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+          <%= link_to 'Show Policy', generate_contract_path(type: 'offer', id: @offer.id, customer_id: @offer.customer.id), class: 'show_contract_button', target:'_blank'%>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+    <div class="row">
+      <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+        Offer created at:
+      </div>
+      <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+        <%= @offer.created_at.strftime('%b %e %Y, %l:%M %p') %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+    <div class="row order_actions_buttons">
+      <% if @offer.pending? %>
+        <div class="col-md-6 col-lg-6 col-sm-6 text-center">
+          <%= link_to 'Accept', customers_accept_offer_path(id: @offer.id), class: 'bms_submit_button', remote: true, method: 'post', id: 'bms_accept_offer_button' %>
+        </div>
+        <div class="col-md-6 col-lg-6 col-sm-6 text-center">
+          <%= link_to 'Reject', customers_reject_offer_path(id: @offer.id), class: 'bms_reject_button', remote: true, method: 'post', id: 'bms_reject_offer_button' %>
+        </div>
+      <% elsif @offer.active? %>
+        <!--<div class="col-md-12 col-lg-12 col-sm-12 text-center">-->
+          <!--<%#= link_to 'Reject', customers_reject_offer_path(id: @offer.id), class: 'bms_reject_button', remote: true, method: 'post', id: 'bms_reject_offer_button' %>-->
+        <!--</div>-->
+        Offer Activated
+      <% elsif @offer.rejected? %>
+        <div class="col-md-12 col-lg-12 col-sm-12 text-center">
+          <%= link_to 'Accept', customers_accept_offer_path(id: @offer.id), class: 'bms_submit_button', remote: true, method: 'post', id: 'bms_accept_offer_button' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
