@@ -1,0 +1,75 @@
+<% if @order.present? %>
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+      <div class="row">
+        <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+          Status:
+        </div>
+        <div class="col-md-8 col-lg-8 col-sm-7 show_box_data" id="order_status">
+          <%= @order.status_html.html_safe %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+      <div class="row">
+        <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+          Documents:
+        </div>
+        <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+          <% @order.documents.each do |d| %>
+            <%= link_to d.file.filename, d.file.url, target:'_blank' %> <br/>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% if @order.submitted? %>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+        <div class="row">
+          <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+            Policy
+          </div>
+          <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+            <%= link_to 'Show Policy', generate_contract_path(type: 'order', id: @order.id, customer_id: @order.customer.id), class: 'show_contract_button', target:'_blank'%>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+      <div class="row">
+        <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+          Order created at:
+        </div>
+        <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+          <%= @order.created_at.strftime('%b %e %Y, %l:%M %p') %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <% if @order.offer.present? %>
+    <div class="offer_box">
+      <h4>Offer Info</h4>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+          <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+              Status:
+            </div>
+            <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+              <%= @order.offer.status_html.html_safe %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

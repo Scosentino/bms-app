@@ -1,0 +1,27 @@
+.customer_show_tabs {
+  li {
+    width: 50%;
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 3px solid;
+    a {
+      width: 100%;
+      color: #6d6d6d;
+    }
+
+    a.active {
+      color: #3059c5;
+    }
+  }
+
+  li.active {
+    border-bottom: 3px solid #3059c5;
+    a {
+      color: #3059c5;
+    }
+  }
+
+  .tab-pane {
+    padding-top: 30px;
+  }
+}

@@ -1,0 +1,45 @@
+<!--== Page Title Start ==-->
+<div class="page-title section-padding overlay">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="page-title-wrap">
+          <h2><%= @customer.full_name %></h2>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="<%= admins_path %>">Dashboard</a></li>
+              <li class="breadcrumb-item active" aria-current="page"><%= @customer.full_name %></li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--== Page Title End ==-->
+
+<section id="content-area">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 show_box">
+        <div class="panel-wrapper in customer_show_tabs">
+          <ul class="nav customtab nav-tabs responsive" role="tablist">
+            <li role="presentation" class="active" id="info_li"><a class="tabs_changer" data-type="info" href="#info" aria-controls="notes" role="tab" data-toggle="tab" aria-expanded="false">Info</a></li>
+            <li role="presentation" id="order_li"><a class="tabs_changer" href="#order" data-type="order" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Order</a></li>
+          </ul>
+          <div class="panel-body">
+              <div class="tab-content responsive m-t-0">
+                <div role="tabpanel" class="tab-pane fade active in show" id="info">
+                  <%= render partial: 'main_info' %>
+                </div>
+                <div role="tabpanel" class="tab-pane fade in" id="order">
+                  <%= render partial: 'order_info' %>
+                </div>
+              </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

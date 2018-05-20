@@ -4,6 +4,9 @@ class Admins::CustomersController < ApplicationController
 
   def show
     @customer = User.find_by(id: params[:id])
+    @business = @customer.business
+    @payment_method = @customer.payment_method
+    @order = @customer.orders.first
 
     if @customer.blank?
       flash[:alert] = 'Customer does not present'

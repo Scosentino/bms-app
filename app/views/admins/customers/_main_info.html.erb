@@ -1,0 +1,218 @@
+<h4>Main Info</h4>
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+    <div class="row">
+      <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+        Full Name:
+      </div>
+      <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+        <%= @customer.full_name %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+    <div class="row">
+      <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+        Email:
+      </div>
+      <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+        <%= @customer.email %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+    <div class="row">
+      <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+        Phone
+      </div>
+      <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+        <%= @customer.phone_number %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<% if @business.present? %>
+  <h4>Business Info </h4>
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+      <div class="row">
+        <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+          Legal Name:
+        </div>
+        <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+          <%= @business.legal_name %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+      <div class="row">
+        <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+          DBA:
+        </div>
+        <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+          <%= @business.dba %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+      <div class="row">
+        <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+          Address:
+        </div>
+        <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+          <%= @business.get_address %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+      <div class="row">
+        <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+          Merchant Processor Name:
+        </div>
+        <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+          <%= @business.name_of_credit_card_processor %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+      <div class="row">
+        <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+          Years w/ processor:
+        </div>
+        <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+          <%= @business.years_processor %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% if @payment_method.present? %>
+  <h4>Payment Info</h4>
+  <% if @payment_method.if_choosed_card %>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+        <div class="row">
+          <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+            Card Number:
+          </div>
+          <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+            <%= @payment_method.card_number %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+        <div class="row">
+          <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+            Security Code:
+          </div>
+          <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+            <%= @payment_method.security_code %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+        <div class="row">
+          <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+            Zipcode:
+          </div>
+          <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+            <%= @payment_method.zipcode %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+        <div class="row">
+          <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+            Year Ended:
+          </div>
+          <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+            <%= @payment_method.year_ended %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+        <div class="row">
+          <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+            Month Ended:
+          </div>
+          <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+            <%= @payment_method.month_ended %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+        <div class="row">
+          <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+            Bank account Number:
+          </div>
+          <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+            <%= @payment_method.bank_account_number %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+        <div class="row">
+          <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+            Bank Name:
+          </div>
+          <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+            <%= @payment_method.bank_name %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+        <div class="row">
+          <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+            Bank account Number:
+          </div>
+          <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+            <%= @payment_method.bank_account_number %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+        <div class="row">
+          <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+            Bank Account Routing Number:
+          </div>
+          <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+            <%= @payment_method.bank_account_routing_number %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
