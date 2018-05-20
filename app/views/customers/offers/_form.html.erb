@@ -70,7 +70,7 @@
 <div class="row">
   <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
     <div class="row order_actions_buttons">
-      <% if @offer.pending? %>
+      <% if @offer.pending? && @offer.offer_sent? %>
         <div class="col-md-6 col-lg-6 col-sm-6 text-center">
           <%= link_to 'Accept', customers_accept_offer_path(id: @offer.id), class: 'bms_submit_button', remote: true, method: 'post', id: 'bms_accept_offer_button' %>
         </div>
