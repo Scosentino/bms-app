@@ -3,7 +3,7 @@ class Offer < ApplicationRecord
   belongs_to :admin, class_name: 'User', foreign_key: 'admin_id'
   belongs_to :order
 
-  enum status: %w[pending accepted rejected]
+  enum status: %w[pending offer_sent active rejected]
 
   validates_presence_of :estimated_annual_savings
 
@@ -12,8 +12,10 @@ class Offer < ApplicationRecord
   def status_html
     if pending?
       '<label class="offer_label_status_pending">pending</label>'
-    elsif accepted?
-      '<label class="offer_label_status_accepted">accepted</label>'
+    elsif offer_sent?
+      '<label class="offer_label_status_pending">offer sent</label>'
+    elsif active?
+      '<label class="offer_label_status_accepted">active</label>'
     elsif rejected?
       '<label class="offer_label_status_rejected">rejected</label>'
     end
@@ -25,5 +27,6 @@ class Offer < ApplicationRecord
 
   def send_email
     CustomerNotifierMailer.new_offer(self.customer_id, self.id).deliver_later
+    self.update!(status: 1)
   end
 end

@@ -69,6 +69,60 @@
           <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
             <div class="row">
               <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+                Customer Name:
+              </div>
+              <div class="col-md-8 col-lg-8 col-sm-7 show_box_data" id="order_status">
+                <%= @order.customer.full_name %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <% if @order.customer.try(:business).present? %>
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+              <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+                  Business Name & DBA:
+                </div>
+                <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+                  <%= @order.customer.business.legal_name %> <%= @order.customer.business.dba.present? ?  " & #{@order.customer.business.dba}" : '' %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+              <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+                  Customer Merchant Name:
+                </div>
+                <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+                  <%= @order.customer.business.name_of_credit_card_processor %>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+              <div class="row">
+                <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+                  Customer Merchant Years:
+                </div>
+                <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+                  <%= @order.customer.business.years_processor %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+            <div class="row">
+              <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
                 Order created at:
               </div>
               <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
