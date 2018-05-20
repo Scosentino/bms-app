@@ -21,8 +21,8 @@ class Offer < ApplicationRecord
     end
   end
 
-  def estimated_monthly_savings
-    (estimated_annual_savings.to_f / 12).round(2)
+  def estimated_year_savings
+    (estimated_annual_savings.to_f * 12).round(2)
   end
 
   def send_email
