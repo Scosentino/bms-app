@@ -1,7 +1,7 @@
 <%= javascript_include_tag 'settings/business' %>
 
 <%= form_for current_user.business || Business.new(), url: update_customer_business_path, html: {method: 'patch', id: 'edit_user_business'} do |b| %>
-  <%= b.hidden_field :id, value: current_user.business.id if current_user.business.present? %>
+  <%= b.hidden_field :id, value: current_user.business.present? ? current_user.business.id : nil  %>
   <%= b.label :legal_name, 'data-old_text': 'Legal Name' %>
   <%= b.text_field :legal_name %>
   <%= b.label :dba %>

@@ -1,0 +1,44 @@
+<%= javascript_include_tag 'settings/payment_method' %>
+
+<%= form_for current_user.payment_method || PaymentMethod.new(), url: update_customer_payment_method_path, html: {method: 'patch', id: 'edit_user_payment_method'} do |p| %>
+  <div class="panel-wrapper in payment_method_tabs">
+    <ul class="nav customtab nav-tabs responsive" role="tablist">
+      <li role="presentation" class="active" id="debit_li"><a class="payment_method_changer" data-type="debit" href="#debit" aria-controls="notes" role="tab" data-toggle="tab" aria-expanded="false">Debit Card</a></li>
+      <li role="presentation" id="credit_li"><a class="payment_method_changer" data-type="credit"  href="#credit" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Credit Card</a></li>
+      <li role="presentation" id="bank_li"><a class="payment_method_changer" data-type="bank"  href="#bank" aria-controls="notes" role="tab" data-toggle="tab" aria-expanded="true">Bank Account</a></li>
+    </ul>
+    <%= hidden_field_tag :card_valid, false %>
+    <%= hidden_field_tag :luhn_valid, false %>
+    <%= p.hidden_field :id, value: current_user.payment_method.present? ? current_user.payment_method.id : nil %>
+    <div class="panel-body">
+      <%= p.hidden_field :payment_type, value: 'debit_card' %>
+      <div class="tab-content responsive m-t-0">
+        <%= p.label :card_number, 'data-old_text': 'Card Number' %>
+        <%= p.text_field :card_number %>
+        <%= p.label :security_code, 'data-old_text': 'Security Code' %>
+        <%= p.text_field :security_code %>
+        <%= p.label :zipcode, 'data-old_text': 'Zipcode' %>
+        <%= p.text_field :zipcode %>
+        <%= p.label :bank_account_number, 'data-old_text': 'Bank Account Number' %>
+        <%= p.text_field :bank_account_number %>
+        <%= p.label :year_ended, 'data-old_text': 'Year Ended' %>
+        <%= p.select :year_ended,  (Time.now.year.to_i..(Time.now + 15.years).year.to_i).to_a.map{|n| [n, n]} %>
+        <%= p.label :month_ended, 'data-old_text': 'Month Ended' %>
+        <%= p.select :month_ended, (1..12).to_a.map{|n| [n, n]}, selected: Time.now.month %>
+        <div role="tabpanel" class="tab-pane fade active in" id="debit">
+
+        </div>
+        <div role="tabpanel" class="tab-pane fade in" id="credit">
+
+        </div>
+        <div role="tabpanel" class="tab-pane fade in" id="bank">
+          <%= p.label :bank_name, 'data-old_text': 'Bank Name' %>
+          <%= p.text_field :bank_name %>
+          <%= p.label :bank_account_routing_number, 'data-old_text': 'Bank account routing number' %>
+          <%= p.text_field :bank_account_routing_number %>
+        </div>
+        <%= p.submit 'Save' %>
+      </div>
+    </div>
+  </div>
+<% end %>

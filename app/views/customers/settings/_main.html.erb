@@ -43,13 +43,7 @@
           </div>
           <div role="tabpanel" class="tab-pane fade in" id="payment_method">
             <div class="settings_box_form">
-              <%= form_for current_user.payment_method, url: update_customer_payment_method_path, html: {method: 'patch', id: 'edit_user_payment_method'} do |f| %>
-                <%#= f.label :password, 'data-old_text': 'Password' %>
-                <%#= f.text_field :password %>
-                <%#= f.label :old_password, 'data-old_text': 'Old password' %>
-                <%#= f.text_field :old_password %>
-                <%#= f.submit 'Save' %>
-              <% end %>
+              <%= render partial: 'customers/settings/payment_method' %>
             </div>
           </div>
         </div>

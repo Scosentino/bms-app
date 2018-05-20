@@ -17,6 +17,7 @@
 //= require jquery.validate
 //= require inputmask
 //= require jquery.inputmask
+//= require applications/jquery.creditCardValidator.js
 //= require popper.min.js
 //= require bootstrap.min.js
 //= require_tree ./plugins

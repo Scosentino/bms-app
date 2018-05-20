@@ -40,6 +40,18 @@ class CustomersController < ApplicationController
     redirect_to customers_path
   end
 
+  def update_payment_method
+    payment_method = params[:payment_method][:id].present? ? PaymentMethod.find_by(id: params[:payment_method][:id]) : PaymentMethod.new(payment_method_params.merge({customer_id: current_user.id}))
+    payment_method.save
+    if payment_method.update(payment_method_params)
+      flash[:notice] = 'Payment Method updated'
+    else
+      flash[:alert] = 'Something went wrong'
+    end
+
+    redirect_to customers_path
+  end
+
   private
 
   def customer_info_params
