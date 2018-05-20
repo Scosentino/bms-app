@@ -34,6 +34,39 @@
 <!--== Header Area Start ==-->
 <header id="header-area">
 
+  <div class="preheader-area home__2">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6">
+          <div class="preheader-item log-reg">
+            <% if current_user.present? %>
+              <a href="/"><%= current_user.full_name %></a>
+              <%= link_to 'Logout', destroy_user_session_path, method: 'delete' %>
+            <% end %>
+          </div>
+        </div>
+
+        <div class="col-lg-5 text-center d-none d-lg-block">
+
+        </div>
+
+        <div class="col-lg-3 col-sm-6 text-right">
+          <div class="preheader-item phone-mail">
+            <a href="#"><i class="fa fa-phone"></i>+180088888888</a>
+          </div>
+          <!-- <div class="preheader-item">
+              <div class="preheader-icons">
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                  <a href="#"><i class="fa fa-behance"></i></a>
+                  <a href="#"><i class="fa fa-linkedin"></i></a>
+                  <a href="#"><i class="fa fa-vimeo"></i></a>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+              </div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Header Bottom Area Start -->
   <div class="header-bottom" id="fixheader">
