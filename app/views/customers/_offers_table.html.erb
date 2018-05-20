@@ -16,7 +16,7 @@
         <td class="td-ezr" id="order_actions_buttons_<%= o.id %>">
           <% if o.pending? %>
           <%= link_to 'A', customers_accept_offer_path(id: o.id), method: 'post', remote: true, class: 'btn_green' %><%= link_to 'R', customers_reject_offer_path(id: o.id), method: 'post', remote: true, class: 'btn_red' %>
-        <% elsif o.accepted? %>
+        <% elsif o.acitve? %>
           <%= link_to 'R', customers_reject_offer_path(id: o.id), method: 'post', remote: true, class: 'btn_red' %>
         <% elsif o.rejected? %>
           <%= link_to 'A', customers_accept_offer_path(id: o.id), method: 'post', remote: true, class: 'btn_green' %>
