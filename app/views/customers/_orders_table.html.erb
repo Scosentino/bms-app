@@ -1,5 +1,5 @@
 <div class="col-md-12 col-lg-12 col-sm-12">
-  <table class="table-ezr admin_dashboard_table">
+  <table id="orders_table" class="display admin_dashboard_table">
     <thead>
     <tr>
       <th>Created At</th>
@@ -20,3 +20,9 @@
     </tbody>
   </table>
 </div>
+
+<script>
+  $(document).ready(function(){
+      $('#orders_table').DataTable();
+  });
+</script>
