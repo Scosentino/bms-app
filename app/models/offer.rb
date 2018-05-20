@@ -27,6 +27,5 @@ class Offer < ApplicationRecord
 
   def send_email
     CustomerNotifierMailer.new_offer(self.customer_id, self.id).deliver_later
-    self.update!(status: 1)
   end
 end

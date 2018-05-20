@@ -13,7 +13,7 @@ class Admins::OffersController < ApplicationController
 
   def create
     if current_user && current_user.admin?
-      offer = current_user.admin_offers.create(offer_params)
+      offer = current_user.admin_offers.create(offer_params.merge({status: 1}))
       if offer.save
         order = Order.find_by(id: offer_params[:order_id])
         order.update(status: 'submitted')
