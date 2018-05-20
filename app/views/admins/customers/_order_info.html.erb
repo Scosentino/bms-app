@@ -70,6 +70,18 @@
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12 show_box_item">
+          <div class="row">
+            <div class="col-md-4 col-lg-4 col-sm-5 show_box_title">
+              Estimated monthly saving::
+            </div>
+            <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
+              <%= @order.offer.estimated_annual_savings %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   <% end %>
 <% end %>
