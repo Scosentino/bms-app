@@ -7,18 +7,24 @@ class ApplicationController < ActionController::Base
       if current_user.email == email
         render json: 'true'
       else
-        user = User.find_by(email: email)
-
-        if user.present?
-          render json: 'false'
-        else
-          render json: 'true'
-        end
+        check_user_and_render(email)
       end
+    else
+      check_user_and_render(email)
     end
   end
 
   private
+
+  def check_user_and_render email
+    user = User.find_by(email: email)
+
+    if user.present?
+      render json: 'false'
+    else
+      render json: 'true'
+    end
+  end
 
   def authenticate_admin!
     redirect_application if current_user && !current_user.admin?
