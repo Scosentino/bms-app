@@ -32,8 +32,15 @@ Rails.application.routes.draw do
   get 'check_email' => 'application#check_email'
 
   # Admins Settings
-  patch 'update_info', to: 'admins#update_info', as: :update_admin_info
-  patch 'update_password', to: 'admins#update_password', as: :update_admin_password
+  patch 'update_admin_info', to: 'admins#update_info', as: :update_admin_info
+  patch 'update_admin_password', to: 'admins#update_password', as: :update_admin_password
+
+  # Customers Settings
+  patch 'update_customer_info', to: 'customers#update_info', as: :update_customer_info
+  patch 'update_customer_password', to: 'customers#update_password', as: :update_customer_password
+  patch 'update_customer_business', to: 'customers#update_business', as: :update_customer_business
+  patch 'update_customer_payment_method', to: 'customers#update_payment_method', as: :update_customer_payment_method
+
 
   namespace :customers do
     resources :orders, only: [:create, :new, :destroy, :show]

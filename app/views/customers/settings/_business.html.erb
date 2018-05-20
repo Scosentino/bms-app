@@ -1,0 +1,29 @@
+<%= javascript_include_tag 'settings/business' %>
+
+<%= form_for current_user.business || Business.new(), url: update_customer_business_path, html: {method: 'patch', id: 'edit_user_business'} do |b| %>
+  <%= b.hidden_field :id, value: current_user.business.id if current_user.business.present? %>
+  <%= b.label :legal_name, 'data-old_text': 'Legal Name' %>
+  <%= b.text_field :legal_name %>
+  <%= b.label :dba %>
+  <%= b.text_field :dba %>
+  <%= b.label :address_line_1, 'data-old_text': 'Address Line 1' %>
+  <%= b.text_field :address_line_1 %>
+  <%= b.label :address_line_2 %>
+  <%= b.text_field :address_line_2 %>
+  <%= b.label :city, 'data-old_text': 'City' %>
+  <%= b.text_field :city %>
+  <%= b.label :state, 'data-old_text': 'State' %>
+  <%= b.text_field :state %>
+  <%= b.label :zipcode, 'data-old_text': 'Zipcode' %>
+  <%= b.text_field :zipcode %>
+  <%= b.label :federal_tax_id, 'data-old_text': 'Federal Tax Id' %>
+  <%= b.text_field :federal_tax_id %>
+  <%= b.label :name_of_credit_card_processor, 'data-old_text': 'Name of Credit Card Process' %>
+  <%= b.text_field :name_of_credit_card_processor %>
+  <%= b.label :years_processor, 'data-old_text': 'Years Processor' %>
+  <%= b.select :years_processor, (0..100).to_a.map{|n| [n, n]} %>
+  <%= b.label :merchant_id_number, 'data-old_text': 'Merchant Id Number' %>
+  <%= b.text_field :merchant_id_number %>
+
+  <%= b.submit 'Save' %>
+<% end %>

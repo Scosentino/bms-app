@@ -6,12 +6,14 @@
       <ul class="nav customtab nav-tabs responsive" role="tablist">
         <li role="presentation" class="active" id="info_li"><a class="tabs_changer" data-type="info" href="#info" aria-controls="notes" role="tab" data-toggle="tab" aria-expanded="false">Info</a></li>
         <li role="presentation" id="order_li"><a class="tabs_changer" href="#password" data-type="order" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Change Password</a></li>
+        <li role="presentation" id="business_li"><a class="tabs_changer" data-type="business" href="#business" aria-controls="notes" role="tab" data-toggle="tab" aria-expanded="false">Business</a></li>
+        <li role="presentation" id="payment_method_li"><a class="tabs_changer" href="#payment_method" data-type="payment_method" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Payment Method</a></li>
       </ul>
       <div class="panel-body">
         <div class="tab-content responsive m-t-0">
           <div role="tabpanel" class="tab-pane fade active in show" id="info">
             <div class="settings_box_form">
-              <%= form_for current_user, url: update_admin_info_path, html: {method: 'patch', id: 'edit_user_info'} do |f| %>
+              <%= form_for current_user, url: update_customer_info_path, html: {method: 'patch', id: 'edit_user_info'} do |f| %>
                 <%= f.label :first_name, 'data-old_text': 'First name' %>
                 <%= f.text_field :first_name %>
                 <%= f.label :last_name, 'data-old_text': 'Last name' %>
@@ -25,12 +27,28 @@
           </div>
           <div role="tabpanel" class="tab-pane fade in" id="password">
             <div class="settings_box_form">
-              <%= form_for current_user, url: update_admin_password_path, html: {method: 'patch', id: 'edit_user_password'} do |f| %>
+              <%= form_for current_user, url: update_customer_password_path, html: {method: 'patch', id: 'edit_user_password'} do |f| %>
                 <%= f.label :password, 'data-old_text': 'Password' %>
                 <%= f.text_field :password %>
                 <%= f.label :old_password, 'data-old_text': 'Old password' %>
                 <%= f.text_field :old_password %>
                 <%= f.submit 'Save' %>
+              <% end %>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane fade in" id="business">
+            <div class="settings_box_form">
+              <%= render partial: 'customers/settings/business' %>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane fade in" id="payment_method">
+            <div class="settings_box_form">
+              <%= form_for current_user.payment_method, url: update_customer_payment_method_path, html: {method: 'patch', id: 'edit_user_payment_method'} do |f| %>
+                <%#= f.label :password, 'data-old_text': 'Password' %>
+                <%#= f.text_field :password %>
+                <%#= f.label :old_password, 'data-old_text': 'Old password' %>
+                <%#= f.text_field :old_password %>
+                <%#= f.submit 'Save' %>
               <% end %>
             </div>
           </div>

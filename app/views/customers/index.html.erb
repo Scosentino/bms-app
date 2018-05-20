@@ -33,7 +33,9 @@
                 <%= render partial: 'offers_table' %>
               </div>
               <div class="tab-pane fade" id="list-activity" role="tabpanel" aria-labelledby="list-activity-list">Forum style message board between admin and customer</div>
-              <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">Edit profile, view contracts, etc</div>
+              <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">
+                <%= render partial: 'customers/settings/main' %>
+              </div>
             </div>
           </div>
         </div>

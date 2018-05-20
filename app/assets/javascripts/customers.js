@@ -14,8 +14,23 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery-migrate.min.js
+//= require jquery.validate
+//= require inputmask
+//= require jquery.inputmask
 //= require popper.min.js
 //= require bootstrap.min.js
 //= require_tree ./plugins
 //= require_tree ./customers
 //= require ezRtable
+
+
+$(document).ready(function(){
+    $('.customer_show_tabs').on('click', '.tabs_changer', function(){
+        var type = $(this).data('type');
+        $('.customer_show_tabs li.active').each(function(i, element){
+            $(element).removeClass('active')
+        });
+
+        $('#' + type + '_li').addClass('active');
+    });
+});
