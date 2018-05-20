@@ -1,5 +1,5 @@
 <div class="col-md-12 col-lg-12 col-sm-12">
-  <table id="orders_table" class="display admin_dashboard_table">
+  <table id="orders_table" class="display nowrap admin_dashboard_table" style="width: 100%">
     <thead>
     <tr>
       <th>Created at</th>
@@ -22,6 +22,6 @@
 
 <script>
     $(document).ready(function(){
-        $('#orders_table').DataTable();
+        $('#orders_table').DataTable({responsive: true});
     });
 </script>

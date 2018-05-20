@@ -1,5 +1,5 @@
 <div class="col-md-12 col-lg-12 col-sm-12">
-  <table id="customers_table" class="display admin_dashboard_table">
+  <table id="customers_table" class="display nowrap admin_dashboard_table" style="width: 100%">
     <thead>
       <tr>
         <th>Full name</th>
@@ -21,6 +21,6 @@
 
 <script>
     $(document).ready(function(){
-        $('#customers_table').DataTable();
+        $('#customers_table').DataTable({responsive: true});
     });
 </script>
