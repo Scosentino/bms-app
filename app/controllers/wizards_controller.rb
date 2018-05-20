@@ -26,6 +26,7 @@ class WizardsController < ApplicationController
     begin
       ActiveRecord::Base.transaction do
         if @user_wizard.user.save
+          @user_wizard.user.update!(completed: true)
           business = Business.new(session[:business_attributes].compact.merge({customer_id: @user_wizard.user.id}))
           if business.save
             order = @user_wizard.user.orders.first

@@ -25,3 +25,47 @@
     padding-top: 30px;
   }
 }
+
+.settings_box_form {
+  input {
+    width: 100%;
+    display: inline-block;
+    padding: 5px;
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 8px -2px #6d6d6d;
+    font-size: 15px;
+    transition: all 300ms;
+  }
+
+  input:focus, input:active {
+    box-shadow: 0px 0px 8px -2px #3059c5;
+    transition: all 300ms;
+  }
+
+  input[type=submit] {
+    margin-top: 15px;
+    transition: all 300ms;
+  }
+
+  input[type=submit]:hover {
+    cursor: pointer;
+    transition: all 300ms;
+    box-shadow: 0px 0px 8px -2px #3059c5;
+    color: #3059c5;
+  }
+
+  label {
+    color: black;
+  }
+
+  .error {
+    color: darkred;
+  }
+
+  input.error {
+    box-shadow: 0px 0px 8px -2px darkred;
+    transition: all 300ms;
+  }
+}
