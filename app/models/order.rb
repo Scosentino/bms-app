@@ -25,7 +25,9 @@ class Order < ApplicationRecord
 
   def send_emails
     # Send to admins
-    AdminNotifierMailer.new_order(self.customer_id, self.id).deliver_later
+    User.where(user_type: 'admin').pluck(:email).each do |email|
+      AdminNotifierMailer.new_order(self.customer_id, self.id, email).deliver_later
+    end
 
     # Send to customer
     CustomerNotifierMailer.new_order(self.customer_id, self.id).deliver_later
