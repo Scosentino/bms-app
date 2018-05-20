@@ -4,7 +4,7 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <div class="page-title-wrap">
-          <td><%= @order.created_at.strftime('%b %e %Y, %l:%M %p') %></td>
+          <h2><%= @order.created_at.strftime('%b %e %Y, %l:%M %p') %></h2>
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="<%= admins_path %>">Dashboard</a></li>
@@ -83,7 +83,7 @@
             <div class="row order_actions_buttons">
               <% if @order.pending? %>
                 <div class="col-md-6 col-lg-6 col-sm-6 text-center">
-                  <%= link_to 'Submit', admins_submit_order_path(id: @order.id), class: 'bms_submit_button', remote: true, method: 'post', id: 'bms_submit_order_button' %>
+                  <button type="button" data-toggle="modal" data-target="#create_offer_modal" class="bms_submit_button">Create Offer</button>
                 </div>
                 <div class="col-md-6 col-lg-6 col-sm-6 text-center">
                   <%= link_to 'Reject', admins_reject_order_path(id: @order.id), class: 'bms_reject_button', remote: true, method: 'post', id: 'bms_reject_order_button' %>
@@ -94,7 +94,7 @@
                 </div>
               <% elsif @order.rejected? %>
                 <div class="col-md-12 col-lg-12 col-sm-12 text-center">
-                  <%= link_to 'Submit', admins_submit_order_path(id: @order.id), class: 'bms_submit_button', remote: true, method: 'post', id: 'bms_submit_order_button' %>
+                  <button type="button" data-toggle="modal" data-target="#create_offer_modal" class="bms_submit_button">Create Offer</button>
                 </div>
               <% end %>
             </div>
@@ -104,3 +104,9 @@
     </div>
   </div>
 </section>
+
+<div id="order_modals_container">
+  <% if @order.pending? || @order.rejected? %>
+    <%= render partial: 'create_offer_modal' %>
+  <% end %>
+</div>

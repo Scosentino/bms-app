@@ -14,6 +14,7 @@ $('html,body').animate({
 <% if @status == 200 %>
 $('#order_status').html('<label class="offer_label_status_rejected">rejected</label>');
 $('.order_actions_buttons').html('<div class="col-md-12 col-lg-12 col-sm-12 text-center">' +
-    '                  <a class="bms_submit_button" id="bms_submit_order_button" data-remote="true" rel="nofollow" data-method="post" href="/admins/orders/submit/<%= @order.id %>">Submit</a>' +
+    '                  <button type="button" data-toggle="modal" data-target="#create_offer_modal" class="bms_submit_button">Create Offer</buttonn' +
     '                </div>');
+$('#order_modals_container').html('<%= escape_javascript(render partial: 'create_offer_modal') %>');
 <% end %>

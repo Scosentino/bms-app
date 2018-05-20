@@ -18,6 +18,7 @@ class Admins::OrdersController < ApplicationController
 
   def reject
     change_status('rejected')
+    Offer.find_by(order_id: @order.id).try(:destroy)
   end
 
   private

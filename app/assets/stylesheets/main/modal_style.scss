@@ -1,0 +1,17 @@
+.bms_modal_style {
+  .modal-header {
+    background: #002fb5;
+    border-radius: 0px;
+
+    h5 {
+      text-align: center;
+      text-transform: uppercase;
+      color: white;
+    }
+
+    button.close {
+      right: 6px;
+      background: none;
+    }
+  }
+}

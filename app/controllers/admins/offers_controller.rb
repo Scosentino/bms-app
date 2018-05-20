@@ -15,6 +15,8 @@ class Admins::OffersController < ApplicationController
     if current_user && current_user.admin?
       offer = current_user.admin_offers.create(offer_params)
       if offer.save
+        order = Order.find_by(id: offer_params[:order_id])
+        order.update(status: 'submitted')
         flash[:notice] = 'Offer successfully saved'
         redirect_to admins_offer_path(offer)
       else
