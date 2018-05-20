@@ -22,7 +22,7 @@ class CustomerNotifierMailer < ApplicationMailer
 
       if @offer.present?
         mail(to: @customer.email,
-             subject: "You have received new offer")
+             subject: "You have received an offer")
       end
     end
   end
