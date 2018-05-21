@@ -4,7 +4,7 @@ $(document).ready(function(){
     }, "Please provide a valid zipcode.");
 
     jQuery.validator.addMethod("federal_tax", function(value, element) {
-        return this.optional(element) || /^\d{2}(?:-\d{5})?$/.test(value);
+        return this.optional(element) || /^\d{2}(?:-\d{6})?$/.test(value);
     }, "Please provide a valid federal tax id.");
 
     $("#new_user_wizard").validate({
@@ -77,6 +77,6 @@ $(document).ready(function(){
     });
 
     var selector = document.getElementById("user_wizard_business_federal_tax_id");
-    var im = new Inputmask("99-99999");
+    var im = new Inputmask("99-999999");
     im.mask(selector);
 });
