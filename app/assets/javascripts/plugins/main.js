@@ -82,8 +82,10 @@
 
         function headerfix() {
             if (window.pageYOffset > sticky) {
+                $('section').first().css('margin-top', '96px');
                 header.classList.add("fixed");
             } else {
+                $('section').first().css('margin-top', '0px');
                 header.classList.remove("fixed");
             }
         }
