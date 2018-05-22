@@ -25,6 +25,6 @@ class User < ApplicationRecord
   enum user_type: %w[customer admin]
 
   def full_name
-    "#{first_name.humanize} #{last_name.humanize}"
+    "#{first_name.try(:humanize)} #{last_name.try(:humanize)}"
   end
 end

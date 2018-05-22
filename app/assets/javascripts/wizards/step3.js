@@ -34,7 +34,8 @@ $(document).ready(function(){
             'user_wizard[ssn]': {
                 required: true,
                 digits: true,
-                maxlength: 4
+                maxlength: 4,
+                minlength: 4
             }
         },
         messages: {
@@ -45,7 +46,8 @@ $(document).ready(function(){
             'user_wizard[ssn]': {
                 required: "Please provide SSN",
                 digits: 'Please use only digits for SSN',
-                maxlength: 'Max length 4 numbers for SSN'
+                maxlength: 'Max length 4 numbers for SSN',
+                minlength: 'Min length 4 numbers for SSN'
             }
         }
     });

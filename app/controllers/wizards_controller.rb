@@ -54,6 +54,7 @@ class WizardsController < ApplicationController
       end
     rescue Exception => e
       flash[:alert] = e
+      p '--------'
       redirect_to action: Wizard::User::STEPS.first
     end
   end

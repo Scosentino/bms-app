@@ -1,6 +1,14 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  def after_sign_in_path resource
+    if resource.customer?
+      if !resource.completed
+        redirect_to step2_wizard_path
+      end
+    end
+  end
+
   def check_email
     email = params[:user_wizard].present? ? params[:user_wizard][:email] : params[:user][:email]
     if current_user.present?
@@ -31,7 +39,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_customer!
-    redirect_application if current_user && !current_user.customer?
+    redirect_application if current_user && (!current_user.customer? || !current_user.completed)
   end
 
   def redirect_application
@@ -39,7 +47,11 @@ class ApplicationController < ActionController::Base
       if current_user.admin?
         redirect_to admins_path
       elsif current_user.customer?
-        redirect_to customers_path
+        if current_user.completed
+          redirect_to customers_path
+        else
+          redirect_to step2_wizard_path
+        end
       end
     else
       redirect_to root_path
