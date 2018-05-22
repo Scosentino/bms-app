@@ -14,6 +14,8 @@ class Order < ApplicationRecord
 
   before_save :send_emails, if: :policy_is_accepted
 
+  scope :completed_orders, -> { where(completed: true) }
+
   def status_html
     if pending?
       '<label class="offer_label_status_pending">pending</label>'

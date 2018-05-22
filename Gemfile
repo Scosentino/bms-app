@@ -29,9 +29,7 @@ gem 'ez-rsponsive-table'
 
 # Image Uploader
 gem 'carrierwave'
-gem 'mini_magick'
-gem 'fog-aws'
-gem 'aws-sdk', '~> 2'
+gem 'cloudinary'
 
 # Environment
 gem 'figaro'
