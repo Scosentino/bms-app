@@ -38,8 +38,20 @@ class ApplicationController < ActionController::Base
     redirect_application if current_user && !current_user.admin?
   end
 
+  def non_authorized_user!
+    redirect_to root_path if current_user.present? && current_user.completed
+  end
+
   def authenticate_customer!
     redirect_application if current_user && (!current_user.customer? || !current_user.completed)
+  end
+
+  def clear_session_storage
+    session[:user_attributes] = nil
+    session[:payment_method_attributes] = nil
+    session[:business_attributes] = nil
+    session[:order_attributes] = nil
+    session[:order_attributes_image] = nil
   end
 
   def redirect_application

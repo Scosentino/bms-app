@@ -1,4 +1,5 @@
 class WizardsController < ApplicationController
+  before_action :non_authorized_user!
   before_action :load_user_wizard, except: %i(validate_step)
 
   def validate_step
@@ -38,6 +39,10 @@ class WizardsController < ApplicationController
               if payment.save
                 sign_in(@user_wizard.user)
                 session[:user_attributes] = nil
+                session[:payment_method_attributes] = nil
+                session[:business_attributes] = nil
+                session[:order_attributes] = nil
+                session[:order_attributes_image] = nil
                 redirect_to root_path, notice: 'User successfully created!'
               else
                 raise('There were a problem when creating the payment method.')
@@ -54,7 +59,6 @@ class WizardsController < ApplicationController
       end
     rescue Exception => e
       flash[:alert] = e
-      p '--------'
       redirect_to action: Wizard::User::STEPS.first
     end
   end

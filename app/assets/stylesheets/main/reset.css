@@ -95,7 +95,7 @@ a:hover {
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
-    -webkit-box-shadow: 0 0 0px 1000px white inset !important;
+    -webkit-box-shadow: 0 0 0px 1000px rgba(0, 65, 255, 0.4) inset !important;
 }
 
 p,
