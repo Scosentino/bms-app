@@ -86,3 +86,23 @@
     transition: all 300ms;
   }
 }
+
+.dataTables_wrapper {
+  label {
+    color: black;
+  }
+}
+
+.show_box_title {
+  padding-bottom: 10px;
+}
+
+.bms_submit_button {
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.bms_reject_button {
+  margin-bottom: 10px;
+  display: inline-block;
+}
