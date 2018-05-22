@@ -83,5 +83,11 @@
         </div>
       </div>
     </div>
+  <% elsif @order.pending? && @order.offer.blank? %>
+    <div class="row">
+      <div class="col-md-12 col-sm-12 col-xs-12">
+        <button type="button" data-toggle="modal" data-target="#create_offer_modal" class="bms_submit_button">Create Offer</button>
+      </div>
+    </div>
   <% end %>
 <% end %>

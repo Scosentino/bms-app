@@ -43,3 +43,7 @@
     </div>
   </div>
 </section>
+
+<% if @order.present? && @order.pending? && @order.offer.blank? %>
+  <%= render partial: 'admins/shared/create_offer_modal' %>
+<% end %>
