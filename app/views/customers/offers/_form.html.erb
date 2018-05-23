@@ -81,7 +81,9 @@
         <!--<div class="col-md-12 col-lg-12 col-sm-12 text-center">-->
           <!--<%#= link_to 'Reject', customers_reject_offer_path(id: @offer.id), class: 'bms_reject_button', remote: true, method: 'post', id: 'bms_reject_offer_button' %>-->
         <!--</div>-->
-        Offer Activated
+        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+          Offer Activated
+        </div>
       <% elsif @offer.rejected? %>
         <div class="col-md-12 col-lg-12 col-sm-12 text-center">
           <%= link_to 'Accept', customers_accept_offer_path(id: @offer.id), class: 'bms_submit_button', remote: true, method: 'post', id: 'bms_accept_offer_button' %>

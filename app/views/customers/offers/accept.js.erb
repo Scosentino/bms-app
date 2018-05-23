@@ -20,4 +20,7 @@ $('.order_actions_buttons').html('<div class="col-md-12 col-lg-12 col-sm-12 text
 $('#order_actions_buttons_<%= @offer.id %>').html('<div class="col-md-12 col-lg-12 col-sm-12 text-center">' +
     '                  <a class="btn_red" id="bms_reject_offer_button" data-remote="true" rel="nofollow" data-method="post" href="/customers/offers/reject/<%= @offer.id %>">R</a>' +
     '                </div>');
+
+$('#successfully_modal_container').html('<%= escape_javascript(render partial: 'successfully_acceptance_modal') %>');
+$('#successfully_acceptance_modal').modal('show');
 <% end %>
