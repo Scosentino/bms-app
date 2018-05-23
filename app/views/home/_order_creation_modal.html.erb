@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'shared/order_creation_modal' %>
+
 <div class="modal fade" id="create_order_modal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered bms_modal_style" role="document">
     <div class="modal-content">
@@ -10,13 +12,16 @@
       <div class="modal-body">
         <div class="registrations_order_box" style="margin: 0;padding: 0;">
           <%= form_for User.new, as: :user_wizard, url: validate_step_wizard_path, html: {id: 'new_wizard_form_banner'} do |f| %>
-            <%= hidden_field_tag :current_step, 'step1', id: 'efefe' %>
+            <%= hidden_field_tag :current_step, 'step1', id: 'current_Step_banner' %>
+
+            <%= f.label :email, 'data-old_text': 'Email', for: 'banner_user_wizard_email' %>
             <%= f.email_field :email, placeholder: 'Email Address', autocompleted: 'off', id: 'banner_user_wizard_email' %>
-
-            <%= f.password_field :password, placeholder: 'New Password', autocompleted: 'off', id: 'banner_user_wizard_email_p' %>
-
+            <%= f.label :password, 'data-old_text': 'Password', for: 'banner_user_wizard_email_p' %>
+            <%= f.password_field :password, placeholder: 'Password', autocompleted: 'off', id: 'banner_user_wizard_email_p' %>
+            <%= f.label :password_confirmation, 'data-old_text': 'Password confirmation', for: 'banner_user_wizard_p_c' %>
             <%= f.password_field :password_confirmation, placeholder: 'Password Confirmation', autocompleted: 'off', id: 'banner_user_wizard_p_c' %>
 
+            <%= f.label :documents, 'data-old_text': 'Documents' %>
             <%= f.file_field :documents, multiple: true, name: 'user_wizard[orders][documents][]', id: 'banner_user_wizard_docs' %>
             <br/>
             <br/>
