@@ -194,21 +194,30 @@
         <!-- Single Widget Start -->
         <div class="col-lg-3 col-md-6">
           <div class="single-widget-wrap">
-            <div class="widget-title">
-              <h5>Get Started By uploading your most recent Merchant Statement</h5>
-            </div>
-            <div class="widget-body">
-              <div class="footer-form">
-                <form action="index.html">
-                  <input type="text" placeholder="Full Name">
-                  <input type="email" placeholder="Email Address">
-                  <input type="url" placeholder="Website URL">
-                  <button type="button" name="button">Merchant Statement <i class="fa fa-upload"></i> </button>
-                  <hr>
-                  <button class="quote-btn"><i class="fa fa-send"></i> Next</button>
-                </form>
+            <% if controller_name != 'wizards' %>
+              <div class="widget-title">
+                <h5>Get Started By uploading your most recent Merchant Statement</h5>
               </div>
-            </div>
+              <div class="widget-body">
+                <div class="footer-form">
+                  <%= form_for User.new, as: :user_wizard, url: validate_step_wizard_path do |f| %>
+                    <%= hidden_field_tag :current_step, 'step1' %>
+                    <%= f.email_field :email, placeholder: 'Email Address', autocompleted: 'off' %>
+
+                    <%= f.password_field :password, placeholder: 'New Password', autocompleted: 'off' %>
+
+                    <%= f.password_field :password_confirmation, placeholder: 'Password Confirmation', autocompleted: 'off' %>
+
+                    <button type="button" id="merchant_statement_uploader">Merchant Statement <i class="fa fa-upload"></i> </button>
+                    <%= f.file_field :documents, multiple: true, style: 'display:none;', name: 'user_wizard[orders][documents][]' %>
+                    <br/>
+                    <br/>
+
+                    <button type="submit" class="quote-btn"><i class="fa fa-send"></i> Next</button>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
           </div>
         </div>
         <!-- Single Widget End -->

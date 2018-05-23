@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  # Create Order from footer
+  post '/create_order_from_footer', to: 'home#create_order_from_footer', as: :create_order_from_footer
+
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end

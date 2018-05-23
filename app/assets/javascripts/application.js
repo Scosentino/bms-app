@@ -22,3 +22,10 @@
 //= require_tree ./plugins
 //= require_tree ./admins
 //= require_tree ./applications
+
+
+$(document).ready(function(){
+    $('#new_user_wizard').on('click', '#merchant_statement_uploader', function(){
+        $('#user_wizard_documents').click();
+    });
+});
