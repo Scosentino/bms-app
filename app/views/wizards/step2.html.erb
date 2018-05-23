@@ -22,7 +22,7 @@
             <%= hidden_field_tag :current_step, 'step2' %>
             <%= f.hidden_field :email, value: @user_wizard.user.email %>
             <%= f.fields_for :business do |b| %>
-              <%= b.label :legal_name, 'data-old_text': 'Legal Name' %>
+              <%= b.label :legal_name, 'data-old_text': 'Legal Business Name' %>
               <%= b.text_field :legal_name %>
               <%= b.label :dba %>
               <%= b.text_field :dba %>
