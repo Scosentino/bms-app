@@ -2,3 +2,7 @@ development:
   cloud_name: "dflr0ohqs"
   api_key: "848689392848579"
   api_secret: "KVi5tXzPySn3MG4u4msA3hI06JU"
+production:
+  cloud_name: "dflr0ohqs"
+  api_key: "848689392848579"
+  api_secret: "KVi5tXzPySn3MG4u4msA3hI06JU"
