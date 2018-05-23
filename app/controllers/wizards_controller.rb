@@ -27,28 +27,31 @@ class WizardsController < ApplicationController
     begin
       ActiveRecord::Base.transaction do
         if @user_wizard.user.save
-          @user_wizard.user.update!(completed: true)
-          business = Business.new(session[:business_attributes].compact.merge({customer_id: @user_wizard.user.id}))
+          if @user_wizard.user.business.present?
+            business = @user_wizard.user.business
+          else
+            business = Business.new(session[:business_attributes].compact.merge({customer_id: @user_wizard.user.id}))
+          end
           if business.save
-            order = @user_wizard.user.orders.first
-            order.business_id = business.id
-            if order.update(session[:order_attributes].compact.merge(
-                accepted_at: Time.now, customer_name: @user_wizard.user.full_name,
-                completed: true))
+            if @user_wizard.user.payment_method.present?
+              payment = @user_wizard.user.payment_method
+            else
               payment = PaymentMethod.new(session[:payment_method_attributes].compact.merge({customer_id: @user_wizard.user.id}))
-              if payment.save
+            end
+            if payment.save
+              if save_order(business.id)
+                @user_wizard.user.update!(completed: true)
                 sign_in(@user_wizard.user)
                 session[:user_attributes] = nil
                 session[:payment_method_attributes] = nil
                 session[:business_attributes] = nil
                 session[:order_attributes] = nil
                 session[:order_attributes_image] = nil
-                redirect_to root_path, notice: 'User successfully created!'
               else
-                raise('There were a problem when creating the payment method.')
+                raise('There were a problem when creating the order.')
               end
             else
-              raise('There were a problem when creating the order.')
+              raise('There were a problem when creating the payment method.')
             end
           else
             raise('There were a problem when creating the business.')
@@ -58,12 +61,25 @@ class WizardsController < ApplicationController
         end
       end
     rescue Exception => e
-      flash[:alert] = e
+      flash[:alert] = e if e.to_s.scan(/reject/).blank?
       redirect_to action: Wizard::User::STEPS.first
     end
   end
 
   private
+
+  def save_order business_id
+    order = @user_wizard.user.orders.first
+    order.business_id = business_id
+    if order.update(session[:order_attributes].compact.merge(
+        accepted_at: Time.now, customer_name: @user_wizard.user.full_name,
+        completed: true))
+
+      return true
+    else
+      false
+    end
+  end
 
   def step_validation_1 current_step
     @order_wizard = wizard_order
@@ -88,7 +104,6 @@ class WizardsController < ApplicationController
 
       redirect_to action: next_step
     else
-      p @user_wizard.user.errors
       render current_step
     end
   end
