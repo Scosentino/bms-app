@@ -18,7 +18,7 @@
 *	[Table of Contents]
 * ===========================
 *
-*	01. Default CSS Start 
+*	01. Default CSS Start
 *	02. Header Area Start
 *	    2.1 - PreHeader Area
 *	    2.2 - Header Bottom  Area
@@ -27,7 +27,7 @@
 *	05. FunFact Area Start
 *	06. Service Area Start
 *	07. Case Studies Area Start
-*	08. Newsletter Area Start 
+*	08. Newsletter Area Start
 *	09. Pricing Plan Area Start
 *	10. Team Area Start
 *	    10.1 - Team Hover Function
@@ -1325,7 +1325,7 @@ footer#footer-area {
 }
 
 .single-slide-wrap {
-    padding: 190px 0 200px;
+    padding: 50px 0 50px;
 }
 
 #slider-area .seo-btn:hover {
@@ -1939,7 +1939,7 @@ p.colored {
 .login-form button {
     background-color: transparent;
     border: 1px solid #fff;
-    color: #000;
+    color: white;
     margin: 10px 0;
     padding: 10px 20px;
     -webkit-transition: all 0.4s ease 0s;
