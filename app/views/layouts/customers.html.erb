@@ -159,25 +159,26 @@
         <!-- Single Widget End -->
 
         <!-- Single Widget Start -->
-        <!--<div class="col-lg-3 col-md-6">-->
-          <!--<div class="single-widget-wrap">-->
-            <!--<div class="widget-title">-->
-              <!--<h5>Get Started By uploading your most recent Merchant Statement</h5>-->
-            <!--</div>-->
-            <!--<div class="widget-body">-->
-              <!--<div class="footer-form">-->
-                <!--<form action="index.html">-->
-                  <!--<input type="text" placeholder="Full Name">-->
-                  <!--<input type="email" placeholder="Email Address">-->
-                  <!--<input type="url" placeholder="Website URL">-->
-                  <!--<button type="button" name="button">Merchant Statement <i class="fa fa-upload"></i> </button>-->
-                  <!--<hr>-->
-                  <!--<button class="quote-btn"><i class="fa fa-send"></i> Next</button>-->
-                <!--</form>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
+        <div class="col-lg-3 col-md-6">
+          <div class="single-widget-wrap">
+            <% if current_user.completed && controller_name != 'orders' %>
+              <div class="widget-title">
+                <h5>Get Started By uploading your most recent Merchant Statement</h5>
+              </div>
+              <div class="widget-body">
+                <div class="footer-form">
+                  <%= form_for(Order.new, url: customers_orders_path, method: :post) do |f| %>
+                    <%= f.file_field :documents, multiple: true, style: 'display: none;' %>
+                    <button type="button" id="merchant_statement_uploader">Merchant Statement <i class="fa fa-upload"></i> </button>
+                    <p style="width: auto;display: initial;">You need to accept terms</p> <%= f.check_box :accepted_policy, style: 'width: auto;display: initial;' %>
+
+                    <button type="submit" class="quote-btn"><i class="fa fa-send"></i> Next</button>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
         <!-- Single Widget End -->
       </div>
     </div>

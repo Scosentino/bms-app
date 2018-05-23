@@ -34,4 +34,8 @@ $(document).ready(function(){
 
         $('#' + type + '_li').addClass('active');
     });
+
+    $('#new_order').on('click', '#merchant_statement_uploader', function(){
+        $('#order_documents').click();
+    });
 });

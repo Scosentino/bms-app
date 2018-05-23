@@ -10,10 +10,4 @@ class HomeController < ApplicationController
       end
     end
   end
-
-  def create_order_from_footer
-    p '------------'
-    p params
-    p '------------'
-  end
 end
