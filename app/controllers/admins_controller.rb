@@ -30,6 +30,17 @@ class AdminsController < ApplicationController
     redirect_to admins_path
   end
 
+  def update_logo
+    if params[:user][:navbar_logo].present?
+      if current_user.update!(navbar_logo: params[:user][:navbar_logo],validate_main: true)
+        flash[:notice] = 'Nav bar logo successfully updated.'
+      else
+        flash[:alert] = current_user.errors.full_messages.first
+      end
+      redirect_to admins_path
+    end
+  end
+
   private
 
   def admin_info_params

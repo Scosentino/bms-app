@@ -78,7 +78,11 @@
         <!-- Logo Area Start -->
         <div class="col-lg-2">
           <a href="/" class="logo-area">
-            <img src="https://i.imgur.com/GPKmsua.png" alt="Logo">
+            <% if current_user && current_user.navbar_logo.present? %>
+              <%= cl_image_tag(current_user.navbar_logo.filename, :transformation=> {:width => 158, height: 40, :crop=>"thumb"})%>
+            <% else %>
+              <img src="https://i.imgur.com/GPKmsua.png" alt="Logo">
+            <% end %>
           </a>
         </div>
         <!-- Logo Area End -->

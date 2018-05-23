@@ -8,6 +8,7 @@
         <li role="presentation" id="order_li"><a class="tabs_changer" href="#password" data-type="order" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Change Password</a></li>
         <li role="presentation" id="business_li"><a class="tabs_changer" data-type="business" href="#business" aria-controls="notes" role="tab" data-toggle="tab" aria-expanded="false">Business</a></li>
         <li role="presentation" id="payment_method_li"><a class="tabs_changer" href="#payment_method" data-type="payment_method" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Payment Method</a></li>
+        <li role="presentation" id="logo_li"><a class="tabs_changer" href="#logo" data-type="logo" aria-controls="home" role="tab" data-toggle="tab" aria-expanded="true">Logo</a></li>
       </ul>
       <div class="panel-body">
         <div class="tab-content responsive m-t-0">
@@ -44,6 +45,18 @@
           <div role="tabpanel" class="tab-pane fade in" id="payment_method">
             <div class="settings_box_form">
               <%= render partial: 'customers/settings/payment_method' %>
+            </div>
+          </div>
+          <div role="tabpanel" class="tab-pane fade" id="logo">
+            <div class="row">
+              <div class="col-md-12 col-lg-12 col-sm-12">
+                <div class="settings_box_form">
+                  <%= form_for current_user, url: update_customer_navbar_logo_path, html:{method: 'patch', id: 'edit_user_logo'} do |f| %>
+                    <%= f.file_field :navbar_logo %>
+                    <%= f.submit 'Save' %>
+                  <% end %>
+                </div>
+              </div>
             </div>
           </div>
         </div>

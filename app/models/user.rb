@@ -24,6 +24,8 @@ class User < ApplicationRecord
 
   enum user_type: %w[customer admin]
 
+  mount_uploader :navbar_logo, NavbarLogoUploader
+
   def full_name
     "#{first_name.try(:humanize)} #{last_name.try(:humanize)}"
   end
