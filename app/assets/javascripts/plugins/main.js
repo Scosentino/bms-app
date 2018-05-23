@@ -96,7 +96,7 @@
             loop: true,
             dots: true,
             nav: false,
-            autoplay: true,
+            autoplay: false,
             autoplayTimeout: 3000,
             smartSpeed: 1500
         });
