@@ -20,7 +20,7 @@
         </div>
         <div class="col-md-8 col-lg-8 col-sm-7 show_box_data">
           <% @order.documents.each do |d| %>
-            <%= link_to d.file.filename, d.file.url, target:'_blank' %> <br/>
+            <%= link_to d.file.filename, d.url, target:'_blank' %> <br/>
           <% end %>
         </div>
       </div>
