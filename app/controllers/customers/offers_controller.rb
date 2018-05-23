@@ -42,6 +42,6 @@ class Customers::OffersController < ApplicationController
   end
 
   def set_offer
-    @offer = Offer.find_by(id: params[:id])
+    @offer = current_user.customer_offers.find_by(id: params[:id])
   end
 end

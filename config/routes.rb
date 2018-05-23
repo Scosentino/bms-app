@@ -44,6 +44,7 @@ Rails.application.routes.draw do
 
   namespace :customers do
     resources :orders, only: [:create, :new, :destroy, :show]
+    get '/success/:id', to: 'orders#success', as: :order_success
     # Offers
     resources :offers, only: [:show]
     post 'offers/accept/:id', to: 'offers#accept', as: :accept_offer
